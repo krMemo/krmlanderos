@@ -1,0 +1,48 @@
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "0Ly-7C-vq7"; */
+"0Ly-7C-vq7.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "5Jl-sO-PoZ"; */
+"5Jl-sO-PoZ.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Correo Electrónico"; ObjectID = "6ur-IR-iXA"; */
+"6ur-IR-iXA.placeholder" = "Correo Electrónico";
+
+/* Class = "UITextField"; placeholder = "Repetir Correo"; ObjectID = "HJM-MX-WKB"; */
+"HJM-MX-WKB.placeholder" = "Repetir Correo";
+
+/* Class = "UIButton"; normalTitle = "INICIAR"; ObjectID = "NR1-ku-lb2"; */
+"NR1-ku-lb2.normalTitle" = "LOGIN";
+
+/* Class = "UIButton"; normalTitle = "Registro"; ObjectID = "RQb-c0-WGQ"; */
+"RQb-c0-WGQ.normalTitle" = "Registro";
+
+/* Class = "UILabel"; text = "Registro"; ObjectID = "Uei-17-mOs"; */
+"Uei-17-mOs.text" = "Registro";
+
+/* Class = "UILabel"; text = "diciembre 2016"; ObjectID = "ZHK-3i-vh9"; */
+"ZHK-3i-vh9.text" = "diciembre 2016";
+
+/* Class = "UITextField"; placeholder = "Nombre(s)"; ObjectID = "ale-tP-abW"; */
+"ale-tP-abW.placeholder" = "Nombre(s)";
+
+/* Class = "UITextField"; placeholder = "Apellido Materno"; ObjectID = "bBV-ED-o0p"; */
+"bBV-ED-o0p.placeholder" = "Apellido Materno";
+
+/* Class = "UIButton"; normalTitle = "Enviar"; ObjectID = "djm-t3-kBg"; */
+"djm-t3-kBg.normalTitle" = "Send";
+
+/* Class = "UITabBarItem"; title = "Item 2"; ObjectID = "mH3-94-ZPL"; */
+"mH3-94-ZPL.title" = "Item 2";
+
+/* Class = "UITextField"; placeholder = "Apellido Paterno"; ObjectID = "mZM-JW-FQq"; */
+"mZM-JW-FQq.placeholder" = "Apellido Paterno";
+
+/* Class = "UIButton"; normalTitle = "Restablecer contraseña"; ObjectID = "vOT-un-SRi"; */
+"vOT-un-SRi.normalTitle" = "Restablecer contraseña";
+
+/* Class = "UITabBarItem"; title = "Calendario"; ObjectID = "xbX-Pd-GKC"; */
+"xbX-Pd-GKC.title" = "Calendario";
+
+/* Class = "UITextField"; placeholder = "Correo electrónico"; ObjectID = "zov-zf-3U2"; */
+"zov-zf-3U2.placeholder" = "E-mail";

@@ -28,3 +28,4 @@ func post(phpFile: String, postString: String) -> (String) {
     task.resume()
     return mensaje
 }
+

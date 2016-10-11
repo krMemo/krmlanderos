@@ -32,10 +32,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func accederSistema(_ sender: UIButton) {
         
-        let alertController = UIAlertController(title: "Atención", message: "Los datos son incorrectos.", preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            UIAlertAction in NSLog("OK Pressed")
-        }
+        let alertController = UIAlertController(title: NSLocalizedString("Atención", comment: ""), message: "Los datos son incorrectos.".localized, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
         alertController.addAction(okAction)
         
         var login: String = ""
@@ -109,4 +107,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.performSegue(withIdentifier: "segueRegistro", sender: self)
     }
     
+}
+
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
 }

@@ -44,6 +44,7 @@
 		FC5A679B1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A677E1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift */; };
 		FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */; };
 		FC70B4351D7F7ECC00728E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70B4331D7F7ECC00728E8A /* LaunchScreen.storyboard */; };
+		FC95CBDB1DAD863000F5E67C /* Languages.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBDD1DAD863000F5E67C /* Languages.strings */; };
 		FCAEBF4D1D99BB2F00409702 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,9 @@
 		FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC70B4341D7F7ECC00728E8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC70B4361D7F7ECC00728E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC95CBDC1DAD863000F5E67C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Languages.strings; sourceTree = "<group>"; };
+		FC95CBDE1DAD864300F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Languages.strings; sourceTree = "<group>"; };
+		FC95CBE01DAD87DC00F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/iPhone.strings; sourceTree = "<group>"; };
 		FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +173,7 @@
 				FC2898411D9C78E7007212B9 /* RegistroViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC5A66921DA5810C00A62D26 /* CalendarioController.swift */,
+				FC95CBDD1DAD863000F5E67C /* Languages.strings */,
 			);
 			path = "Uno a Uno";
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				FC0F507D1D981D58003286BD /* iPad.storyboard in Resources */,
 				FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */,
 				FC0F507A1D981D33003286BD /* iPhone.storyboard in Resources */,
+				FC95CBDB1DAD863000F5E67C /* Languages.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +302,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FC0F50791D981D33003286BD /* Base */,
+				FC95CBE01DAD87DC00F5E67C /* en */,
 			);
 			name = iPhone.storyboard;
 			sourceTree = "<group>";
@@ -314,6 +321,15 @@
 				FC70B4341D7F7ECC00728E8A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FC95CBDD1DAD863000F5E67C /* Languages.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC95CBDC1DAD863000F5E67C /* Base */,
+				FC95CBDE1DAD864300F5E67C /* en */,
+			);
+			name = Languages.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -40,17 +40,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-ku-lb2">
-                                <frame key="frameInset" minX="139" minY="387" width="97" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
-                                <state key="normal" image="iniciar">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="accederSistema:" destination="iu5-AZ-EzG" eventType="touchUpInside" id="9BA-K2-pDc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQb-c0-WGQ">
                                 <frame key="frameInset" minX="16" minY="617" width="75" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -69,6 +58,17 @@
                                 </state>
                                 <connections>
                                     <action selector="MostrarRestablecer:" destination="iu5-AZ-EzG" eventType="touchUpInside" id="Br8-wq-3ur"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-ku-lb2">
+                                <frame key="frameInset" minX="126" minY="376" width="122" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="INICIAR" backgroundImage="button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="accederSistema:" destination="iu5-AZ-EzG" eventType="touchUpInside" id="9BA-K2-pDc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -282,8 +282,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="button" width="200" height="50"/>
         <image name="fondo-blue" width="681" height="1024"/>
-        <image name="iniciar" width="111" height="36"/>
         <image name="unoauno_img" width="350" height="200"/>
     </resources>
 </document>
