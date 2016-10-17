@@ -29,3 +29,8 @@ func post(phpFile: String, postString: String) -> (String) {
     return mensaje
 }
 
+extension String {
+    var lang: String {
+        return NSLocalizedString(self, comment: "")
+    }
+}

@@ -6,8 +6,5 @@
   Copyright © 2016 Enrique Landeros Reyes. All rights reserved.
 */
 
-/**/
-"Atención" = "Attention";
-
-/**/
-"Los datos son incorrectos." = "Incorrect information.";
+"ATENCION" = "Attention";
+"INF_INC" = "Incorrect information.";

@@ -19,6 +19,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         textCorreo.delegate = self
         textContrasenia.delegate = self
+        abrirDB()
+        insertRegistro()
+        selectRegistro()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -32,7 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func accederSistema(_ sender: UIButton) {
         
-        let alertController = UIAlertController(title: NSLocalizedString("Atención", comment: ""), message: "Los datos son incorrectos.".localized, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "ATENCION".lang, message: "INF_INC".lang, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
         alertController.addAction(okAction)
         
@@ -109,8 +112,3 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
 }
 
-extension String {
-    var localized: String {
-        return NSLocalizedString(self, comment: "")
-    }
-}

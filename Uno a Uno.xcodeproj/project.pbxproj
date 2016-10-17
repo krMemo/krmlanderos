@@ -3,17 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC0F507A1D981D33003286BD /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC0F50781D981D33003286BD /* iPhone.storyboard */; };
-		FC0F507D1D981D58003286BD /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC0F507B1D981D58003286BD /* iPad.storyboard */; };
 		FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC207BFF1D98247400AC15F2 /* Assets.xcassets */; };
 		FC226B551DA0F7D500905277 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC226B541DA0F7D500905277 /* Functions.swift */; };
 		FC2898421D9C78E7007212B9 /* RegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2898411D9C78E7007212B9 /* RegistroViewController.swift */; };
 		FC5A66931DA5810C00A62D26 /* CalendarioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A66921DA5810C00A62D26 /* CalendarioController.swift */; };
-		FC5A677F1DA6FA4100A62D26 /* CVAuxiliaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A67611DA6FA4100A62D26 /* CVAuxiliaryView.swift */; };
 		FC5A67801DA6FA4100A62D26 /* CVCalendarContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A67631DA6FA4100A62D26 /* CVCalendarContentViewController.swift */; };
 		FC5A67811DA6FA4100A62D26 /* CVCalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A67641DA6FA4100A62D26 /* CVCalendarDayView.swift */; };
 		FC5A67821DA6FA4100A62D26 /* CVCalendarDayViewControlCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A67651DA6FA4100A62D26 /* CVCalendarDayViewControlCoordinator.swift */; };
@@ -43,19 +40,26 @@
 		FC5A679A1DA6FA4100A62D26 /* CVStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A677D1DA6FA4100A62D26 /* CVStatus.swift */; };
 		FC5A679B1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A677E1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift */; };
 		FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */; };
-		FC70B4351D7F7ECC00728E8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC70B4331D7F7ECC00728E8A /* LaunchScreen.storyboard */; };
-		FC95CBDB1DAD863000F5E67C /* Languages.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBDD1DAD863000F5E67C /* Languages.strings */; };
+		FC722DA81DAFFB9200A39926 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */; };
+		FC722DB71DB00B2B00A39926 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DAC1DB00B2B00A39926 /* FMDatabase.m */; };
+		FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DAE1DB00B2B00A39926 /* FMDatabaseAdditions.m */; };
+		FC722DB91DB00B2B00A39926 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DB01DB00B2B00A39926 /* FMDatabasePool.m */; };
+		FC722DBA1DB00B2B00A39926 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DB21DB00B2B00A39926 /* FMDatabaseQueue.m */; };
+		FC722DBB1DB00B2B00A39926 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DB51DB00B2B00A39926 /* FMResultSet.m */; };
+		FC722DBE1DB00BC500A39926 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC722DBD1DB00BC500A39926 /* DataBase.swift */; };
+		FC722DC41DB01DD600A39926 /* CVAuxiliaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC722DC31DB01DD600A39926 /* CVAuxiliaryView.swift */; };
+		FC95CBF71DAEA15700F5E67C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBED1DAEA15700F5E67C /* iPad.storyboard */; };
+		FC95CBF81DAEA15700F5E67C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBEF1DAEA15700F5E67C /* iPhone.storyboard */; };
+		FC95CBFA1DAEA15700F5E67C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBF31DAEA15700F5E67C /* Localizable.strings */; };
+		FC95CBFB1DAEA15700F5E67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */; };
 		FCAEBF4D1D99BB2F00409702 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FC0F50791D981D33003286BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
-		FC0F507C1D981D58003286BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPad.storyboard; sourceTree = "<group>"; };
 		FC207BFF1D98247400AC15F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC226B541DA0F7D500905277 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		FC2898411D9C78E7007212B9 /* RegistroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroViewController.swift; sourceTree = "<group>"; };
 		FC5A66921DA5810C00A62D26 /* CalendarioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarioController.swift; sourceTree = "<group>"; };
-		FC5A67611DA6FA4100A62D26 /* CVAuxiliaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVAuxiliaryView.swift; sourceTree = "<group>"; };
 		FC5A67621DA6FA4100A62D26 /* CVCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCalendar.h; sourceTree = "<group>"; };
 		FC5A67631DA6FA4100A62D26 /* CVCalendarContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarContentViewController.swift; sourceTree = "<group>"; };
 		FC5A67641DA6FA4100A62D26 /* CVCalendarDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarDayView.swift; sourceTree = "<group>"; };
@@ -87,11 +91,30 @@
 		FC5A677E1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVWeekdaySymbolType.swift; sourceTree = "<group>"; };
 		FC70B4271D7F7ECC00728E8A /* Uno a Uno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Uno a Uno.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC70B4341D7F7ECC00728E8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FC70B4361D7F7ECC00728E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC95CBDC1DAD863000F5E67C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Languages.strings; sourceTree = "<group>"; };
-		FC95CBDE1DAD864300F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Languages.strings; sourceTree = "<group>"; };
-		FC95CBE01DAD87DC00F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/iPhone.strings; sourceTree = "<group>"; };
+		FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		FC722DAA1DB00B2B00A39926 /* Uno a Uno-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Uno a Uno-Bridging-Header.h"; sourceTree = "<group>"; };
+		FC722DAB1DB00B2B00A39926 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = FMDB/FMDatabase.h; sourceTree = "<group>"; };
+		FC722DAC1DB00B2B00A39926 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = FMDB/FMDatabase.m; sourceTree = "<group>"; };
+		FC722DAD1DB00B2B00A39926 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = FMDB/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		FC722DAE1DB00B2B00A39926 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = FMDB/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		FC722DAF1DB00B2B00A39926 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = FMDB/FMDatabasePool.h; sourceTree = "<group>"; };
+		FC722DB01DB00B2B00A39926 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = FMDB/FMDatabasePool.m; sourceTree = "<group>"; };
+		FC722DB11DB00B2B00A39926 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = FMDB/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		FC722DB21DB00B2B00A39926 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = FMDB/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		FC722DB31DB00B2B00A39926 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = FMDB/FMDB.h; sourceTree = "<group>"; };
+		FC722DB41DB00B2B00A39926 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = FMDB/FMResultSet.h; sourceTree = "<group>"; };
+		FC722DB51DB00B2B00A39926 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = FMDB/FMResultSet.m; sourceTree = "<group>"; };
+		FC722DBD1DB00BC500A39926 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		FC722DBF1DB0180600A39926 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC722DC31DB01DD600A39926 /* CVAuxiliaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVAuxiliaryView.swift; sourceTree = "<group>"; };
+		FC95CBEE1DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPad.storyboard; sourceTree = "<group>"; };
+		FC95CBF01DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
+		FC95CBF41DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FC95CBF61DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FC95CBFC1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPad.storyboard"; sourceTree = "<group>"; };
+		FC95CBFD1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPhone.storyboard"; sourceTree = "<group>"; };
+		FC95CBFF1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		FC95CC001DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC722DA81DAFFB9200A39926 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +133,7 @@
 		FC5A67601DA6FA1C00A62D26 /* CVCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				FC5A67611DA6FA4100A62D26 /* CVAuxiliaryView.swift */,
+				FC722DC31DB01DD600A39926 /* CVAuxiliaryView.swift */,
 				FC5A67621DA6FA4100A62D26 /* CVCalendar.h */,
 				FC5A67631DA6FA4100A62D26 /* CVCalendarContentViewController.swift */,
 				FC5A67641DA6FA4100A62D26 /* CVCalendarDayView.swift */,
@@ -140,7 +164,7 @@
 				FC5A677D1DA6FA4100A62D26 /* CVStatus.swift */,
 				FC5A677E1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift */,
 			);
-			name = CVCalendar;
+			path = CVCalendar;
 			sourceTree = "<group>";
 		};
 		FC70B41E1D7F7ECC00728E8A = {
@@ -148,6 +172,7 @@
 			children = (
 				FC70B4291D7F7ECC00728E8A /* Uno a Uno */,
 				FC70B4281D7F7ECC00728E8A /* Products */,
+				FC722DA61DAFFB9100A39926 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,20 +187,49 @@
 		FC70B4291D7F7ECC00728E8A /* Uno a Uno */ = {
 			isa = PBXGroup;
 			children = (
-				FC5A67601DA6FA1C00A62D26 /* CVCalendar */,
+				FC722DBF1DB0180600A39926 /* Info.plist */,
 				FC207BFF1D98247400AC15F2 /* Assets.xcassets */,
+				FC95CBED1DAEA15700F5E67C /* iPad.storyboard */,
+				FC95CBEF1DAEA15700F5E67C /* iPhone.storyboard */,
+				FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */,
+				FC95CBF31DAEA15700F5E67C /* Localizable.strings */,
 				FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */,
-				FC70B4331D7F7ECC00728E8A /* LaunchScreen.storyboard */,
-				FC70B4361D7F7ECC00728E8A /* Info.plist */,
-				FC0F50781D981D33003286BD /* iPhone.storyboard */,
-				FC0F507B1D981D58003286BD /* iPad.storyboard */,
 				FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */,
 				FC2898411D9C78E7007212B9 /* RegistroViewController.swift */,
-				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC5A66921DA5810C00A62D26 /* CalendarioController.swift */,
-				FC95CBDD1DAD863000F5E67C /* Languages.strings */,
+				FC226B541DA0F7D500905277 /* Functions.swift */,
+				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
+				FC5A67601DA6FA1C00A62D26 /* CVCalendar */,
+				FC722DA91DB00ACE00A39926 /* FMDB */,
 			);
 			path = "Uno a Uno";
+			sourceTree = "<group>";
+		};
+		FC722DA61DAFFB9100A39926 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC722DA91DB00ACE00A39926 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				FC722DAB1DB00B2B00A39926 /* FMDatabase.h */,
+				FC722DAC1DB00B2B00A39926 /* FMDatabase.m */,
+				FC722DAD1DB00B2B00A39926 /* FMDatabaseAdditions.h */,
+				FC722DAE1DB00B2B00A39926 /* FMDatabaseAdditions.m */,
+				FC722DAF1DB00B2B00A39926 /* FMDatabasePool.h */,
+				FC722DB01DB00B2B00A39926 /* FMDatabasePool.m */,
+				FC722DB11DB00B2B00A39926 /* FMDatabaseQueue.h */,
+				FC722DB21DB00B2B00A39926 /* FMDatabaseQueue.m */,
+				FC722DB31DB00B2B00A39926 /* FMDB.h */,
+				FC722DB41DB00B2B00A39926 /* FMResultSet.h */,
+				FC722DB51DB00B2B00A39926 /* FMResultSet.m */,
+				FC722DAA1DB00B2B00A39926 /* Uno a Uno-Bridging-Header.h */,
+			);
+			name = FMDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +264,6 @@
 				TargetAttributes = {
 					FC70B4261D7F7ECC00728E8A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = N5H3628677;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -221,12 +274,12 @@
 				};
 			};
 			buildConfigurationList = FC70B4221D7F7ECC00728E8A /* Build configuration list for PBXProject "Uno a Uno" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"es-MX",
 			);
 			mainGroup = FC70B41E1D7F7ECC00728E8A;
 			productRefGroup = FC70B4281D7F7ECC00728E8A /* Products */;
@@ -243,11 +296,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC70B4351D7F7ECC00728E8A /* LaunchScreen.storyboard in Resources */,
-				FC0F507D1D981D58003286BD /* iPad.storyboard in Resources */,
+				FC95CBF71DAEA15700F5E67C /* iPad.storyboard in Resources */,
+				FC95CBF81DAEA15700F5E67C /* iPhone.storyboard in Resources */,
+				FC95CBFB1DAEA15700F5E67C /* LaunchScreen.storyboard in Resources */,
 				FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */,
-				FC0F507A1D981D33003286BD /* iPhone.storyboard in Resources */,
-				FC95CBDB1DAD863000F5E67C /* Languages.strings in Resources */,
+				FC95CBFA1DAEA15700F5E67C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,18 +314,20 @@
 				FC5A67931DA6FA4100A62D26 /* CVDate.swift in Sources */,
 				FCAEBF4D1D99BB2F00409702 /* LoginViewController.swift in Sources */,
 				FC5A67961DA6FA4100A62D26 /* CVScrollDirection.swift in Sources */,
+				FC722DB71DB00B2B00A39926 /* FMDatabase.m in Sources */,
 				FC5A67861DA6FA4100A62D26 /* CVCalendarMonthContentViewController.swift in Sources */,
 				FC2898421D9C78E7007212B9 /* RegistroViewController.swift in Sources */,
+				FC722DBB1DB00B2B00A39926 /* FMResultSet.m in Sources */,
 				FC5A67801DA6FA4100A62D26 /* CVCalendarContentViewController.swift in Sources */,
 				FC5A67871DA6FA4100A62D26 /* CVCalendarMonthView.swift in Sources */,
 				FC5A67951DA6FA4100A62D26 /* CVRange.swift in Sources */,
+				FC722DBA1DB00B2B00A39926 /* FMDatabaseQueue.m in Sources */,
 				FC5A66931DA5810C00A62D26 /* CalendarioController.swift in Sources */,
 				FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */,
 				FC5A67911DA6FA4100A62D26 /* CVCalendarWeekday.swift in Sources */,
 				FC5A67921DA6FA4100A62D26 /* CVCalendarWeekView.swift in Sources */,
 				FC5A67981DA6FA4100A62D26 /* CVSet.swift in Sources */,
 				FC5A679A1DA6FA4100A62D26 /* CVStatus.swift in Sources */,
-				FC5A677F1DA6FA4100A62D26 /* CVAuxiliaryView.swift in Sources */,
 				FC5A679B1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift in Sources */,
 				FC5A67901DA6FA4100A62D26 /* CVCalendarWeekContentViewController.swift in Sources */,
 				FC5A678C1DA6FA4100A62D26 /* CVCalendarViewAppearance.swift in Sources */,
@@ -280,56 +335,63 @@
 				FC5A678E1DA6FA4100A62D26 /* CVCalendarViewDelegate.swift in Sources */,
 				FC5A67991DA6FA4100A62D26 /* CVShape.swift in Sources */,
 				FC5A678D1DA6FA4100A62D26 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
+				FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */,
 				FC5A678B1DA6FA4100A62D26 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				FC5A67831DA6FA4100A62D26 /* CVCalendarManager.swift in Sources */,
 				FC5A67941DA6FA4100A62D26 /* CVPresent.swift in Sources */,
 				FC5A67971DA6FA4100A62D26 /* CVSelectionType.swift in Sources */,
+				FC722DBE1DB00BC500A39926 /* DataBase.swift in Sources */,
 				FC5A678F1DA6FA4100A62D26 /* CVCalendarViewPresentationMode.swift in Sources */,
 				FC5A67811DA6FA4100A62D26 /* CVCalendarDayView.swift in Sources */,
 				FC5A67881DA6FA4100A62D26 /* CVCalendarTouchController.swift in Sources */,
 				FC226B551DA0F7D500905277 /* Functions.swift in Sources */,
 				FC5A67821DA6FA4100A62D26 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				FC5A67891DA6FA4100A62D26 /* CVCalendarView.swift in Sources */,
+				FC722DC41DB01DD600A39926 /* CVAuxiliaryView.swift in Sources */,
 				FC5A67851DA6FA4100A62D26 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				FC5A67841DA6FA4100A62D26 /* CVCalendarMenuView.swift in Sources */,
+				FC722DB91DB00B2B00A39926 /* FMDatabasePool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FC0F50781D981D33003286BD /* iPhone.storyboard */ = {
+		FC95CBED1DAEA15700F5E67C /* iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC0F50791D981D33003286BD /* Base */,
-				FC95CBE01DAD87DC00F5E67C /* en */,
-			);
-			name = iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		FC0F507B1D981D58003286BD /* iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC0F507C1D981D58003286BD /* Base */,
+				FC95CBEE1DAEA15700F5E67C /* en */,
+				FC95CBFC1DAEA17800F5E67C /* es-MX */,
 			);
 			name = iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		FC70B4331D7F7ECC00728E8A /* LaunchScreen.storyboard */ = {
+		FC95CBEF1DAEA15700F5E67C /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC70B4341D7F7ECC00728E8A /* Base */,
+				FC95CBF01DAEA15700F5E67C /* en */,
+				FC95CBFD1DAEA17800F5E67C /* es-MX */,
 			);
-			name = LaunchScreen.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		FC95CBDD1DAD863000F5E67C /* Languages.strings */ = {
+		FC95CBF31DAEA15700F5E67C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC95CBDC1DAD863000F5E67C /* Base */,
-				FC95CBDE1DAD864300F5E67C /* en */,
+				FC95CBF41DAEA15700F5E67C /* en */,
+				FC95CBFF1DAEA17800F5E67C /* es-MX */,
 			);
-			name = Languages.strings;
+			name = Localizable.strings;
+			path = "/Users/elanrey/Desktop/UaU/Uno a Uno/Uno a Uno";
+			sourceTree = "<absolute>";
+		};
+		FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC95CBF61DAEA15700F5E67C /* en */,
+				FC95CC001DAEA17800F5E67C /* es-MX */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -339,6 +401,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -387,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -429,13 +493,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = N5H3628677;
 				INFOPLIST_FILE = "Uno a Uno/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.unoauno.Uno-a-Uno";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Uno a Uno/Uno a Uno-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -445,13 +513,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = N5H3628677;
 				INFOPLIST_FILE = "Uno a Uno/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.unoauno.Uno-a-Uno";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Uno a Uno/Uno a Uno-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
