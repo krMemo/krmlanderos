@@ -90,68 +90,6 @@
             </objects>
             <point key="canvasLocation" x="-666.39999999999998" y="73.313343328335833"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="Hi0-Ko-R24">
-            <objects>
-                <viewController id="Jbj-uL-yWQ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="trc-sk-Uui"/>
-                        <viewControllerLayoutGuide type="bottom" id="BsY-0E-XY4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="90g-8E-MQu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="mH3-94-ZPL"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="45X-GH-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1076" y="408"/>
-        </scene>
-        <!--Calendario-->
-        <scene sceneID="f7f-J4-E98">
-            <objects>
-                <viewController id="9eK-WD-dnn" customClass="CalendarioController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3Nd-lO-t6G"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ix5-hd-fTz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="B9R-Lr-EXG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RHn-Sn-INe" customClass="CVCalendarView" customModule="Uno_a_Uno" customModuleProvider="target">
-                                <frame key="frameInset" minX="16" minY="96" width="343" height="232"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92332249365482233" green="0.92332249365482233" blue="0.92332249365482233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jbn-ZG-MIk" customClass="CVCalendarMenuView" customModule="Uno_a_Uno" customModuleProvider="target">
-                                <frame key="frameInset" minX="16" minY="75" width="343" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.67437341370558368" green="0.67437341370558368" blue="0.67437341370558368" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="diciembre 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHK-3i-vh9">
-                                <frame key="frameInset" minX="16" minY="38" width="343" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Calendario" id="xbX-Pd-GKC"/>
-                    <connections>
-                        <outlet property="calendarView" destination="RHn-Sn-INe" id="CWV-9k-3Ls"/>
-                        <outlet property="calendarmenuView" destination="Jbn-ZG-MIk" id="OSv-rN-CS3"/>
-                        <outlet property="labelMes" destination="ZHK-3i-vh9" id="1e3-vb-PnH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2by-MI-mAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1076" y="-245.12743628185908"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ory-e3-8ah">
             <objects>
@@ -162,8 +100,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9eK-WD-dnn" kind="relationship" relationship="viewControllers" id="crJ-nf-ldj"/>
-                        <segue destination="Jbj-uL-yWQ" kind="relationship" relationship="viewControllers" id="Xu8-kw-2zL"/>
+                        <segue destination="TfR-Cm-WxI" kind="relationship" relationship="viewControllers" id="rEN-nD-b05"/>
+                        <segue destination="npM-ly-crb" kind="relationship" relationship="viewControllers" id="I1Y-0Y-8dc"/>
+                        <segue destination="1b9-wG-NxV" kind="relationship" relationship="viewControllers" id="EDy-US-GTs"/>
+                        <segue destination="jFR-DJ-Vxl" kind="relationship" relationship="viewControllers" id="jTr-IQ-bwz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eN9-qH-UOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,10 +220,114 @@
             </objects>
             <point key="canvasLocation" x="-666.39999999999998" y="852.3238380809596"/>
         </scene>
+        <!--crux-->
+        <scene sceneID="1BY-oE-QnS">
+            <objects>
+                <viewController id="npM-ly-crb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BPN-oK-F0R"/>
+                        <viewControllerLayoutGuide type="bottom" id="P7o-Q0-TcE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lj2-cQ-842">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="crux" image="copy2" id="NGc-bA-9m4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sco-OY-WBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2127" y="-456"/>
+        </scene>
+        <!--Configuración-->
+        <scene sceneID="Ufo-Yz-20O">
+            <objects>
+                <viewController id="1b9-wG-NxV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JaB-FX-xo8"/>
+                        <viewControllerLayoutGuide type="bottom" id="KmT-hC-FhH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q4F-vS-JvA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Configuración" image="iconCon" id="sBv-Gd-3ng"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLa-aD-Ofz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2127" y="225"/>
+        </scene>
+        <!--X-->
+        <scene sceneID="1wW-Vv-nhe">
+            <objects>
+                <viewController id="jFR-DJ-Vxl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z1I-Sz-bUa"/>
+                        <viewControllerLayoutGuide type="bottom" id="E5e-Jv-Sng"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gqO-Lk-DSZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="X" image="iconRef" id="fcu-3Y-ghV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PTG-Fa-hxn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="634"/>
+        </scene>
+        <!--Calendario-->
+        <scene sceneID="Tdb-ko-teh">
+            <objects>
+                <viewController id="TfR-Cm-WxI" customClass="CalendarioController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LCc-4Z-Yyo"/>
+                        <viewControllerLayoutGuide type="bottom" id="ebg-UV-X0O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5r0-vh-QkO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TEg-9l-o6R" customClass="CVCalendarView" customModule="Uno_a_Uno" customModuleProvider="target">
+                                <frame key="frameInset" minX="16" minY="96" width="343" height="232"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.92332249369999997" green="0.92332249369999997" blue="0.92332249369999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0am-32-RbY" customClass="CVCalendarMenuView" customModule="Uno_a_Uno" customModuleProvider="target">
+                                <frame key="frameInset" minX="16" minY="75" width="343" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.67437341370000004" green="0.67437341370000004" blue="0.67437341370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="diciembre 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLW-N9-raY">
+                                <frame key="frameInset" minX="16" minY="38" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Calendario" image="iconCal" id="sWf-0K-JkV"/>
+                    <connections>
+                        <outlet property="calendarView" destination="TEg-9l-o6R" id="g3c-kC-Alm"/>
+                        <outlet property="calendarmenuView" destination="0am-32-RbY" id="LFw-O0-IcP"/>
+                        <outlet property="labelMes" destination="PLW-N9-raY" id="eI8-Qw-LEa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MVQ-wP-0bu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="-672"/>
+        </scene>
     </scenes>
     <resources>
         <image name="button" width="200" height="50"/>
+        <image name="copy2" width="32" height="32"/>
         <image name="fondo-blue" width="681" height="1024"/>
+        <image name="iconCal" width="32" height="32"/>
+        <image name="iconCon" width="32" height="32"/>
+        <image name="iconRef" width="32" height="32"/>
         <image name="unoauno_img" width="350" height="200"/>
     </resources>
 </document>

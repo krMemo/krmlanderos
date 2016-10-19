@@ -103,11 +103,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="mH3-94-ZPL"/>
+                    <tabBarItem key="tabBarItem" title="Item 2" image="iconCli" id="mH3-94-ZPL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45X-GH-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="408"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Jdf-es-YBL">
+            <objects>
+                <viewController id="FdA-Gx-rex" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dzb-V9-tCL"/>
+                        <viewControllerLayoutGuide type="bottom" id="pvf-ke-aYM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Stx-nF-rre">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="iconCon" id="iHA-a2-nPK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QNO-tN-2A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1799" y="408"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="0UU-bK-NYc">
+            <objects>
+                <viewController id="hRX-lV-6l1" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HZi-D3-WMT"/>
+                        <viewControllerLayoutGuide type="bottom" id="UCa-6x-wfA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ilU-am-bY5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="iconRef" id="RW4-FY-F0m"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wer-ik-qW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2602" y="394"/>
         </scene>
         <!--Calendario-->
         <scene sceneID="f7f-J4-E98">
@@ -141,7 +179,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calendario" id="xbX-Pd-GKC"/>
+                    <tabBarItem key="tabBarItem" title="Calendario" image="iconCal" id="xbX-Pd-GKC"/>
                     <connections>
                         <outlet property="calendarView" destination="RHn-Sn-INe" id="CWV-9k-3Ls"/>
                         <outlet property="calendarmenuView" destination="Jbn-ZG-MIk" id="OSv-rN-CS3"/>
@@ -151,6 +189,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2by-MI-mAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="-245.12743628185908"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="SXB-bA-dTY">
+            <objects>
+                <viewController id="Fm8-Xh-OIf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Taf-L8-cxo"/>
+                        <viewControllerLayoutGuide type="bottom" id="y66-Sm-ytd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i1J-vb-E9v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="copy2" id="jMT-vl-ozO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5R-Fn-D2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1799" y="-245"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ory-e3-8ah">
@@ -164,6 +221,9 @@
                     <connections>
                         <segue destination="9eK-WD-dnn" kind="relationship" relationship="viewControllers" id="crJ-nf-ldj"/>
                         <segue destination="Jbj-uL-yWQ" kind="relationship" relationship="viewControllers" id="Xu8-kw-2zL"/>
+                        <segue destination="Fm8-Xh-OIf" kind="relationship" relationship="viewControllers" id="xE1-wz-Orr"/>
+                        <segue destination="FdA-Gx-rex" kind="relationship" relationship="viewControllers" id="Hqh-yG-Lv5"/>
+                        <segue destination="hRX-lV-6l1" kind="relationship" relationship="viewControllers" id="eMI-iC-G2J"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eN9-qH-UOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -283,7 +343,12 @@
     </scenes>
     <resources>
         <image name="button" width="200" height="50"/>
+        <image name="copy2" width="32" height="32"/>
         <image name="fondo-blue" width="681" height="1024"/>
+        <image name="iconCal" width="32" height="32"/>
+        <image name="iconCli" width="32" height="32"/>
+        <image name="iconCon" width="32" height="32"/>
+        <image name="iconRef" width="32" height="32"/>
         <image name="unoauno_img" width="350" height="200"/>
     </resources>
 </document>
