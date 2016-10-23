@@ -382,7 +382,7 @@
 				FC95CBFF1DAEA17800F5E67C /* es-MX */,
 			);
 			name = Localizable.strings;
-			path = "/Users/elanrey/Desktop/UaU/Uno a Uno/Uno a Uno";
+			path = "/Users/krMemo/Documents/MobileDev/Uno a Uno/Uno a Uno";
 			sourceTree = "<absolute>";
 		};
 		FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */ = {

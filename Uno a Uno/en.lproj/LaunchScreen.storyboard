@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fondo-blue" translatesAutoresizingMaskIntoConstraints="NO" id="i7i-xB-M10">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background_login" translatesAutoresizingMaskIntoConstraints="NO" id="i7i-xB-M10">
                                 <frame key="frameInset" width="375" height="672"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -43,7 +43,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fondo-blue" width="681" height="1024"/>
-        <image name="unoauno_img" width="350" height="200"/>
+        <image name="background_login" width="1080" height="1920"/>
+        <image name="unoauno_img" width="250" height="124"/>
     </resources>
 </document>

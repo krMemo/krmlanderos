@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "fondo-blue.jpg",
+      "filename" : "background.png",
       "scale" : "1x"
     },
     {
