@@ -60,10 +60,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.textContrasenia.alpha += 1
             self.btnLogin.alpha += 1
             self.btnRecoverPass.alpha += 1
-            print(self.btnNewAccount.center.y)
-            //self.btnNewAccount.center.y -= (screenSize - self.btnRecoverPass.center.y)
-            print(self.btnRecoverPass.center.y)
-            print(self.btnNewAccount.center.y)
             self.btnNewAccount.alpha += 1
             
             }, completion: nil)

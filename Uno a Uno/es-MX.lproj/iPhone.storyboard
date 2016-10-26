@@ -15,15 +15,12 @@
                         <viewControllerLayoutGuide type="bottom" id="JCQ-6L-Yy7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LFc-M4-GdW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="nph-HT-i8v" userLabel="Fondo">
-                                <frame key="frameInset" minX="-0.16%" minY="-0.10%" width="99.69%" height="99.90%"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="nph-HT-i8v" userLabel="Fondo"/>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unoauno_img" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-Kd-PFd">
-                                <frame key="frameInset" minX="51.43%" minY="6.02%" width="250" height="139.5"/>
+                                <frame key="frameInset" minX="51.07%" minY="6.20%" width="250.5" height="139.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -38,15 +35,6 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo electrónico" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="zov-zf-3U2">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="310" id="0aI-bT-kd5"/>
-                                    <constraint firstAttribute="height" constant="30" id="4zc-kY-aEc"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-ku-lb2">
                                 <color key="backgroundColor" red="0.9752851128578186" green="0.66849744319915771" blue="0.41372168064117432" alpha="0.85186509683098577" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -96,22 +84,35 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo electrónico" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="zov-zf-3U2">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="310" id="0aI-bT-kd5"/>
+                                    <constraint firstAttribute="height" constant="30" id="4zc-kY-aEc"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="nph-HT-i8v" firstAttribute="top" secondItem="LFc-M4-GdW" secondAttribute="top" id="11i-OD-LUN"/>
+                            <constraint firstItem="JCQ-6L-Yy7" firstAttribute="top" secondItem="nph-HT-i8v" secondAttribute="bottom" id="3EN-kL-2pj"/>
                             <constraint firstItem="jYn-T4-Kbs" firstAttribute="leading" secondItem="LFc-M4-GdW" secondAttribute="leading" id="5fc-Ji-L0W"/>
                             <constraint firstAttribute="bottom" secondItem="jYn-T4-Kbs" secondAttribute="bottom" id="B8R-69-GbN"/>
+                            <constraint firstItem="NR1-ku-lb2" firstAttribute="top" secondItem="5Jl-sO-PoZ" secondAttribute="bottom" constant="25" id="JjR-CZ-Cub"/>
                             <constraint firstItem="RQb-c0-WGQ" firstAttribute="centerX" secondItem="LFc-M4-GdW" secondAttribute="centerX" id="Kio-4g-ZBM"/>
+                            <constraint firstItem="5Jl-sO-PoZ" firstAttribute="centerY" secondItem="LFc-M4-GdW" secondAttribute="centerY" id="PQv-Sv-HvX"/>
                             <constraint firstItem="NR1-ku-lb2" firstAttribute="centerX" secondItem="LFc-M4-GdW" secondAttribute="centerX" id="Sgv-Au-dcO"/>
                             <constraint firstItem="zov-zf-3U2" firstAttribute="centerX" secondItem="LFc-M4-GdW" secondAttribute="centerX" id="Uh6-n5-9RW"/>
                             <constraint firstItem="5Jl-sO-PoZ" firstAttribute="centerX" secondItem="LFc-M4-GdW" secondAttribute="centerX" id="UhB-0R-ier"/>
                             <constraint firstItem="RQb-c0-WGQ" firstAttribute="top" secondItem="vOT-un-SRi" secondAttribute="bottom" constant="15" id="V0q-hf-dVA"/>
-                            <constraint firstItem="zov-zf-3U2" firstAttribute="centerY" secondItem="LFc-M4-GdW" secondAttribute="centerY" id="WLj-XU-CsO"/>
                             <constraint firstItem="vOT-un-SRi" firstAttribute="centerX" secondItem="LFc-M4-GdW" secondAttribute="centerX" id="eji-FG-qpS"/>
                             <constraint firstItem="vOT-un-SRi" firstAttribute="top" secondItem="NR1-ku-lb2" secondAttribute="bottom" constant="25" id="kSu-tX-9ji"/>
                             <constraint firstAttribute="trailing" secondItem="jYn-T4-Kbs" secondAttribute="trailing" id="kUx-DQ-7qJ"/>
-                            <constraint firstItem="NR1-ku-lb2" firstAttribute="top" secondItem="zov-zf-3U2" secondAttribute="bottom" constant="25" id="uD5-V2-Yci"/>
-                            <constraint firstItem="zov-zf-3U2" firstAttribute="top" secondItem="5Jl-sO-PoZ" secondAttribute="bottom" constant="1" id="zJm-5h-PIv"/>
+                            <constraint firstAttribute="trailing" secondItem="nph-HT-i8v" secondAttribute="trailing" id="p5v-uK-DDA"/>
+                            <constraint firstItem="5Jl-sO-PoZ" firstAttribute="top" secondItem="zov-zf-3U2" secondAttribute="bottom" constant="1" id="sCt-C6-YoD"/>
+                            <constraint firstItem="nph-HT-i8v" firstAttribute="leading" secondItem="LFc-M4-GdW" secondAttribute="leading" id="w9D-Kn-tGN"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -142,7 +143,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BsY-0E-XY4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="90g-8E-MQu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -161,7 +162,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pvf-ke-aYM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Stx-nF-rre">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -180,7 +181,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UCa-6x-wfA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ilU-am-bY5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -199,7 +200,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Ix5-hd-fTz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B9R-Lr-EXG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RHn-Sn-INe" customClass="CVCalendarView" customModule="Uno_a_Uno" customModuleProvider="target">
@@ -242,7 +243,7 @@
                         <viewControllerLayoutGuide type="bottom" id="y66-Sm-ytd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i1J-vb-E9v">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -282,11 +283,11 @@
                         <viewControllerLayoutGuide type="bottom" id="jse-x5-Baz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uwj-cZ-Scg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="eDj-8f-Arr" userLabel="Fondo">
-                                <frame key="frameInset" minX="-1" maxX="0.5"/>
+                                <frame key="frameInset" minX="-2" minY="-1" maxX="1" maxY="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Crea tu cuenta" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uei-17-mOs">
@@ -393,12 +394,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="540" height="960"/>
+        <image name="background" width="360" height="640"/>
         <image name="copy2" width="32" height="32"/>
         <image name="iconCal" width="32" height="32"/>
         <image name="iconCli" width="32" height="32"/>
         <image name="iconCon" width="32" height="32"/>
         <image name="iconRef" width="32" height="32"/>
-        <image name="unoauno_img" width="250" height="124"/>
+        <image name="unoauno_img" width="338" height="168"/>
     </resources>
 </document>
