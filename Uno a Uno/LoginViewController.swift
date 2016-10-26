@@ -13,6 +13,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var imgUaU: UIImageView!
     @IBOutlet weak var textCorreo: UITextField!
     @IBOutlet weak var textContrasenia: UITextField!
+    @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnRecoverPass: UIButton!
+    @IBOutlet weak var btnNewAccount: UIButton!
     
     
     override func viewDidLoad() {
@@ -31,6 +34,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let screenSize:CGFloat = self.view.bounds.height
+        let middle:CGFloat = screenSize/2
+        let uauSize:CGFloat = self.imgUaU.image!.size.height/2
+        
+        //Alignment
+        self.imgUaU.center.y = screenSize/2
+        self.btnNewAccount.center.y = screenSize-(screenSize/5)
+        
+        
+        //Alphas
+        self.textCorreo.alpha = 0
+        self.textContrasenia.alpha = 0
+        self.btnLogin.alpha = 0
+        self.btnRecoverPass.alpha = 0
+        self.btnNewAccount.alpha = 0
+        
+        UIView.animate(withDuration: 0.25, delay: 0.2, options: [.curveEaseOut], animations: {
+            self.imgUaU.center.y -= (middle - uauSize - screenSize*0.05)
+            self.textCorreo.alpha += 1
+            self.textContrasenia.alpha += 1
+            self.btnLogin.alpha += 1
+            self.btnRecoverPass.alpha += 1
+            print(self.btnNewAccount.center.y)
+            //self.btnNewAccount.center.y -= (screenSize - self.btnRecoverPass.center.y)
+            print(self.btnRecoverPass.center.y)
+            print(self.btnNewAccount.center.y)
+            self.btnNewAccount.alpha += 1
+            
+            }, completion: nil)
     }
     
     @IBAction func accederSistema(_ sender: UIButton) {
@@ -89,6 +125,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
                 DispatchQueue.main.async {
                     contra = String(data: data!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
+                    print(contra)
                 }
             })
             task.resume()
