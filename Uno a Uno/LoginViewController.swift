@@ -39,8 +39,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         let screenSize:CGFloat = self.view.bounds.height
-        let middle:CGFloat = screenSize/2
-        let uauSize:CGFloat = self.imgUaU.image!.size.height/2
         
         //Alignment
         self.imgUaU.center.y = screenSize/2
@@ -55,14 +53,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.btnNewAccount.alpha = 0
         
         UIView.animate(withDuration: 0.25, delay: 0.2, options: [.curveEaseOut], animations: {
-            self.imgUaU.center.y -= (middle - uauSize - screenSize*0.05)
+            self.imgUaU.center.y -= screenSize/4
             self.textCorreo.alpha += 1
             self.textContrasenia.alpha += 1
             self.btnLogin.alpha += 1
             self.btnRecoverPass.alpha += 1
             self.btnNewAccount.alpha += 1
             
-            }, completion: nil)
+        }, completion: nil)
     }
     
     @IBAction func accederSistema(_ sender: UIButton) {

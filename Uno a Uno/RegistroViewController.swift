@@ -9,7 +9,8 @@
 import UIKit
 
 class RegistroViewController: UIViewController, UITextFieldDelegate {
-
+    @IBOutlet weak var stackLbls: UIStackView!
+    @IBOutlet weak var stackInputs: UIStackView!
     @IBOutlet weak var textNombre: UITextField!
     @IBOutlet weak var textApaterno: UITextField!
     @IBOutlet weak var textAmaterno: UITextField!
@@ -30,6 +31,8 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        let screenSize:CGFloat = self.view.bounds.height
+        
         super.viewDidLoad()
         textNombre.delegate = self
         textApaterno.delegate = self
@@ -37,6 +40,10 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         textCorreo.delegate = self
         textRCorreo.delegate = self
         textContrasenia.delegate = self
+        
+        //self.stackLbls.center.y = 0
+        self.stackLbls.center.y = (screenSize/4 - 47)
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -86,6 +93,10 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         })
         task.resume()
 
+    }
+    
+    @IBAction func backToLoginView(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "backToLogin", sender: self)
     }
 
 }
