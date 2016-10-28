@@ -39,8 +39,13 @@
 		FC5A67991DA6FA4100A62D26 /* CVShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A677C1DA6FA4100A62D26 /* CVShape.swift */; };
 		FC5A679A1DA6FA4100A62D26 /* CVStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A677D1DA6FA4100A62D26 /* CVStatus.swift */; };
 		FC5A679B1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A677E1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift */; };
+		FC5DCB771DB8091E00361ED4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */; };
+		FC5DCB791DB8450300361ED4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */; };
+		FC5DCB831DC01E2A00361ED4 /* ClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */; };
+		FC5DCB851DC0946F00361ED4 /* ReferidosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */; };
+		FC6DD81E1DC3C76500D46AA1 /* ClienteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */; };
+		FC6DD8201DC3C78900D46AA1 /* ReferidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */; };
 		FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */; };
-		FC722DA81DAFFB9200A39926 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */; };
 		FC722DB71DB00B2B00A39926 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DAC1DB00B2B00A39926 /* FMDatabase.m */; };
 		FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DAE1DB00B2B00A39926 /* FMDatabaseAdditions.m */; };
 		FC722DB91DB00B2B00A39926 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FC722DB01DB00B2B00A39926 /* FMDatabasePool.m */; };
@@ -89,6 +94,12 @@
 		FC5A677C1DA6FA4100A62D26 /* CVShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVShape.swift; sourceTree = "<group>"; };
 		FC5A677D1DA6FA4100A62D26 /* CVStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVStatus.swift; sourceTree = "<group>"; };
 		FC5A677E1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVWeekdaySymbolType.swift; sourceTree = "<group>"; };
+		FC5DCB711DB71A4A00361ED4 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientesViewController.swift; sourceTree = "<group>"; };
+		FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidosViewController.swift; sourceTree = "<group>"; };
+		FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClienteViewController.swift; sourceTree = "<group>"; };
+		FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidoViewController.swift; sourceTree = "<group>"; };
 		FC70B4271D7F7ECC00728E8A /* Uno a Uno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Uno a Uno.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -123,7 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC722DA81DAFFB9200A39926 /* libsqlite3.tbd in Frameworks */,
+				FC5DCB771DB8091E00361ED4 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +207,12 @@
 				FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */,
 				FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */,
 				FC2898411D9C78E7007212B9 /* RegistroViewController.swift */,
+				FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */,
 				FC5A66921DA5810C00A62D26 /* CalendarioController.swift */,
+				FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */,
+				FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */,
+				FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */,
+				FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
 				FC5A67601DA6FA1C00A62D26 /* CVCalendar */,
@@ -208,6 +224,7 @@
 		FC722DA61DAFFB9100A39926 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC5DCB711DB71A4A00361ED4 /* EventKit.framework */,
 				FC722DA71DAFFB9200A39926 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
@@ -320,6 +337,7 @@
 				FC722DBB1DB00B2B00A39926 /* FMResultSet.m in Sources */,
 				FC5A67801DA6FA4100A62D26 /* CVCalendarContentViewController.swift in Sources */,
 				FC5A67871DA6FA4100A62D26 /* CVCalendarMonthView.swift in Sources */,
+				FC6DD8201DC3C78900D46AA1 /* ReferidoViewController.swift in Sources */,
 				FC5A67951DA6FA4100A62D26 /* CVRange.swift in Sources */,
 				FC722DBA1DB00B2B00A39926 /* FMDatabaseQueue.m in Sources */,
 				FC5A66931DA5810C00A62D26 /* CalendarioController.swift in Sources */,
@@ -331,6 +349,7 @@
 				FC5A679B1DA6FA4100A62D26 /* CVWeekdaySymbolType.swift in Sources */,
 				FC5A67901DA6FA4100A62D26 /* CVCalendarWeekContentViewController.swift in Sources */,
 				FC5A678C1DA6FA4100A62D26 /* CVCalendarViewAppearance.swift in Sources */,
+				FC5DCB831DC01E2A00361ED4 /* ClientesViewController.swift in Sources */,
 				FC5A678A1DA6FA4100A62D26 /* CVCalendarViewAnimator.swift in Sources */,
 				FC5A678E1DA6FA4100A62D26 /* CVCalendarViewDelegate.swift in Sources */,
 				FC5A67991DA6FA4100A62D26 /* CVShape.swift in Sources */,
@@ -338,10 +357,13 @@
 				FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */,
 				FC5A678B1DA6FA4100A62D26 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				FC5A67831DA6FA4100A62D26 /* CVCalendarManager.swift in Sources */,
+				FC5DCB851DC0946F00361ED4 /* ReferidosViewController.swift in Sources */,
+				FC6DD81E1DC3C76500D46AA1 /* ClienteViewController.swift in Sources */,
 				FC5A67941DA6FA4100A62D26 /* CVPresent.swift in Sources */,
 				FC5A67971DA6FA4100A62D26 /* CVSelectionType.swift in Sources */,
 				FC722DBE1DB00BC500A39926 /* DataBase.swift in Sources */,
 				FC5A678F1DA6FA4100A62D26 /* CVCalendarViewPresentationMode.swift in Sources */,
+				FC5DCB791DB8450300361ED4 /* MainTabBarController.swift in Sources */,
 				FC5A67811DA6FA4100A62D26 /* CVCalendarDayView.swift in Sources */,
 				FC5A67881DA6FA4100A62D26 /* CVCalendarTouchController.swift in Sources */,
 				FC226B551DA0F7D500905277 /* Functions.swift in Sources */,

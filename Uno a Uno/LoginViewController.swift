@@ -14,23 +14,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textCorreo: UITextField!
     @IBOutlet weak var textContrasenia: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         textCorreo.delegate = self
         textContrasenia.delegate = self
-        abrirDB()
-        insertRegistro()
-        selectRegistro()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @IBAction func accederSistema(_ sender: UIButton) {
@@ -46,9 +38,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         request.httpMethod = "POST"
         request.httpBody = postString.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in guard error == nil && data != nil else {
-            print("error=\(error)")
-            return
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error
+            in guard error == nil && data != nil
+            else {
+                print("error=\(error)")
+                mostrarAviso(titulo: "ATENCION".lang, mensaje: "NO_CON".lang, viewController: self)
+                return
             }
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("\(httpStatus.statusCode) = \(response)")
@@ -67,11 +62,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func MostrarRestablecer(_ sender: UIButton) {
+    @IBAction func mostrarRestablecer(_ sender: UIButton) {
         
         let alertController = UIAlertController(title: "Restablecer contraseña", message: "Ingrese su correo electrónico para enviarle su nueva contraseña.", preferredStyle: UIAlertControllerStyle.alert)
+
         let saveAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: {
-            alert -> Void in
+            (action: UIAlertAction!) -> Void in
             
             var contra: String = ""
             let url = URL(string: "http://ec2-52-52-32-4.us-west-1.compute.amazonaws.com/contra.php")
@@ -80,7 +76,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             request.httpMethod = "POST"
             request.httpBody = postString.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
             
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in guard error == nil && data != nil else {
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error
+                in guard error == nil && data != nil
+                else {
+                    mostrarAviso(titulo: "ATENCION".lang, mensaje: "NO_CON".lang, viewController: self)
                     print("error=\(error)")
                     return
                 }
@@ -94,9 +93,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             task.resume()
             
         })
+        
         let cancelAction = UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
         })
+        
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Correo electrónico"
             textField.keyboardType = UIKeyboardType.emailAddress
@@ -108,6 +109,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
  
     @IBAction func registrarUsuario(_ sender: UIButton) {
         self.performSegue(withIdentifier: "segueRegistro", sender: self)
+    }
+    
+    @IBAction func unwindRegistro(sender: UIStoryboardSegue) {
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
 }

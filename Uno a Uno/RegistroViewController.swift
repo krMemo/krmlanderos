@@ -49,10 +49,6 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         }
         return false
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     @IBAction func registrarUsuario(_ sender: UIButton) {
         
@@ -88,4 +84,12 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
 
     }
 
+    @IBAction func cancelar(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "unwindRegistro", sender: self)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
 }

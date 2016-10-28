@@ -8,58 +8,59 @@
 
 import Foundation
 
-func abrirDB() {
-    
-    let filemgr = FileManager.default
+func getDB() -> FMDatabase {
     let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let docsDir: String = dirPaths[0]
     let databasePath = docsDir + "/UaU.db"
+    return FMDatabase(path: databasePath as String)
+}
 
-    if !filemgr.fileExists(atPath: databasePath as String) {
-        let contactDB = FMDatabase(path: databasePath as String)
-        
-        if contactDB == nil {
-            print("Error: \(contactDB!.lastErrorMessage())")
+func crearDB() {
+    let db = getDB()
+    if db.open() {
+        let sql_stmt = "CREATE TABLE IF NOT EXISTS clientes (id_cliente INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT)"
+        if !(db.executeStatements(sql_stmt)) {
+            print("Error: \(db.lastErrorMessage())")
         }
-    
-        if contactDB!.open() {
-            let sql_stmt = "CREATE TABLE IF NOT EXISTS clientes (id_cliente INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT)"
-            if !(contactDB!.executeStatements(sql_stmt)) {
-                print("Error: \(contactDB!.lastErrorMessage())")
-            }
-            contactDB!.close()
-        }
-        else {
-            print("Error: \(contactDB!.lastErrorMessage())")
-        }
+        db.close()
     }
-    
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
 }
 
 func insertRegistro() {
-    
-    let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-    let docsDir: String = dirPaths[0]
-    let databasePath = docsDir + "/UaU.db"
-    
-    let contactDB = FMDatabase(path: databasePath as String)
-    
-    if contactDB!.open() {
-        
+    let db = getDB()
+    if db.open() {
         let insertSQL = "INSERT INTO clientes (nombre) VALUES ('Enrique')"
-        let result = contactDB!.executeUpdate(insertSQL, withArgumentsIn: nil)
-        
+        let result = db.executeUpdate(insertSQL, withArgumentsIn: nil)
         if !result {
-            print("Error: \(contactDB!.lastErrorMessage())")
+            print("Error: \(db.lastErrorMessage())")
         } else {
-            print("Contact Added")
+            print("Cliente +")
         }
     } else {
-        print("Error: \(contactDB!.lastErrorMessage())")
+        print("Error: \(db.lastErrorMessage())")
     }
 }
 
-func selectRegistro() {
+func selectClientes() -> [String] {
+    var clientes: [String] = []
+    let db = getDB()
+    if db.open() {
+        let querySQL = "SELECT id_cliente, nombre FROM clientes"
+        let results: FMResultSet = db.executeQuery(querySQL, withArgumentsIn: nil)
+        while results.next() == true {
+            clientes.append(results.string(forColumn: "nombre"))
+        }
+        db.close()
+    } else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+    return clientes
+}
+
+func selectCountRegistro() {
     
     let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let docsDir: String = dirPaths[0]

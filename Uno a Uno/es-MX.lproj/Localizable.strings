@@ -8,3 +8,4 @@
 
 "ATENCION" = "Atención";
 "INF_INC" = "Los datos son incorrectos.";
+"NO_CON" = "No hay conexión con Internet, favor de verificar.";
