@@ -354,7 +354,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="310" id="GSB-Dh-h4F"/>
                                 </constraints>
-                                <state key="normal" title="¿Ya tienes cuenta? Inicia Sesión"/>
+                                <state key="normal" title="¿Ya tienes cuenta? Inicia Sesión">
+                                    <color key="titleColor" red="0.21447832759999999" green="0.54211931040000005" blue="0.60229517050000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="backToLoginView:" destination="QmP-Yp-SaI" eventType="touchUpInside" id="OzM-Nm-qky"/>
                                 </connections>
