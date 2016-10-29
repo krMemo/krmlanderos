@@ -28,12 +28,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-<<<<<<< HEAD
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         let screenSize:CGFloat = self.view.bounds.height
         
@@ -60,8 +54,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }, completion: nil)
     }
     
-=======
->>>>>>> master
     @IBAction func accederSistema(_ sender: UIButton) {
         
         let alertController = UIAlertController(title: "ATENCION".lang, message: "INF_INC".lang, preferredStyle: UIAlertControllerStyle.alert)
@@ -101,16 +93,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func mostrarRestablecer(_ sender: UIButton) {
         
-<<<<<<< HEAD
         let alertController = UIAlertController(title: "RECOVERY_PASS".lang, message: "RECOVERY_PASS_DESC".lang, preferredStyle: UIAlertControllerStyle.alert)
+        
         let saveAction = UIAlertAction(title: "SEND".lang, style: UIAlertActionStyle.default, handler: {
-            alert -> Void in
-=======
-        let alertController = UIAlertController(title: "Restablecer contraseña", message: "Ingrese su correo electrónico para enviarle su nueva contraseña.", preferredStyle: UIAlertControllerStyle.alert)
-
-        let saveAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) -> Void in
->>>>>>> master
             
             var contra: String = ""
             let url = URL(string: "http://ec2-52-52-32-4.us-west-1.compute.amazonaws.com/contra.php")
@@ -121,10 +107,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error
                 in guard error == nil && data != nil
-                else {
-                    mostrarAviso(titulo: "ATENCION".lang, mensaje: "NO_CON".lang, viewController: self)
-                    print("error=\(error)")
-                    return
+                    else {
+                        mostrarAviso(titulo: "ATENCION".lang, mensaje: "NO_CON".lang, viewController: self)
+                        print("error=\(error)")
+                        return
                 }
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                     print("\(httpStatus.statusCode) = \(response)")
@@ -137,12 +123,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             task.resume()
             
         })
-<<<<<<< HEAD
-        let cancelAction = UIAlertAction(title: "CANCEL".lang, style: UIAlertActionStyle.default, handler: {
-=======
         
-        let cancelAction = UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.default, handler: {
->>>>>>> master
+        let cancelAction = UIAlertAction(title: "CANCEL".lang, style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
         })
         
@@ -160,11 +142,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func unwindRegistro(sender: UIStoryboardSegue) {
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
     
 }
 
