@@ -8,3 +8,8 @@
 
 "ATENCION" = "Atención";
 "INF_INC" = "Los datos son incorrectos.";
+"RECOVERY_PASS" = "Restablecer contraseña";
+"RECOVERY_PASS_DESC" = "Ingresa tu correo electrónico para que recibas tu nueva contraseña.";
+"E_MAIL" = "Correo electrónico";
+"SEND" = "Enviar";
+"CANCEL" = "Cancelar";

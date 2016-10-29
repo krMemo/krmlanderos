@@ -99,8 +99,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func MostrarRestablecer(_ sender: UIButton) {
         
-        let alertController = UIAlertController(title: "Restablecer contraseña", message: "Ingrese su correo electrónico para enviarle su nueva contraseña.", preferredStyle: UIAlertControllerStyle.alert)
-        let saveAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.default, handler: {
+        let alertController = UIAlertController(title: "RECOVERY_PASS".lang, message: "RECOVERY_PASS_DESC".lang, preferredStyle: UIAlertControllerStyle.alert)
+        let saveAction = UIAlertAction(title: "SEND".lang, style: UIAlertActionStyle.default, handler: {
             alert -> Void in
             
             var contra: String = ""
@@ -125,11 +125,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             task.resume()
             
         })
-        let cancelAction = UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.default, handler: {
+        let cancelAction = UIAlertAction(title: "CANCEL".lang, style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
         })
         alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Correo electrónico"
+            textField.placeholder = "E_MAIL".lang
             textField.keyboardType = UIKeyboardType.emailAddress
         }
         alertController.addAction(saveAction)

@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="Fg6-TY-BLf">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="iu5-AZ-EzG" customClass="LoginViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iu5-AZ-EzG" customClass="LoginViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3bB-eU-Ii3"/>
                         <viewControllerLayoutGuide type="bottom" id="JCQ-6L-Yy7"/>
@@ -87,7 +87,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unoauno_img" translatesAutoresizingMaskIntoConstraints="NO" id="VrN-1p-Kij">
-                                <frame key="frameInset" minX="50.00%" minY="8.63%" width="250" height="139.5"/>
+                                <frame key="frameInset" minX="49.39%" minY="8.63%" width="251" height="139.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
