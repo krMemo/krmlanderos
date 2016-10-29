@@ -6,11 +6,14 @@
   Copyright © 2016 Enrique Landeros Reyes. All rights reserved.
 */
 
-
 "ATENCION" = "Attention";
 "INF_INC" = "Incorrect information.";
+<<<<<<< HEAD
 "RECOVERY_PASS" = "Reset your password";
 "RECOVERY_PASS_DESC" = "Capture your e-mail so we can send you a new password.";
 "E_MAIL" = "e-mail";
 "SEND" = "Send";
 "CANCEL" = "Cancel";
+=======
+"NO_CON" = "";
+>>>>>>> master

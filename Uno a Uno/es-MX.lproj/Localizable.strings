@@ -8,8 +8,12 @@
 
 "ATENCION" = "Atención";
 "INF_INC" = "Los datos son incorrectos.";
+<<<<<<< HEAD
 "RECOVERY_PASS" = "Restablecer contraseña";
 "RECOVERY_PASS_DESC" = "Ingresa tu correo electrónico para que recibas tu nueva contraseña.";
 "E_MAIL" = "Correo electrónico";
 "SEND" = "Enviar";
 "CANCEL" = "Cancelar";
+=======
+"NO_CON" = "No hay conexión con Internet, favor de verificar.";
+>>>>>>> master

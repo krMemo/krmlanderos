@@ -10,11 +10,11 @@ import UIKit
 
 class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
+    var animationFinished = true
+    
     @IBOutlet weak var labelMes: UILabel!
     @IBOutlet weak var calendarmenuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
-    
-    var animationFinished = true
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -37,10 +37,6 @@ class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendar
         labelMes.text = CVDate(date: Date()).globalDescription
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func presentedDateUpdated(_ date: CVDate) {
         if labelMes.text != date.globalDescription && self.animationFinished {
             let updatedMonthLabel = UILabel()
@@ -56,10 +52,10 @@ class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendar
             updatedMonthLabel.transform = CGAffineTransform(translationX: 0, y: offset)
             updatedMonthLabel.transform = CGAffineTransform(scaleX: 1, y: 0.1)
             
-            UIView.animate(withDuration: 0.35, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 self.animationFinished = false
                 self.labelMes.transform = CGAffineTransform(translationX: 0, y: -offset)
-                self.labelMes.transform = CGAffineTransform(scaleX: 1, y: 0.1)
+                self.labelMes.transform = CGAffineTransform(scaleX: 1, y: 0.3)
                 self.labelMes.alpha = 0
                 
                 updatedMonthLabel.alpha = 1
@@ -79,4 +75,8 @@ class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendar
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
 }
