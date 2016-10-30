@@ -54,41 +54,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }, completion: nil)
     }
     
+    
+    
     @IBAction func accederSistema(_ sender: UIButton) {
+        if isValidEmail(testStr: self.textCorreo.text!)==false {
+            mostrarAviso(titulo: "ATENCION".lang, mensaje: "INVALID_MAIL".lang, viewController: self)
+        } else if (self.textContrasenia.text!.isEmpty) {
+            mostrarAviso(titulo: "ATENCION".lang, mensaje: "EMPTY_FIELD".lang, viewController: self)
+        }
+        else{
         
-        let alertController = UIAlertController(title: "ATENCION".lang, message: "INF_INC".lang, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-        alertController.addAction(okAction)
+            let alertController = UIAlertController(title: "ATENCION".lang, message: "INF_INC".lang, preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            alertController.addAction(okAction)
+            
+            var login: String = ""
+            let url = URL(string: "http://ec2-52-52-32-4.us-west-1.compute.amazonaws.com/login.php")
+            let postString: String = "correo="+self.textCorreo.text!+"&password="+self.textContrasenia.text!
+            var request = URLRequest(url: url!)
+            request.httpMethod = "POST"
+            request.httpBody = postString.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
         
-        var login: String = ""
-        let url = URL(string: "http://ec2-52-52-32-4.us-west-1.compute.amazonaws.com/login.php")
-        let postString: String = "correo="+self.textCorreo.text!+"&password="+self.textContrasenia.text!
-        var request = URLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.httpBody = postString.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-        
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error
-            in guard error == nil && data != nil
-            else {
-                print("error=\(error)")
-                mostrarAviso(titulo: "ATENCION".lang, mensaje: "NO_CON".lang, viewController: self)
-                return
-            }
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                print("\(httpStatus.statusCode) = \(response)")
-            }
-            DispatchQueue.main.async {
-                login = String(data: data!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
-                if login == "Login" {
-                    self.performSegue(withIdentifier: "seguePrincipal", sender: self)
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error
+                in guard error == nil && data != nil
+                else {
+                    print("error=\(error)")
+                    mostrarAviso(titulo: "ATENCION".lang, mensaje: "NO_CON".lang, viewController: self)
+                    return
                 }
-                else if login == "IncUser" || login == "IncPass" {
-                    self.present(alertController, animated: true, completion: nil)
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    print("\(httpStatus.statusCode) = \(response)")
                 }
-            }
-        })
-        task.resume()
-        
+                DispatchQueue.main.async {
+                    login = String(data: data!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
+                    if login == "Login" {
+                        self.performSegue(withIdentifier: "seguePrincipal", sender: self)
+                    }
+                    else if login == "IncUser" || login == "IncPass" {
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+            })
+            task.resume()
+        }
     }
     
     @IBAction func mostrarRestablecer(_ sender: UIButton) {
@@ -139,10 +147,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
  
     @IBAction func registrarUsuario(_ sender: UIButton) {
         self.performSegue(withIdentifier: "segueRegistro", sender: self)
-    }
-    
-    @IBAction func unwindRegistro(sender: UIStoryboardSegue) {
-        
     }
     
     override func didReceiveMemoryWarning() {

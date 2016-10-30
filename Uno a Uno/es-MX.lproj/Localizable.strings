@@ -6,14 +6,16 @@
   Copyright © 2016 Enrique Landeros Reyes. All rights reserved.
 */
 
+/* OVERALL */
 "ATENCION" = "Atención";
-"INF_INC" = "Los datos son incorrectos.";
-<<<<<<< HEAD
-"RECOVERY_PASS" = "Restablecer contraseña";
-"RECOVERY_PASS_DESC" = "Ingresa tu correo electrónico para que recibas tu nueva contraseña.";
 "E_MAIL" = "Correo electrónico";
 "SEND" = "Enviar";
 "CANCEL" = "Cancelar";
-=======
 "NO_CON" = "No hay conexión con Internet, favor de verificar.";
->>>>>>> master
+"EMPTY_FIELD" = "Parece que olvidaste un campo";
+/* LOGIN */
+"INVALID_MAIL" = "Prueba con un correo válido";
+
+"INF_INC" = "Los datos son incorrectos.";
+"RECOVERY_PASS" = "Restablecer contraseña";
+"RECOVERY_PASS_DESC" = "Ingresa tu correo electrónico para que recibas tu nueva contraseña.";
