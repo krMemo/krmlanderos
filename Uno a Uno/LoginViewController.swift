@@ -57,6 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func accederSistema(_ sender: UIButton) {
+        //valid mail & pass field
         if isValidEmail(testStr: self.textCorreo.text!)==false {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "INVALID_MAIL".lang, viewController: self)
         } else if (self.textContrasenia.text!.isEmpty) {
