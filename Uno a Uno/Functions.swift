@@ -16,7 +16,7 @@ extension String {
 
 func mostrarAviso(titulo: String, mensaje: String, viewController: UIViewController) {
     let alertController = UIAlertController(title: titulo, message: mensaje, preferredStyle: UIAlertControllerStyle.alert)
-    let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+    let action = UIAlertAction(title: "OK".lang, style: UIAlertActionStyle.default)
     alertController.addAction(action)
     viewController.present(alertController, animated: true, completion: nil)
 }
