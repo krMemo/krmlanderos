@@ -118,7 +118,6 @@
 		FC722DBD1DB00BC500A39926 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		FC722DBF1DB0180600A39926 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC722DC31DB01DD600A39926 /* CVAuxiliaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVAuxiliaryView.swift; sourceTree = "<group>"; };
-		FC95CBF41DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC95CBFC1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPad.storyboard"; sourceTree = "<group>"; };
 		FC95CBFD1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPhone.storyboard"; sourceTree = "<group>"; };
 		FC95CBFF1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -292,7 +291,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				"es-MX",
 			);
 			mainGroup = FC70B41E1D7F7ECC00728E8A;
@@ -395,7 +393,6 @@
 		FC95CBF31DAEA15700F5E67C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC95CBF41DAEA15700F5E67C /* en */,
 				FC95CBFF1DAEA17800F5E67C /* es-MX */,
 			);
 			name = Localizable.strings;
