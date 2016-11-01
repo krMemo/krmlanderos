@@ -19,3 +19,4 @@
 "INF_INC" = "Incorrect information.";
 "RECOVERY_PASS" = "Reset your password";
 "RECOVERY_PASS_DESC" = "Capture your e-mail so we can send you a new password.";
+"CONFIRM_MAIL" = "E-mails do not match.";

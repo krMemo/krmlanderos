@@ -21,11 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         textCorreo.delegate = self
         textContrasenia.delegate = self
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+        crearDB()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.btnRecoverPass.alpha = 0
         self.btnNewAccount.alpha = 0
         
+        //Animation
         UIView.animate(withDuration: 0.25, delay: 0.2, options: [.curveEaseOut], animations: {
             self.imgUaU.center.y -= screenSize/4
             self.textCorreo.alpha += 1
@@ -50,15 +47,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.btnLogin.alpha += 1
             self.btnRecoverPass.alpha += 1
             self.btnNewAccount.alpha += 1
-            
         }, completion: nil)
     }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func accederSistema(_ sender: UIButton) {
         //valid mail & pass field
-        if isValidEmail(testStr: self.textCorreo.text!)==false {
+        if !isValidEmail(testStr: self.textCorreo.text!) {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "INVALID_MAIL".lang, viewController: self)
         } else if (self.textContrasenia.text!.isEmpty) {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "EMPTY_FIELD".lang, viewController: self)
@@ -153,7 +152,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
     
 }
 

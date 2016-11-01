@@ -118,10 +118,7 @@
 		FC722DBD1DB00BC500A39926 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		FC722DBF1DB0180600A39926 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC722DC31DB01DD600A39926 /* CVAuxiliaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVAuxiliaryView.swift; sourceTree = "<group>"; };
-		FC95CBEE1DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPad.storyboard; sourceTree = "<group>"; };
-		FC95CBF01DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		FC95CBF41DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FC95CBF61DAEA15700F5E67C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC95CBFC1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPad.storyboard"; sourceTree = "<group>"; };
 		FC95CBFD1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPhone.storyboard"; sourceTree = "<group>"; };
 		FC95CBFF1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -382,7 +379,6 @@
 		FC95CBED1DAEA15700F5E67C /* iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC95CBEE1DAEA15700F5E67C /* en */,
 				FC95CBFC1DAEA17800F5E67C /* es-MX */,
 			);
 			name = iPad.storyboard;
@@ -391,7 +387,6 @@
 		FC95CBEF1DAEA15700F5E67C /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC95CBF01DAEA15700F5E67C /* en */,
 				FC95CBFD1DAEA17800F5E67C /* es-MX */,
 			);
 			name = iPhone.storyboard;
@@ -410,7 +405,6 @@
 		FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FC95CBF61DAEA15700F5E67C /* en */,
 				FC95CC001DAEA17800F5E67C /* es-MX */,
 			);
 			name = LaunchScreen.storyboard;

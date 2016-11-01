@@ -12,10 +12,14 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableReferidos: UITableView!
     
+    var nuevo: Bool = true
+    var idx: Int = 0
+    var referidos: [[String:String]] = selectAllReferidos()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableReferidos.delegate = self
+        tableReferidos.dataSource = self
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -23,25 +27,45 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return referidos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        cell.textLabel?.text = "hola"
+        
+        cell.textLabel?.text = referidos[indexPath.row]["nombre"]! + " " + referidos[indexPath.row]["apaterno"]!
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        idx = indexPath.row
+    }
+    
     @IBAction func addReferido(_ sender: UIButton) {
+        nuevo = true
         self.performSegue(withIdentifier: "segueReferido", sender: self)
     }
     
     @IBAction func editReferido(_ sender: UIButton) {
+        nuevo = false
         self.performSegue(withIdentifier: "segueReferido", sender: self)
     }
     
-    @IBAction func unwindReferido(sender: UIStoryboardSegue)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if !nuevo {
+            let referidoVC = segue.destination as! ReferidoViewController
+            referidoVC.nuevo = nuevo
+            referidoVC.referido["id"] = referidos[idx]["id"]
+            referidoVC.referido["nombre"] = referidos[idx]["nombre"]
+            referidoVC.referido["apaterno"] = referidos[idx]["apaterno"]
+            referidoVC.referido["amaterno"] = referidos[idx]["amaterno"]
+            referidoVC.referido["telefono"] = referidos[idx]["telefono"]
+        }
+    }
+    
+    @IBAction func unwindReferido(sender: UIStoryboardSegue) {
+        referidos = selectAllReferidos()
+        tableReferidos.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableClientes: UITableView!
     
-    var clientes: Array<String> = selectClientes()
+    var nuevo: Bool = true
+    var idx: Int = 0
+    var clientes: [[String:String]] = selectAllClientes()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,27 +32,36 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        cell.textLabel?.text = clientes[indexPath.row]
+        
+        cell.textLabel?.text = clientes[indexPath.row]["nombre"]! + " " + clientes[indexPath.row]["apaterno"]!
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        idx = indexPath.row
     }
     
     @IBAction func addCliente(_ sender: UIButton) {
+        nuevo = true
         self.performSegue(withIdentifier: "segueCliente", sender: self)
     }
     
     @IBAction func editCliente(_ sender: UIButton) {
+        nuevo = false
         self.performSegue(withIdentifier: "segueCliente", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if !nuevo {
+            let clienteVC = segue.destination as! ClienteViewController
+            clienteVC.nuevo = nuevo
+            clienteVC.cliente["id"] = clientes[idx]["id"]
+            clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
+            clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
+            clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
+            clienteVC.cliente["telefono"] = clientes[idx]["telefono"]
+        }
+    }
     /*
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -62,8 +73,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     */
     
-    @IBAction func unwindCliente(sender: UIStoryboardSegue)
-    {
+    @IBAction func unwindCliente(sender: UIStoryboardSegue) {
+        clientes = selectAllClientes()
+        tableClientes.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
