@@ -92,7 +92,7 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func backToLoginView(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "backToLogin", sender: self)
+        self.performSegue(withIdentifier: "unwindRegistro", sender: self)
     }
     
     override func didReceiveMemoryWarning() {

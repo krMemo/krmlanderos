@@ -40,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.btnNewAccount.alpha = 0
         
         //Animation
-        UIView.animate(withDuration: 0.25, delay: 0.2, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: [.curveEaseOut], animations: {
             self.imgUaU.center.y -= screenSize/4
             self.textCorreo.alpha += 1
             self.textContrasenia.alpha += 1
@@ -147,6 +147,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
  
     @IBAction func registrarUsuario(_ sender: UIButton) {
         self.performSegue(withIdentifier: "segueRegistro", sender: self)
+    }
+    
+    @IBAction func unwindRegistro(sender: UIStoryboardSegue) {
     }
     
     override func didReceiveMemoryWarning() {
