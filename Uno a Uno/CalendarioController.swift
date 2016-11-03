@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import EventKit
 
-class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
+    var idx: Int = 0
     var animationFinished = true
+    var cals: [EKCalendar]?
+    var calendars: [EKCalendar] = []
+    let eventStore = EKEventStore()
     
     @IBOutlet weak var labelMes: UILabel!
     @IBOutlet weak var calendarmenuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
+    @IBOutlet weak var datepickerEvento: UIDatePicker!
+    @IBOutlet weak var pickerEvento: UIPickerView!
+    @IBOutlet weak var textNombreEvento: UITextField!
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -32,9 +40,18 @@ class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendar
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        textNombreEvento.delegate = self
+        pickerEvento.delegate = self
+        pickerEvento.dataSource = self
         calendarmenuView.menuViewDelegate = self
         calendarView.calendarDelegate = self
         labelMes.text = CVDate(date: Date()).globalDescription
+        cals = eventStore.calendars(for: EKEntityType.event)
+        for cal in cals! {
+            if cal.allowsContentModifications {
+                calendars.append(cal)
+            }
+        }
     }
 
     func presentedDateUpdated(_ date: CVDate) {
@@ -73,6 +90,47 @@ class CalendarioController: UIViewController, CVCalendarViewDelegate, CVCalendar
             
             self.view.insertSubview(updatedMonthLabel, aboveSubview: labelMes)
         }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return calendars.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return calendars[row].title
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        idx = row
+    }
+    
+    @IBAction func guardarEvento(_ sender: UIButton) {
+        let newEvent = EKEvent(eventStore: eventStore)
+        newEvent.calendar = calendars[idx]
+        newEvent.title = textNombreEvento.text!
+        newEvent.startDate = datepickerEvento.date
+        newEvent.endDate = datepickerEvento.date
+        do {
+            try eventStore.save(newEvent, span: .thisEvent)
+        } catch {
+            mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
+            print(error)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        if textField.text != "" {
+            textField.borderStyle = UITextBorderStyle.none
+        }
+        else {
+            textField.borderStyle = UITextBorderStyle.roundedRect
+        }
+        return false
     }
     
     override func didReceiveMemoryWarning() {

@@ -26,15 +26,16 @@ class MainTabBarController: UITabBarController {
         case EKAuthorizationStatus.authorized:
             self.tabBar.items?[0].isEnabled = true
             self.selectedIndex = 0
-            cargarCalendarios()
+            calendars = eventStore.calendars(for: EKEntityType.event)
+            print(calendars?.description as Any)
         case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied, EKAuthorizationStatus.notDetermined:
             self.eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
                 if accessGranted == true {
                     self.tabBar.items?[0].isEnabled = true
                     self.selectedIndex = 0
-                    self.cargarCalendarios()
-                }
+                    self.calendars = self.eventStore.calendars(for: EKEntityType.event)
+                    print(self.calendars?.description as Any)                }
                 else {
                     self.solicitarPermisoCal()
                     DispatchQueue.main.async(execute: {
@@ -47,20 +48,13 @@ class MainTabBarController: UITabBarController {
         
     }
 
-    func cargarCalendarios() {
-        calendars = eventStore.calendars(for: EKEntityType.event)
-        print(calendars?.description as Any)
-    }
-    
     func solicitarPermisoCal() {
-        
         let alertController = UIAlertController(title: "Permiso", message: "La aplicacion necesita permiso para acceder a su calendario.", preferredStyle: UIAlertControllerStyle.alert)
         let saveAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
             (action : UIAlertAction!) -> Void in
         })
         alertController.addAction(saveAction)
         self.present(alertController, animated: true, completion: nil)
-        
     }
 
     override func didReceiveMemoryWarning() {

@@ -25,8 +25,6 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
-        let screenSize:CGFloat = self.view.bounds.height
-        
         super.viewDidLoad()
         textNombre.delegate = self
         textApaterno.delegate = self
@@ -34,10 +32,8 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         textCorreo.delegate = self
         textRCorreo.delegate = self
         textContrasenia.delegate = self
-        
-        //self.stackLbls.center.y = 0
+        let screenSize:CGFloat = self.view.bounds.height
         self.stackLbls.center.y = (screenSize/4 - 47)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
