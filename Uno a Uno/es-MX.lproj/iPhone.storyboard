@@ -546,7 +546,7 @@
                         <outlet property="labelMes" destination="ZHK-3i-vh9" id="1e3-vb-PnH"/>
                         <outlet property="pickerEvento" destination="oQF-EC-P3P" id="7Sf-4V-Yrr"/>
                         <outlet property="textNombreEvento" destination="VPi-4o-hYW" id="uBm-Mh-ru3"/>
-                        <segue destination="M8e-rn-7lh" kind="show" id="2n2-71-q4V"/>
+                        <segue destination="M8e-rn-7lh" kind="show" identifier="segueEvento" id="2n2-71-q4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2by-MI-mAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
