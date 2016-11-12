@@ -12,7 +12,6 @@ import EventKit
 class MainTabBarController: UITabBarController {
 
     let eventStore = EKEventStore()
-    var calendars: [EKCalendar]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +25,13 @@ class MainTabBarController: UITabBarController {
         case EKAuthorizationStatus.authorized:
             self.tabBar.items?[0].isEnabled = true
             self.selectedIndex = 0
-            calendars = eventStore.calendars(for: EKEntityType.event)
-            print(calendars?.description as Any)
         case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied, EKAuthorizationStatus.notDetermined:
             self.eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
                 if accessGranted == true {
                     self.tabBar.items?[0].isEnabled = true
                     self.selectedIndex = 0
-                    self.calendars = self.eventStore.calendars(for: EKEntityType.event)
-                    print(self.calendars?.description as Any)                }
+                }
                 else {
                     self.solicitarPermisoCal()
                     DispatchQueue.main.async(execute: {
