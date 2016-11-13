@@ -59,6 +59,19 @@
 		FC95CBFA1DAEA15700F5E67C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBF31DAEA15700F5E67C /* Localizable.strings */; };
 		FC95CBFB1DAEA15700F5E67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */; };
 		FCAEBF4D1D99BB2F00409702 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */; };
+		FCE057171DD8126A001A4A98 /* Datos in Resources */ = {isa = PBXBuildFile; fileRef = FCE0570B1DD8126A001A4A98 /* Datos */; };
+		FCE057181DD8126A001A4A98 /* DE.html in Resources */ = {isa = PBXBuildFile; fileRef = FCE0570C1DD8126A001A4A98 /* DE.html */; };
+		FCE057191DD8126A001A4A98 /* ERO.html in Resources */ = {isa = PBXBuildFile; fileRef = FCE0570D1DD8126A001A4A98 /* ERO.html */; };
+		FCE0571A1DD8126A001A4A98 /* EROV.html in Resources */ = {isa = PBXBuildFile; fileRef = FCE0570E1DD8126A001A4A98 /* EROV.html */; };
+		FCE0571B1DD8126A001A4A98 /* FGC.html in Resources */ = {isa = PBXBuildFile; fileRef = FCE0570F1DD8126A001A4A98 /* FGC.html */; };
+		FCE0571C1DD8126A001A4A98 /* highcharts.js in Resources */ = {isa = PBXBuildFile; fileRef = FCE057101DD8126A001A4A98 /* highcharts.js */; };
+		FCE0571D1DD8126A001A4A98 /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = FCE057111DD8126A001A4A98 /* jquery.js */; };
+		FCE0571E1DD8126A001A4A98 /* MRMB.html in Resources */ = {isa = PBXBuildFile; fileRef = FCE057121DD8126A001A4A98 /* MRMB.html */; };
+		FCE0571F1DD8126A001A4A98 /* PROY.html in Resources */ = {isa = PBXBuildFile; fileRef = FCE057131DD8126A001A4A98 /* PROY.html */; };
+		FCE057201DD8126A001A4A98 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = FCE057141DD8126A001A4A98 /* styles.css */; };
+		FCE057211DD8126A001A4A98 /* touchSwipe.js in Resources */ = {isa = PBXBuildFile; fileRef = FCE057151DD8126A001A4A98 /* touchSwipe.js */; };
+		FCE057221DD8126B001A4A98 /* transform.js in Resources */ = {isa = PBXBuildFile; fileRef = FCE057161DD8126A001A4A98 /* transform.js */; };
+		FCE057241DD81300001A4A98 /* ReportesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE057231DD81300001A4A98 /* ReportesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +138,19 @@
 		FC95CBFF1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC95CC001DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FCE0570B1DD8126A001A4A98 /* Datos */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Datos; path = ../../Web/Datos; sourceTree = "<group>"; };
+		FCE0570C1DD8126A001A4A98 /* DE.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = DE.html; path = ../../Web/DE.html; sourceTree = "<group>"; };
+		FCE0570D1DD8126A001A4A98 /* ERO.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ERO.html; path = ../../Web/ERO.html; sourceTree = "<group>"; };
+		FCE0570E1DD8126A001A4A98 /* EROV.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = EROV.html; path = ../../Web/EROV.html; sourceTree = "<group>"; };
+		FCE0570F1DD8126A001A4A98 /* FGC.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = FGC.html; path = ../../Web/FGC.html; sourceTree = "<group>"; };
+		FCE057101DD8126A001A4A98 /* highcharts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = highcharts.js; path = ../../Web/highcharts.js; sourceTree = "<group>"; };
+		FCE057111DD8126A001A4A98 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = ../../Web/jquery.js; sourceTree = "<group>"; };
+		FCE057121DD8126A001A4A98 /* MRMB.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = MRMB.html; path = ../../Web/MRMB.html; sourceTree = "<group>"; };
+		FCE057131DD8126A001A4A98 /* PROY.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = PROY.html; path = ../../Web/PROY.html; sourceTree = "<group>"; };
+		FCE057141DD8126A001A4A98 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = styles.css; path = ../../Web/styles.css; sourceTree = "<group>"; };
+		FCE057151DD8126A001A4A98 /* touchSwipe.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = touchSwipe.js; path = ../../Web/touchSwipe.js; sourceTree = "<group>"; };
+		FCE057161DD8126A001A4A98 /* transform.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = transform.js; path = ../../Web/transform.js; sourceTree = "<group>"; };
+		FCE057231DD81300001A4A98 /* ReportesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,8 +238,10 @@
 				FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */,
 				FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */,
 				FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */,
+				FCE057231DD81300001A4A98 /* ReportesViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
+				FCE0570A1DD810EA001A4A98 /* Web */,
 				FC5A67601DA6FA1C00A62D26 /* CVCalendar */,
 				FC722DA91DB00ACE00A39926 /* FMDB */,
 			);
@@ -246,6 +274,25 @@
 				FC722DAA1DB00B2B00A39926 /* Uno a Uno-Bridging-Header.h */,
 			);
 			name = FMDB;
+			sourceTree = "<group>";
+		};
+		FCE0570A1DD810EA001A4A98 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				FCE0570B1DD8126A001A4A98 /* Datos */,
+				FCE0570C1DD8126A001A4A98 /* DE.html */,
+				FCE0570D1DD8126A001A4A98 /* ERO.html */,
+				FCE0570E1DD8126A001A4A98 /* EROV.html */,
+				FCE0570F1DD8126A001A4A98 /* FGC.html */,
+				FCE057101DD8126A001A4A98 /* highcharts.js */,
+				FCE057111DD8126A001A4A98 /* jquery.js */,
+				FCE057121DD8126A001A4A98 /* MRMB.html */,
+				FCE057131DD8126A001A4A98 /* PROY.html */,
+				FCE057141DD8126A001A4A98 /* styles.css */,
+				FCE057151DD8126A001A4A98 /* touchSwipe.js */,
+				FCE057161DD8126A001A4A98 /* transform.js */,
+			);
+			name = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,9 +358,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCE0571D1DD8126A001A4A98 /* jquery.js in Resources */,
+				FCE057221DD8126B001A4A98 /* transform.js in Resources */,
+				FCE057171DD8126A001A4A98 /* Datos in Resources */,
+				FCE0571F1DD8126A001A4A98 /* PROY.html in Resources */,
+				FCE057211DD8126A001A4A98 /* touchSwipe.js in Resources */,
+				FCE057201DD8126A001A4A98 /* styles.css in Resources */,
+				FCE0571A1DD8126A001A4A98 /* EROV.html in Resources */,
+				FCE057191DD8126A001A4A98 /* ERO.html in Resources */,
+				FCE0571B1DD8126A001A4A98 /* FGC.html in Resources */,
 				FC95CBF71DAEA15700F5E67C /* iPad.storyboard in Resources */,
 				FC95CBF81DAEA15700F5E67C /* iPhone.storyboard in Resources */,
+				FCE0571C1DD8126A001A4A98 /* highcharts.js in Resources */,
+				FCE057181DD8126A001A4A98 /* DE.html in Resources */,
 				FC95CBFB1DAEA15700F5E67C /* LaunchScreen.storyboard in Resources */,
+				FCE0571E1DD8126A001A4A98 /* MRMB.html in Resources */,
 				FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */,
 				FC95CBFA1DAEA15700F5E67C /* Localizable.strings in Resources */,
 			);
@@ -355,6 +414,7 @@
 				FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */,
 				FC5A678B1DA6FA4100A62D26 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				FC5A67831DA6FA4100A62D26 /* CVCalendarManager.swift in Sources */,
+				FCE057241DD81300001A4A98 /* ReportesViewController.swift in Sources */,
 				FC5DCB851DC0946F00361ED4 /* ReferidosViewController.swift in Sources */,
 				FC6DD81E1DC3C76500D46AA1 /* ClienteViewController.swift in Sources */,
 				FC5A67941DA6FA4100A62D26 /* CVPresent.swift in Sources */,

@@ -428,7 +428,7 @@
         <!--Reportes-->
         <scene sceneID="Hi0-Ko-R24">
             <objects>
-                <viewController title="Reportes" id="Jbj-uL-yWQ" sceneMemberID="viewController">
+                <viewController title="Reportes" id="Jbj-uL-yWQ" customClass="ReportesViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="trc-sk-Uui"/>
                         <viewControllerLayoutGuide type="bottom" id="BsY-0E-XY4"/>
@@ -441,14 +441,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="raj-ag-M3O">
+                                <rect key="frame" x="16" y="28" width="343" height="582"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Reportes" image="iconRep" selectedImage="iconRepS" id="mH3-94-ZPL" userLabel="Reportes"/>
+                    <connections>
+                        <outlet property="webViewReporte" destination="raj-ag-M3O" id="5Eh-z6-MFt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45X-GH-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2433" y="457"/>
+            <point key="canvasLocation" x="2432.8000000000002" y="456.52173913043481"/>
         </scene>
         <!--Configuración-->
         <scene sceneID="Jdf-es-YBL">
