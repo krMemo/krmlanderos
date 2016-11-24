@@ -19,19 +19,26 @@ func crearDB() {
     var sql_stmt: String
     let db = getDB()
     if db.open() {
-        sql_stmt = "CREATE TABLE IF NOT EXISTS clientes (id_cliente INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apaterno TEXT, amaterno TEXT, telefono TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS personas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apaterno TEXT, amaterno TEXT, telefono TEXT, tipo_telefono TEXT, correo TEXT, tipo_correo TEXT, direccion TEXT, notas TEXT, estatus TEXT, cliente TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
         else {
-            print("Tabla clientes: OK")
+            print("Tabla 'personas': OK")
         }
-        sql_stmt = "CREATE TABLE IF NOT EXISTS referidos (id_referido INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, apaterno TEXT, amaterno TEXT, telefono TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS referidos (persona INTEGER, referido INTEGER)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
         else {
-            print("Tabla referidos: OK")
+            print("Tabla 'referidos': OK")
+        }
+        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY AUTOINCREMENT, persona INTEGER, tipo TEXT, fecha TEXT, notas TEXT, recordatorio TEXT)"
+        if !(db.executeStatements(sql_stmt)) {
+            print("Error: \(db.lastErrorMessage())")
+        }
+        else {
+            print("Tabla 'eventos': OK")
         }
         db.close()
     }
@@ -40,12 +47,12 @@ func crearDB() {
     }
 }
 
-func selectAllClientes() -> [[String:String]] {
+func selectAllPersonas() -> [[String:String]] {
     var clientes: [[String:String]] = []
     var cliente: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "telefono":""]
     let db = getDB()
     if db.open() {
-        let querySQL = "SELECT id_cliente, nombre, apaterno, amaterno, telefono FROM clientes"
+        let querySQL = "SELECT id, nombre, apaterno, amaterno, telefono, estatus FROM personas"
         let results: FMResultSet = db.executeQuery(querySQL, withArgumentsIn: nil)
         while results.next() == true {
             cliente["id"] = results.string(forColumn: "id_cliente")
@@ -53,6 +60,7 @@ func selectAllClientes() -> [[String:String]] {
             cliente["apaterno"] = results.string(forColumn: "apaterno")
             cliente["amaterno"] = results.string(forColumn: "amaterno")
             cliente["telefono"] = results.string(forColumn: "telefono")
+            cliente["estatus"] = results.string(forColumn: "estatus")
             clientes.append(cliente)
         }
         db.close()
@@ -62,19 +70,20 @@ func selectAllClientes() -> [[String:String]] {
     return clientes
 }
 
-func selectAllReferidos() -> [[String:String]] {
+func selectAllPersonas(clientes: String) -> [[String:String]] {
     var clientes: [[String:String]] = []
     var cliente: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "telefono":""]
     let db = getDB()
     if db.open() {
-        let querySQL = "SELECT id_referido, nombre, apaterno, amaterno, telefono FROM referidos"
+        let querySQL = "SELECT id, nombre, apaterno, amaterno, telefono, estatus FROM personas WHERE cliente = '\(clientes)'"
         let results: FMResultSet = db.executeQuery(querySQL, withArgumentsIn: nil)
         while results.next() == true {
-            cliente["id"] = results.string(forColumn: "id_referido")
+            cliente["id"] = results.string(forColumn: "id_cliente")
             cliente["nombre"] = results.string(forColumn: "nombre")
             cliente["apaterno"] = results.string(forColumn: "apaterno")
             cliente["amaterno"] = results.string(forColumn: "amaterno")
             cliente["telefono"] = results.string(forColumn: "telefono")
+            cliente["estatus"] = results.string(forColumn: "estatus")
             clientes.append(cliente)
         }
         db.close()
@@ -84,38 +93,16 @@ func selectAllReferidos() -> [[String:String]] {
     return clientes
 }
 
-func ejecutarenClientes(accion: String, persona: [String:String]) {
+func ejecutarEnPersonas(accion: String, persona: [String:String]) {
     var sql: String = ""
     if accion == "insert" {
-        sql = "INSERT INTO clientes (nombre, apaterno, amaterno, telefono) VALUES ('\(persona["nombre"]!)', '\(persona["apaterno"]!)', '\(persona["amaterno"]!)', '\(persona["telefono"]!)')"
+        sql = "INSERT INTO personas (nombre, apaterno, amaterno, telefono, tipo_telefono, correo, tipo_correo, direccion, notas, estatus, cliente) VALUES ('\(persona["nombre"]!)', '\(persona["apaterno"]!)', '\(persona["amaterno"]!)', '\(persona["telefono"]!)', '\(persona["tipo_telefono"]!)', '\(persona["correo"]!)', '\(persona["tipo_correo"]!)', '\(persona["estatus"]!)')"
     }
     else if accion == "update" {
-        sql = "UPDATE clientes SET nombre = '\(persona["nombre"]!)', apaterno = '\(persona["apaterno"]!)', amaterno = '\(persona["amaterno"]!)', telefono = '\(persona["telefono"]!)' WHERE id_cliente = \(persona["id"]!)"
+        sql = "UPDATE personas SET nombre = '\(persona["nombre"]!)', apaterno = '\(persona["apaterno"]!)', amaterno = '\(persona["amaterno"]!)', telefono = '\(persona["telefono"]!)' WHERE id = \(persona["id"]!)"
     }
     else if accion == "delete" {
-        sql = "DELETE FROM clientes WHERE id_cliente = \(persona["id"]!)"
-    }
-    let db = getDB()
-    if db.open() {
-        let result = db.executeUpdate(sql, withArgumentsIn: nil)
-        if !result {
-            print("Error: \(db.lastErrorMessage())")
-        }
-    } else {
-        print("Error: \(db.lastErrorMessage())")
-    }
-}
-
-func ejecutarenReferidos(accion: String, persona: [String:String]) {
-    var sql: String = ""
-    if accion == "insert" {
-        sql = "INSERT INTO referidos (nombre, apaterno, amaterno, telefono) VALUES ('\(persona["nombre"]!)', '\(persona["apaterno"]!)', '\(persona["amaterno"]!)', '\(persona["telefono"]!)')"
-    }
-    else if accion == "update" {
-        sql = "UPDATE referidos SET nombre = '\(persona["nombre"]!)', apaterno = '\(persona["apaterno"]!)', amaterno = '\(persona["amaterno"]!)', telefono = '\(persona["telefono"]!)' WHERE id_cliente = \(persona["id"]!)"
-    }
-    else if accion == "delete" {
-        sql = "DELETE FROM referidos WHERE id_cliente = \(persona["id"]!)"
+        sql = "DELETE FROM personas WHERE id = \(persona["id"]!)"
     }
     let db = getDB()
     if db.open() {

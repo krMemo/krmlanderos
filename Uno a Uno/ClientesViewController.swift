@@ -17,7 +17,7 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var nuevo: Bool = true
     var idx: Int = 0
-    var clientes: [[String:String]] = selectAllClientes()
+    var clientes: [[String:String]] = selectAllPersonas(clientes: "S")
     var telefono: String = ""
         
     override func viewDidLoad() {
@@ -84,7 +84,7 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func unwindCliente(sender: UIStoryboardSegue) {
-        clientes = selectAllClientes()
+        clientes = selectAllPersonas(clientes: "S")
         tableClientes.reloadData()
     }
     

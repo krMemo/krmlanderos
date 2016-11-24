@@ -15,7 +15,7 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         webViewReporte.delegate = self
-        webViewReporte.loadRequest(URLRequest(url: URL(fileURLWithPath: Bundle.main.path(forResource: "Web/EROV", ofType: "html")!)))
+        webViewReporte.loadRequest(URLRequest(url: URL(fileURLWithPath: Bundle.main.path(forResource: "Web/reporte", ofType: "html")!)))
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {

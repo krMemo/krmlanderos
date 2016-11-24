@@ -91,12 +91,9 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
         let inicio = dayView.date.convertedDate()!
-        print(inicio)
         let fin = dayView.date.convertedDate()! + (24*3600)
-        print(fin)
         let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
         events = eventStore.events(matching: predicate)
-        print(events)
         pickerEvento.reloadAllComponents()
     }
     

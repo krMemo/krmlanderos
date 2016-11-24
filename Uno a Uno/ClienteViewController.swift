@@ -8,15 +8,17 @@
 
 import UIKit
 
-class ClienteViewController: UIViewController {
+class ClienteViewController: UIViewController, UITextFieldDelegate {
 
     var nuevo: Bool = true
-    var cliente: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "telefono":""]
+    var cliente: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "telefono":"", "estatus":""]
     
     @IBOutlet weak var textNombre: UITextField!
     @IBOutlet weak var textApaterno: UITextField!
     @IBOutlet weak var textAmaterno: UITextField!
     @IBOutlet weak var textTelefono: UITextField!
+    @IBOutlet weak var textCorreo: UITextField!
+    @IBOutlet weak var textNotas: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,33 @@ class ClienteViewController: UIViewController {
             textAmaterno.text = cliente["amaterno"]
             textTelefono.text = cliente["telefono"]
         }
+        textNombre.delegate = self
+        textApaterno.delegate = self
+        textAmaterno.delegate = self
+        textTelefono.delegate = self
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.items = [
+            UIBarButtonItem(title: "Cancelar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.kbCancelar)),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Aceptar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.kbAceptar))
+        ]
+        textNombre.inputAccessoryView = toolBar
+        textApaterno.inputAccessoryView = toolBar
+        textAmaterno.inputAccessoryView = toolBar
+        textTelefono.inputAccessoryView = toolBar
+        /*
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        */
+    }
+    
+    func kbAceptar() {
+        self.view.endEditing(true)
+    }
+    
+    func kbCancelar() {
+        self.view.endEditing(true)
     }
     
     @IBAction func guardarCliente(_ sender: UIButton) {
@@ -33,11 +62,12 @@ class ClienteViewController: UIViewController {
         cliente["apaterno"] = textApaterno.text
         cliente["amaterno"] = textAmaterno.text
         cliente["telefono"] = textTelefono.text
+        
         if nuevo {
-            ejecutarenClientes(accion: "insert", persona: cliente)
+            ejecutarEnPersonas(accion: "insert", persona: cliente)
         }
         else {
-            ejecutarenClientes(accion: "update", persona: cliente)
+            ejecutarEnPersonas(accion: "update", persona: cliente)
         }
     }
     
@@ -47,10 +77,39 @@ class ClienteViewController: UIViewController {
     
     @IBAction func eliminarCliente(_ sender: UIButton) {
         if !nuevo {
-            ejecutarenClientes(accion: "delete", persona: cliente)
+            ejecutarEnPersonas(accion: "delete", persona: cliente)
         }
     }
 
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    @IBAction func buscar(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "segueBuscar", sender: self)
+    }
+    
+    @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

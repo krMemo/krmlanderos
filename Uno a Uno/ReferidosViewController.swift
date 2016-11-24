@@ -14,7 +14,7 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var nuevo: Bool = true
     var idx: Int = 0
-    var referidos: [[String:String]] = selectAllReferidos()
+    var referidos: [[String:String]] = selectAllPersonas(clientes: "N")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func unwindReferido(sender: UIStoryboardSegue) {
-        referidos = selectAllReferidos()
+        referidos = selectAllPersonas(clientes: "N")
         tableReferidos.reloadData()
     }
     

@@ -24,6 +24,24 @@ class ReferidoViewController: UIViewController {
         textApaterno.text = referido["apaterno"]
         textAmaterno.text = referido["amaterno"]
         textTelefono.text = referido["telefono"]
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.items = [
+            UIBarButtonItem(title: "Cancelar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.kbAceptar)),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Aceptar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.kbCancelar))
+        ]
+        textNombre.inputAccessoryView = toolBar
+        textApaterno.inputAccessoryView = toolBar
+        textAmaterno.inputAccessoryView = toolBar
+    }
+    
+    func kbAceptar() {
+        mostrarAviso(titulo: "Aviso", mensaje: "Aceptar", viewController: self)
+    }
+    
+    func kbCancelar() {
+        mostrarAviso(titulo: "Aviso", mensaje: "Cancelar", viewController: self)
     }
     
     @IBAction func guardarReferido(_ sender: UIButton) {
@@ -32,16 +50,16 @@ class ReferidoViewController: UIViewController {
         referido["amaterno"] = textAmaterno.text
         referido["telefono"] = textTelefono.text
         if nuevo {
-            ejecutarenReferidos(accion: "insert", persona: referido)
+            ejecutarEnPersonas(accion: "insert", persona: referido)
         }
         else {
-            ejecutarenReferidos(accion: "update", persona: referido)
+            ejecutarEnPersonas(accion: "update", persona: referido)
         }
     }
     
     @IBAction func eliminarReferido(_ sender: UIButton) {
         if !nuevo {
-            ejecutarenReferidos(accion: "delete", persona: referido)
+            ejecutarEnPersonas(accion: "delete", persona: referido)
         }
     }
     
@@ -49,6 +67,10 @@ class ReferidoViewController: UIViewController {
         self.performSegue(withIdentifier: "unwindReferido", sender: self)
     }
 
+    @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
+     
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
