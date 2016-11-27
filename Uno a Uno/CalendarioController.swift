@@ -43,17 +43,19 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
         calendarView.calendarDelegate = self
         pickerEvento.delegate = self
         labelMes.text = CVDate(date: Date()).commonDescription
-        cals = eventStore.calendars(for: EKEntityType.event)
-        for cal in cals {
-            if cal.allowsContentModifications {
-                calendars.append(cal)
+        if permiso {
+            cals = eventStore.calendars(for: EKEntityType.event)
+            for cal in cals {
+                if cal.allowsContentModifications {
+                    calendars.append(cal)
+                }
             }
+            let inicio = Date()
+            let fin = Date(timeIntervalSinceNow: +24*3600)
+            let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
+            events = eventStore.events(matching: predicate)
+            print(events)
         }
-        let inicio = Date()
-        let fin = Date(timeIntervalSinceNow: +24*3600)
-        let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
-        events = eventStore.events(matching: predicate)
-        print(events)
     }
 
     func presentedDateUpdated(_ date: CVDate) {

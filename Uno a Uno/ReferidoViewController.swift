@@ -50,16 +50,16 @@ class ReferidoViewController: UIViewController {
         referido["amaterno"] = textAmaterno.text
         referido["telefono"] = textTelefono.text
         if nuevo {
-            ejecutarEnPersonas(accion: "insert", persona: referido)
+            executePersonas(accion: "insert", persona: referido)
         }
         else {
-            ejecutarEnPersonas(accion: "update", persona: referido)
+            executePersonas(accion: "update", persona: referido)
         }
     }
     
     @IBAction func eliminarReferido(_ sender: UIButton) {
         if !nuevo {
-            ejecutarEnPersonas(accion: "delete", persona: referido)
+            executePersonas(accion: "delete", persona: referido)
         }
     }
     

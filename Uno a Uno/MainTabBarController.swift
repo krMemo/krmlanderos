@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checaAutorizacionCal()
-        dicTojson()
+        //dicTojson()
     }
     
     func checaAutorizacionCal() {
@@ -26,18 +26,21 @@ class MainTabBarController: UITabBarController {
         case EKAuthorizationStatus.authorized:
             self.tabBar.items?[0].isEnabled = true
             self.selectedIndex = 0
+            permiso = true
         case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied, EKAuthorizationStatus.notDetermined:
             self.eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
                 if accessGranted == true {
                     self.tabBar.items?[0].isEnabled = true
                     self.selectedIndex = 0
+                    permiso = true
                 }
                 else {
                     self.solicitarPermisoCal()
                     DispatchQueue.main.async(execute: {
                         self.tabBar.items?[0].isEnabled = false
                         self.selectedIndex = 1
+                        permiso = false
                     })
                 }
             })

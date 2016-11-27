@@ -15,9 +15,8 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableClientes: UITableView!
     
-    var nuevo: Bool = true
-    var idx: Int = 0
-    var clientes: [[String:String]] = selectAllPersonas(clientes: "S")
+    var idx: Int = -1
+    var clientes: [[String:String]] = selectPersonas(esCliente: "1")
     var telefono: String = ""
         
     override func viewDidLoad() {
@@ -36,41 +35,39 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        cell.textLabel?.text = clientes[indexPath.row]["nombrec"]!
         cell.detailTextLabel?.text = clientes[indexPath.row]["telefono"]!
-        cell.textLabel?.text = clientes[indexPath.row]["nombre"]! + " " + clientes[indexPath.row]["apaterno"]!
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
-        telefono = clientes[indexPath.row]["telefono"]!
+        print(idx)
+        telefono = clientes[indexPath.row]["cliente"]!
     }
     
     @IBAction func addCliente(_ sender: UIButton) {
-        nuevo = true
         self.performSegue(withIdentifier: "segueCliente", sender: self)
     }
     
     @IBAction func editCliente(_ sender: UIButton) {
-        nuevo = false
-        self.performSegue(withIdentifier: "segueCliente", sender: self)
+        if idx >= 0 {
+            self.performSegue(withIdentifier: "segueCliente", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if !nuevo {
-            let clienteVC = segue.destination as! ClienteViewController
-            clienteVC.nuevo = nuevo
-            clienteVC.cliente["id"] = clientes[idx]["id"]
-            clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
-            clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
-            clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
-            clienteVC.cliente["telefono"] = clientes[idx]["telefono"]
-        }
+        let clienteVC = segue.destination as! ClienteViewController
+        clienteVC.nuevo = false
+        clienteVC.cliente["id"] = clientes[idx]["id"]
+        clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
+        clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
+        clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
+        clienteVC.cliente["cliente"] = clientes[idx]["cliente"]
     }
     
     @IBAction func llamar(_ sender: UIButton) {
         if let url = NSURL(string: "tel://\(telefono)") {
-            
             UIApplication.shared.open(url as URL, options: [:], completionHandler: {
                 (success) in
                 print("Open \(success)")
@@ -84,8 +81,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func unwindCliente(sender: UIStoryboardSegue) {
-        clientes = selectAllPersonas(clientes: "S")
+        clientes = selectPersonas(esCliente: "1")
         tableClientes.reloadData()
+        idx = -1
     }
     
     override func didReceiveMemoryWarning() {

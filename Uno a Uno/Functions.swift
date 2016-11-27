@@ -8,6 +8,8 @@
 
 import UIKit
 
+var permiso: Bool = false
+
 extension String {
     var lang: String {
         return NSLocalizedString(self, comment: "")

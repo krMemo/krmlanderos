@@ -11,6 +11,7 @@
 		FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC207BFF1D98247400AC15F2 /* Assets.xcassets */; };
 		FC226B551DA0F7D500905277 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC226B541DA0F7D500905277 /* Functions.swift */; };
 		FC2898421D9C78E7007212B9 /* RegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2898411D9C78E7007212B9 /* RegistroViewController.swift */; };
+		FC2CA1891DEB616900EAD96A /* TelefonosCorreosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */; };
 		FC5A66931DA5810C00A62D26 /* CalendarioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A66921DA5810C00A62D26 /* CalendarioController.swift */; };
 		FC5A67801DA6FA4100A62D26 /* CVCalendarContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A67631DA6FA4100A62D26 /* CVCalendarContentViewController.swift */; };
 		FC5A67811DA6FA4100A62D26 /* CVCalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A67641DA6FA4100A62D26 /* CVCalendarDayView.swift */; };
@@ -69,6 +70,7 @@
 		FC207BFF1D98247400AC15F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC226B541DA0F7D500905277 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		FC2898411D9C78E7007212B9 /* RegistroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroViewController.swift; sourceTree = "<group>"; };
+		FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelefonosCorreosViewController.swift; sourceTree = "<group>"; };
 		FC5A66921DA5810C00A62D26 /* CalendarioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarioController.swift; sourceTree = "<group>"; };
 		FC5A67621DA6FA4100A62D26 /* CVCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCalendar.h; sourceTree = "<group>"; };
 		FC5A67631DA6FA4100A62D26 /* CVCalendarContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarContentViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */,
 				FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */,
 				FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */,
+				FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */,
 				FCE057231DD81300001A4A98 /* ReportesViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
@@ -384,6 +387,7 @@
 				FC5A67851DA6FA4100A62D26 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				FC5A67841DA6FA4100A62D26 /* CVCalendarMenuView.swift in Sources */,
 				FC722DB91DB00B2B00A39926 /* FMDatabasePool.m in Sources */,
+				FC2CA1891DEB616900EAD96A /* TelefonosCorreosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

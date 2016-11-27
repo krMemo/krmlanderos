@@ -16,6 +16,8 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tablePersonas.delegate = self
+        tablePersonas.dataSource = self
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -28,17 +30,21 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        
-        cell.textLabel?.text = personas[indexPath.row]["nombre"]! + " " + personas[indexPath.row]["apaterno"]!
+        cell.textLabel?.text = personas[indexPath.row]["nombre"]!
+        cell.detailTextLabel?.text = personas[indexPath.row]["id"]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    @IBAction func aceptar(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "unwindBuscar", sender: self)
     }
     
     @IBAction func cancelar(_ sender: UIButton) {
         self.performSegue(withIdentifier: "unwindBuscar", sender: self)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
     }
     
     override func didReceiveMemoryWarning() {
