@@ -147,6 +147,8 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             executePersonas(accion: "delete", persona: cliente)
             deleteTelefonos(id: id)
             deleteCorreos(id: id)
+            mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
+            self.performSegue(withIdentifier: "unwindCliente", sender: self)
         }
     }
 

@@ -143,6 +143,8 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
             executePersonas(accion: "delete", persona: referido)
             deleteTelefonos(id: id)
             deleteCorreos(id: id)
+            mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
+            self.performSegue(withIdentifier: "unwindReferido", sender: self)
         }
     }
     
