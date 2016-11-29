@@ -10,8 +10,10 @@ import UIKit
 
 class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    var id: String = ""
+    var TC: String = ""
     var nuevo: Bool = true
-    var cliente: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "direccion":"", "notas":"", "estatus":"", "cliente":""]
+    var cliente: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "direccion":"", "notas":"", "estatus":"", "cliente":"", "referencia":""]
     var telefonos: [[String:String]] = []
     var telefono: [String:String] = ["id":"", "idx":"", "principal":"", "telefono":"", "tipo":""]
     var correos: [[String:String]] = []
@@ -22,7 +24,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var textAmaterno: UITextField!
     @IBOutlet weak var textDireccion: UITextView!
     @IBOutlet weak var textNotas: UITextView!
-    @IBOutlet weak var buttonReferencia: UIButton!
+    @IBOutlet weak var textReferencia: UITextField!
     @IBOutlet weak var tableTelefonos: UITableView!
     @IBOutlet weak var tableCorreos: UITableView!
     
@@ -46,20 +48,26 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Aceptar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.kbAceptar))
         ]
+        
         textNombre.inputAccessoryView = toolBar
         textApaterno.inputAccessoryView = toolBar
         textAmaterno.inputAccessoryView = toolBar
         textDireccion.inputAccessoryView = toolBar
         textNotas.inputAccessoryView = toolBar
-       
-        if !nuevo {
+
+        if nuevo {
+            id = selectMaxId()
+        }
+        else {
+            id = cliente["id"]!
             textNombre.text = cliente["nombre"]
             textApaterno.text = cliente["apaterno"]
             textAmaterno.text = cliente["amaterno"]
             textDireccion.text = cliente["direccion"]
             textNotas.text = cliente["notas"]
-            telefonos = selectTefonos(id: cliente["id"]!)
-            correos = selectCorreos(id: cliente["id"]!)
+            textReferencia.text = cliente["referencia"]
+            telefonos = selectTefonos(id: id)
+            correos = selectCorreos(id: id)
         }
         /*
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -94,24 +102,29 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         var cell: UITableViewCell
         if tableView == tableTelefonos {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellTel")! as UITableViewCell
-            cell.detailTextLabel?.text = telefonos[indexPath.row]["tipo"]!
-            cell.textLabel?.text = telefonos[indexPath.row]["telefono"]!
+            if telefonos.count > 0 {
+                cell.detailTextLabel?.text = telefonos[indexPath.row]["tipo"]!
+                cell.textLabel?.text = telefonos[indexPath.row]["telefono"]!
+            }
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: "cellCor")! as UITableViewCell
-            cell.detailTextLabel?.text = correos[indexPath.row]["tipo"]!
-            cell.textLabel?.text = correos[indexPath.row]["correo"]!
+            if correos.count > 0 {
+                cell.detailTextLabel?.text = correos[indexPath.row]["tipo"]!
+                cell.textLabel?.text = correos[indexPath.row]["correo"]!
+            }
         }
         return cell
     }
     
     @IBAction func guardarCliente(_ sender: UIButton) {
-        cliente["referencia"] = "1"
+        cliente["id"] = id
         cliente["nombre"] = textNombre.text
         cliente["apaterno"] = textApaterno.text
         cliente["amaterno"] = textAmaterno.text
         cliente["direccion"] = textDireccion.text
         cliente["notas"] = textNotas.text
+        cliente["referencia"] = textReferencia.text
         cliente["cliente"] = "1"
         if nuevo {
             executePersonas(accion: "insert", persona: cliente)
@@ -119,8 +132,8 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         else {
             executePersonas(accion: "update", persona: cliente)
         }
-        update(telefonos: telefonos)
-        update(correos: correos)
+        update(telefonos: telefonos, id: id)
+        update(correos: correos, id: id)
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindCliente", sender: self)
     }
@@ -132,8 +145,8 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func eliminarCliente(_ sender: UIButton) {
         if !nuevo {
             executePersonas(accion: "delete", persona: cliente)
-            deleteTelefonos(id: cliente["id"]!)
-            deleteCorreos(id: cliente["id"]!)
+            deleteTelefonos(id: id)
+            deleteCorreos(id: id)
         }
     }
 
@@ -161,7 +174,15 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueTelCor" {
             let telcorVC = segue.destination as! TelefonosCorreosViewController
-            telcorVC.id = cliente["id"]!
+            telcorVC.id = id
+            telcorVC.TC = TC
+            telcorVC.CR = "C"
+            telcorVC.telefonos = telefonos
+            telcorVC.correos = correos
+        }
+        else if segue.identifier == "segueBuscar" {
+            let buscarVC = segue.destination as! BuscarViewController
+            buscarVC.CR = "C"
         }
     }
     
@@ -170,10 +191,12 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func editarTelefono(_ sender: UIButton) {
+        TC = "T"
         performSegue(withIdentifier: "segueTelCor", sender: self)
     }
     
     @IBAction func editarCorreo(_ sender: UIButton) {
+        TC = "C"
         performSegue(withIdentifier: "segueTelCor", sender: self)
     }
     

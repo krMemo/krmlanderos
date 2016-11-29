@@ -16,6 +16,7 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableClientes: UITableView!
     
     var idx: Int = -1
+    var nuevo: Bool = true
     var clientes: [[String:String]] = selectPersonas(esCliente: "1")
     var telefono: String = ""
         
@@ -42,28 +43,34 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
-        print(idx)
-        telefono = clientes[indexPath.row]["cliente"]!
+        telefono = clientes[indexPath.row]["telefono"]!
     }
     
     @IBAction func addCliente(_ sender: UIButton) {
+        nuevo = true
         self.performSegue(withIdentifier: "segueCliente", sender: self)
     }
     
     @IBAction func editCliente(_ sender: UIButton) {
+        nuevo = false
         if idx >= 0 {
             self.performSegue(withIdentifier: "segueCliente", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let clienteVC = segue.destination as! ClienteViewController
-        clienteVC.nuevo = false
-        clienteVC.cliente["id"] = clientes[idx]["id"]
-        clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
-        clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
-        clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
-        clienteVC.cliente["cliente"] = clientes[idx]["cliente"]
+        if idx >= 0 && nuevo == false {
+            let clienteVC = segue.destination as! ClienteViewController
+            clienteVC.nuevo = false
+            clienteVC.cliente["id"] = clientes[idx]["id"]
+            clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
+            clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
+            clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
+            clienteVC.cliente["cliente"] = clientes[idx]["cliente"]
+            clienteVC.cliente["direccion"] = clientes[idx]["direccion"]
+            clienteVC.cliente["notas"] = clientes[idx]["notas"]
+            clienteVC.cliente["referencia"] = clientes[idx]["referencia"]
+        }
     }
     
     @IBAction func llamar(_ sender: UIButton) {

@@ -8,18 +8,57 @@
 
 import UIKit
 
-class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    var CR: String = ""
+    var referencia: String = ""
+    var aceptar: Bool = true
     var personas = selectAllPersonas()
+    var searchActive : Bool = false
+    var filtered = selectAllPersonas()
     
+    @IBOutlet weak var searchPersonas: UISearchBar!
     @IBOutlet weak var tablePersonas: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchPersonas.delegate = self
         tablePersonas.delegate = self
         tablePersonas.dataSource = self
     }
 
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        /*filtered = personas.filter({
+            (text) -> Bool in
+            let tmp = text
+            //let range = tmp.rangeOfString(searchText, options: NSString.CompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+        })*/
+        if(filtered.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        tablePersonas.reloadData()
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -31,19 +70,33 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = personas[indexPath.row]["nombre"]!
-        cell.detailTextLabel?.text = personas[indexPath.row]["id"]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        referencia = personas[indexPath.row]["nombre"]!
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if aceptar {
+            if CR == "C" {
+                let clienteVC = segue.destination as! ClienteViewController
+                clienteVC.textReferencia.text = referencia
+            }
+            else if CR == "R" {
+                let referidoVC = segue.destination as! ReferidoViewController
+                referidoVC.textReferencia.text = referencia
+            }
+        }
     }
     
     @IBAction func aceptar(_ sender: UIButton) {
+        aceptar = true
         self.performSegue(withIdentifier: "unwindBuscar", sender: self)
     }
     
     @IBAction func cancelar(_ sender: UIButton) {
+        aceptar = false
         self.performSegue(withIdentifier: "unwindBuscar", sender: self)
     }
     
