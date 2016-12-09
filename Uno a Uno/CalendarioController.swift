@@ -9,8 +9,11 @@
 import UIKit
 import EventKit
 
-class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
+    var idx: Int = -1
+    var nuevo: Bool = true
+    var fecha: Date = Date()
     var animationFinished = true
     let eventStore = EKEventStore()
     var cals: [EKCalendar] = []
@@ -20,8 +23,24 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var labelMes: UILabel!
     @IBOutlet weak var calendarmenuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
-    @IBOutlet weak var labelCalendario: UILabel!
-    @IBOutlet weak var pickerEvento: UIPickerView!
+    @IBOutlet weak var tableEventos: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        labelMes.text = CVDate(date: fecha).commonDescription
+        calendarmenuView.menuViewDelegate = self
+        calendarView.calendarDelegate = self
+        tableEventos.delegate = self
+        tableEventos.dataSource = self
+        if permiso {
+            cals = eventStore.calendars(for: EKEntityType.event)
+            for cal in cals {
+                if cal.allowsContentModifications {
+                    calendars.append(cal)
+                }
+            }
+        }
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -36,30 +55,9 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     func firstWeekday() -> Weekday {
         return Weekday.sunday
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        calendarmenuView.menuViewDelegate = self
-        calendarView.calendarDelegate = self
-        pickerEvento.delegate = self
-        labelMes.text = CVDate(date: Date()).commonDescription
-        if permiso {
-            cals = eventStore.calendars(for: EKEntityType.event)
-            for cal in cals {
-                if cal.allowsContentModifications {
-                    calendars.append(cal)
-                }
-            }
-            let inicio = Date()
-            let fin = Date(timeIntervalSinceNow: +24*3600)
-            let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
-            events = eventStore.events(matching: predicate)
-            print(events)
-        }
-    }
-
+    
     func presentedDateUpdated(_ date: CVDate) {
-        if labelMes.text != date.commonDescription && self.animationFinished {
+        if labelMes.text != date.commonDescription && animationFinished {
             let updatedMonthLabel = UILabel()
             updatedMonthLabel.font = labelMes.font
             updatedMonthLabel.textAlignment = .center
@@ -92,11 +90,11 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
-        let inicio = dayView.date.convertedDate()!
-        let fin = dayView.date.convertedDate()! + (24*3600)
-        let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
+        fecha = dayView.date.convertedDate()!
+        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
-        pickerEvento.reloadAllComponents()
+        print(events)
+        tableEventos.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -111,9 +109,8 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-        let inicio = dayView.date.convertedDate()!
-        let fin = dayView.date.convertedDate()! + (24*3600)
-        let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
+        fecha = dayView.date.convertedDate()!
+        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         if events.count > 0 {
             let calendar = Calendar.current
@@ -126,9 +123,8 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
-        let inicio = dayView.date.convertedDate()!
-        let fin = dayView.date.convertedDate()! + (24*3600)
-        let predicate = eventStore.predicateForEvents(withStart: inicio, end: fin, calendars: calendars)
+        fecha = dayView.date.convertedDate()!
+        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         if events.count == 1 {
             let uiColor1 = UIColor(cgColor: events[0].calendar.cgColor)
@@ -152,20 +148,31 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
         return 15
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return events[row].title
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        cell.textLabel?.text = events[indexPath.row].title
+        cell.detailTextLabel?.text = events[indexPath.row].calendar.title
+        return cell
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        labelCalendario.text = events[row].calendar.title
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        idx = indexPath.row
+    }
+    
+    @IBAction func irMesAtras(_ sender: UIButton) {
+        calendarView.loadPreviousView()
+    }
+    
+    @IBAction func irMesAdelante(_ sender: UIButton) {
+        calendarView.loadNextView()
     }
     
     @IBAction func irHoy(_ sender: UIButton) {
@@ -173,11 +180,28 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     @IBAction func añadirEvento(_ sender: UIButton) {
+        nuevo = true
         self.performSegue(withIdentifier: "segueEvento", sender: self)
     }
     
+    @IBAction func editarEvento(_ sender: UIButton) {
+        nuevo = false
+        if idx >= 0 {
+            self.performSegue(withIdentifier: "segueEvento", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let eventoVC = segue.destination as! EventoViewController
+        eventoVC.fecha = fecha
+    }
+    
     @IBAction func unwindEvento(sender: UIStoryboardSegue) {
-        pickerEvento.reloadAllComponents()
+        idx = -1
+        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
+        events = eventStore.events(matching: predicate)
+        print(events)
+        tableEventos.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

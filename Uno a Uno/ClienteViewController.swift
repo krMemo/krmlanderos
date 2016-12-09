@@ -56,7 +56,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         textNotas.inputAccessoryView = toolBar
 
         if nuevo {
-            id = selectMaxId()
+            id = selectMaxId(tabla: "personas")
         }
         else {
             id = cliente["id"]!

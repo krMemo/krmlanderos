@@ -69,26 +69,6 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-                if TC == "T" {
-                    telefonos[indexPath.row]["principal"] = "0"
-                }
-                else if TC == "C" {
-                    correos[indexPath.row]["principal"] = "0"
-                }
-            }
-            else {
-                cell.accessoryType = .checkmark
-                if TC == "T" {
-                    telefonos[indexPath.row]["principal"] = "1"
-                }
-                else if TC == "C" {
-                    correos[indexPath.row]["principal"] = "1"
-                }
-            }
-        }
         idx = indexPath.row
     }
     
@@ -108,7 +88,6 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func addTelCor(_ sender: UIButton) {
         if TC == "T" {
             telefono["id"] = id
-            telefono["idx"] = String(telefonos.count)
             telefono["telefono"] = textTelCor.text
             telefono["tipo"] = textTipo.text
             telefono["principal"] = "0"
@@ -116,7 +95,6 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
         }
         else if TC == "C" {
             correo["id"] = id
-            correo["idx"] = String(correos.count)
             correo["correo"] = textTelCor.text
             correo["tipo"] = textTipo.text
             correo["principal"] = "0"
@@ -125,8 +103,26 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
         tableTelCor.reloadData()
     }
     
+    @IBAction func selPrincipal(_ sender: UIButton) {
+        var i: Int = 0
+        if TC == "T" {
+            for telefono in telefonos {
+                telefonos[i]["principal"] = telefono["idx"] == String(idx) ? "1" : "0"
+                i += 1
+            }
+        }
+        else if TC == "C" {
+            for correo in correos {
+                correos[i]["principal"] = correo["idx"] == String(idx) ? "1" : "0"
+                i += 1
+            }
+        }
+        tableTelCor.reloadData()
+    }
+    
     @IBAction func delTelCor(_ sender: UIButton) {
-        
+        telefonos.remove(at: idx)
+        tableTelCor.reloadData()
     }
     
     @IBAction func cancelar(_ sender: UIButton) {

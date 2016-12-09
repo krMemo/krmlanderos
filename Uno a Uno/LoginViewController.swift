@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textCorreo.delegate = self
         textContrasenia.delegate = self
         crearDB()
+        checaAutorizacionCal()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,13 +58,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func accederSistema(_ sender: UIButton) {
         //valid mail & pass field
+        self.performSegue(withIdentifier: "seguePrincipal", sender: self)
         if !isValidEmail(testStr: self.textCorreo.text!) {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "INVALID_MAIL".lang, viewController: self)
         } else if (self.textContrasenia.text!.isEmpty) {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "EMPTY_FIELD".lang, viewController: self)
         }
-        else{
-        
+        else {
             let alertController = UIAlertController(title: "ATENCION".lang, message: "INF_INC".lang, preferredStyle: UIAlertControllerStyle.alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
             alertController.addAction(okAction)

@@ -40,7 +40,7 @@ func crearDB() {
         else {
             print("Tabla 'correos': OK")
         }
-        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, persona INTEGER, tipo TEXT, fecha TEXT, notas TEXT, recordatorio TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, persona INTEGER, tipo TEXT, fecha TEXT, evento TEXT, notas TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
@@ -54,11 +54,11 @@ func crearDB() {
     }
 }
 
-func selectMaxId() -> String {
+func selectMaxId(tabla: String) -> String {
     var id: String = "0"
     let db = getDB()
     if db.open() {
-        let results: FMResultSet = db.executeQuery("SELECT MAX(id) + 1 AS max FROM personas", withArgumentsIn: nil)
+        let results: FMResultSet = db.executeQuery("SELECT MAX(id) + 1 AS max FROM \(tabla)", withArgumentsIn: nil)
         if results.next() == true {
             if results.string(forColumn: "max") != nil {
                 id = results.string(forColumn: "max")
@@ -98,8 +98,14 @@ func selectPersonas(esCliente: String) -> [[String:String]] {
             if res_telefono.next() == true {
                 persona["telefono"] = res_telefono.string(forColumn: "telefono")
             }
+            else {
+                persona["telefono"] = ""
+            }
             if res_correo.next() == true {
                 persona["correo"] = res_correo.string(forColumn: "correo")
+            }
+            else {
+                persona["correo"] = ""
             }
             personas.append(persona)
         }
@@ -283,6 +289,33 @@ func deleteCorreos(id: String) {
             print("DELETE OK")
         }
         db.close()
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+}
+
+func executeEventos(accion: String, evento: [String:String]) {
+    var sql: String = ""
+    if accion == "insert" {
+        sql = "INSERT INTO eventos (id, persona, tipo, fecha, evento, notas) VALUES (\(evento["id"]!), \(evento["persona"]!), '\(evento["tipo"]!)', '\(evento["fecha"]!)', '\(evento["evento"]!)', '\(evento["notas"]!)')"
+    }
+    else if accion == "update" {
+        sql = "UPDATE eventos SET persona = \(evento["persona"]!), tipo = '\(evento["tipo"]!)', fecha = '\(evento["fecha"]!)', evento = '\(evento["evento"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
+    }
+    else if accion == "delete" {
+        sql = "DELETE FROM eventos WHERE id = \(evento["id"]!)"
+    }
+    let db = getDB()
+    if db.open() {
+        let result = db.executeStatements(sql)
+        if !result {
+            print("Error: \(db.lastErrorMessage())")
+        }
+        else {
+            print("'\(accion)' OK")
+            db.close()
+        }
     }
     else {
         print("Error: \(db.lastErrorMessage())")

@@ -56,7 +56,7 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
         textNotas.inputAccessoryView = toolBar
         
         if nuevo {
-            id = selectMaxId()
+            id = selectMaxId(tabla: "personas")
         }
         else {
             id = referido["id"]!

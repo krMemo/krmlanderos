@@ -9,6 +9,7 @@
 import UIKit
 
 class RegistroViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var stackLbls: UIStackView!
     @IBOutlet weak var stackInputs: UIStackView!
     @IBOutlet weak var textNombre: UITextField!

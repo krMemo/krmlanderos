@@ -11,7 +11,8 @@ import UIKit
 class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var CR: String = ""
-    var referencia: String = ""
+    var persona: String = ""
+    var id: String = ""
     var aceptar: Bool = true
     var personas = selectAllPersonas()
     var searchActive : Bool = false
@@ -74,18 +75,24 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        referencia = personas[indexPath.row]["nombre"]!
+        persona = personas[indexPath.row]["nombre"]!
+        id = personas[indexPath.row]["id"]!
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if aceptar {
             if CR == "C" {
                 let clienteVC = segue.destination as! ClienteViewController
-                clienteVC.textReferencia.text = referencia
+                clienteVC.textReferencia.text = persona
             }
             else if CR == "R" {
                 let referidoVC = segue.destination as! ReferidoViewController
-                referidoVC.textReferencia.text = referencia
+                referidoVC.textReferencia.text = persona
+            }
+            else {
+                let eventoVC = segue.destination as! EventoViewController
+                eventoVC.textPersona.text = persona
+                eventoVC.id = id
             }
         }
     }
