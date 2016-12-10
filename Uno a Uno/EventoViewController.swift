@@ -12,10 +12,11 @@ import EventKit
 class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     var idx: Int = 0
+    var nuevo: Bool = true
     var fecha: Date = Date()
     var cals: [EKCalendar]?
     var calendars: [EKCalendar] = []
-    var evento: [String:String] = ["id":"", "persona":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
+    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
     let eventStore = EKEventStore()
     var id: String = ""
     var tipo: String = ""
@@ -41,6 +42,14 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             }
         }
         datepickerFecha.date = fecha
+        if nuevo {
+            id = selectMaxId(tabla: "eventos")
+        }
+        else {
+            evento = selectEvento(id: evento["eventid"]!)
+            id = evento["id"]!
+            pickerTipo.selectRow(evento["tipo"] == "Llamada" ? 1 : 0, inComponent: 0, animated: true)
+        }
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -40,7 +40,7 @@ func crearDB() {
         else {
             print("Tabla 'correos': OK")
         }
-        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, persona INTEGER, tipo TEXT, fecha TEXT, evento TEXT, notas TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, persona INTEGER, eventid TEXT, tipo TEXT, fecha TEXT, evento TEXT, notas TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
@@ -295,13 +295,36 @@ func deleteCorreos(id: String) {
     }
 }
 
+func selectEvento(id: String) -> [String:String] {
+    var evento: [String:String] = ["id":"", "persona":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
+    let db = getDB()
+    if db.open() {
+        let query = "SELECT id, persona, eventid, tipo, fecha, evento, notas FROM eventos WHERE eventid = '\(id)'"
+        let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
+        while results.next() == true {
+            evento["id"] = results.string(forColumn: "id")
+            evento["persona"] = results.string(forColumn: "persona")
+            evento["eventid"] = results.string(forColumn: "eventid")
+            evento["tipo"] = results.string(forColumn: "tipo")
+            evento["fecha"] = results.string(forColumn: "fecha")
+            evento["evento"] = results.string(forColumn: "evento")
+            evento["notas"] = results.string(forColumn: "notas")
+        }
+        db.close()
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+    return evento
+}
+
 func executeEventos(accion: String, evento: [String:String]) {
     var sql: String = ""
     if accion == "insert" {
-        sql = "INSERT INTO eventos (id, persona, tipo, fecha, evento, notas) VALUES (\(evento["id"]!), \(evento["persona"]!), '\(evento["tipo"]!)', '\(evento["fecha"]!)', '\(evento["evento"]!)', '\(evento["notas"]!)')"
+        sql = "INSERT INTO eventos (id, persona, eventid, tipo, fecha, evento, notas) VALUES (\(evento["id"]!), \(evento["persona"]!), '\(evento["eventid"]!)', '\(evento["tipo"]!)', '\(evento["fecha"]!)', '\(evento["evento"]!)', '\(evento["notas"]!)')"
     }
     else if accion == "update" {
-        sql = "UPDATE eventos SET persona = \(evento["persona"]!), tipo = '\(evento["tipo"]!)', fecha = '\(evento["fecha"]!)', evento = '\(evento["evento"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
+        sql = "UPDATE eventos SET persona = \(evento["persona"]!), eventid = '\(evento["eventid"]!)', tipo = '\(evento["tipo"]!)', fecha = '\(evento["fecha"]!)', evento = '\(evento["evento"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
     }
     else if accion == "delete" {
         sql = "DELETE FROM eventos WHERE id = \(evento["id"]!)"

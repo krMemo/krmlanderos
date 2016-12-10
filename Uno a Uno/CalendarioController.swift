@@ -12,6 +12,7 @@ import EventKit
 class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     var idx: Int = -1
+    var eventId: String = ""
     var nuevo: Bool = true
     var fecha: Date = Date()
     var animationFinished = true
@@ -165,6 +166,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
+        eventId = events[indexPath.row].eventIdentifier
     }
     
     @IBAction func irMesAtras(_ sender: UIButton) {
@@ -194,6 +196,10 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let eventoVC = segue.destination as! EventoViewController
         eventoVC.fecha = fecha
+        if idx >= 0 && nuevo == false {
+            eventoVC.nuevo = false
+            eventoVC.evento["eventid"] = eventId
+        }
     }
     
     @IBAction func unwindEvento(sender: UIStoryboardSegue) {
