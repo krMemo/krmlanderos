@@ -14,7 +14,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     var idx: Int = -1
     var eventId: String = ""
     var nuevo: Bool = true
-    var fecha: Date = Date()
+    var fecha: Date = fechaAct()
     var animationFinished = true
     let eventStore = EKEventStore()
     var cals: [EKCalendar] = []
@@ -41,6 +41,9 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
                 }
             }
         }
+        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
+        events = eventStore.events(matching: predicate)
+        tableEventos.reloadData()
     }
 
     override func viewDidLayoutSubviews() {
@@ -88,13 +91,10 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             }
             self.view.insertSubview(updatedMonthLabel, aboveSubview: labelMes)
         }
-    }
-    
-    func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
-        fecha = dayView.date.convertedDate()!
+        idx = -1
+        fecha = date.convertedDate()!
         let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
-        print(events)
         tableEventos.reloadData()
     }
     
@@ -110,12 +110,12 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-        fecha = dayView.date.convertedDate()!
-        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
-        events = eventStore.events(matching: predicate)
-        if events.count > 0 {
+        let tmpfecha = dayView.date.convertedDate()!
+        let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
+        let tmpevents = eventStore.events(matching: predicate)
+        if tmpevents.count > 0 {
             let calendar = Calendar.current
-            let day = calendar.component(.day, from: events[0].startDate)
+            let day = calendar.component(.day, from: tmpevents[0].startDate)
             if day == dayView.date.day {
                 return true
             }
@@ -124,22 +124,22 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
-        fecha = dayView.date.convertedDate()!
-        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
-        events = eventStore.events(matching: predicate)
-        if events.count == 1 {
-            let uiColor1 = UIColor(cgColor: events[0].calendar.cgColor)
+        let tmpfecha = dayView.date.convertedDate()!
+        let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
+        let tmpevents = eventStore.events(matching: predicate)
+        if tmpevents.count == 1 {
+            let uiColor1 = UIColor(cgColor: tmpevents[0].calendar.cgColor)
             return [uiColor1]
         }
-        else if events.count == 2 {
-            let uiColor1 = UIColor(cgColor: events[0].calendar.cgColor)
-            let uiColor2 = UIColor(cgColor: events[1].calendar.cgColor)
+        else if tmpevents.count == 2 {
+            let uiColor1 = UIColor(cgColor: tmpevents[0].calendar.cgColor)
+            let uiColor2 = UIColor(cgColor: tmpevents[1].calendar.cgColor)
             return [uiColor1, uiColor2]
         }
-        else if events.count >= 3 {
-            let uiColor1 = UIColor(cgColor: events[0].calendar.cgColor)
-            let uiColor2 = UIColor(cgColor: events[1].calendar.cgColor)
-            let uiColor3 = UIColor(cgColor: events[2].calendar.cgColor)
+        else if tmpevents.count >= 3 {
+            let uiColor1 = UIColor(cgColor: tmpevents[0].calendar.cgColor)
+            let uiColor2 = UIColor(cgColor: tmpevents[1].calendar.cgColor)
+            let uiColor3 = UIColor(cgColor: tmpevents[2].calendar.cgColor)
             return [uiColor1, uiColor2, uiColor3]
         }
         return []
@@ -160,13 +160,15 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = events[indexPath.row].title
-        cell.detailTextLabel?.text = events[indexPath.row].calendar.title
+        cell.detailTextLabel?.text = String(describing: events[indexPath.row].startDate)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        idx = indexPath.row
-        eventId = events[indexPath.row].eventIdentifier
+        idx = indexPath.item
+        if (events.count > indexPath.row) {
+            eventId = events[idx].eventIdentifier
+        }
     }
     
     @IBAction func irMesAtras(_ sender: UIButton) {
@@ -195,19 +197,24 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let eventoVC = segue.destination as! EventoViewController
+        eventoVC.nuevo = nuevo
         eventoVC.fecha = fecha
         if idx >= 0 && nuevo == false {
-            eventoVC.nuevo = false
-            eventoVC.evento["eventid"] = eventId
+            eventoVC.eventid = eventId
+            eventoVC.evento["eventid"] = events[idx].eventIdentifier
+            eventoVC.evento["fecha"] = String(describing: events[idx].startDate)
+            eventoVC.evento["evento"] = events[idx].title
+            eventoVC.evento["calendario"] = events[idx].calendar.title
         }
     }
     
     @IBAction func unwindEvento(sender: UIStoryboardSegue) {
         idx = -1
-        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
+        let tmpfecha: Date = fechaAct()
+        let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
-        print(events)
         tableEventos.reloadData()
+        calendarView.toggleViewWithDate(tmpfecha)
     }
     
     override func didReceiveMemoryWarning() {

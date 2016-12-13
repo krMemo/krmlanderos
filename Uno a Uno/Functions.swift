@@ -107,3 +107,10 @@ func dicTojson() {
     }
     
 }
+
+func fechaAct() -> Date {
+    let calendar = Calendar(identifier: .gregorian)
+    let dateComponents = calendar.dateComponents([.day, .month, .year], from: Date())
+    let date = calendar.date(from: dateComponents)!
+    return date
+}

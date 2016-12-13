@@ -138,13 +138,13 @@ func selectAllPersonas() -> [[String:String]] {
 
 func executePersonas(accion: String, persona: [String:String]) {
     var sql: String = ""
-    if accion == "insert" {
+    if accion == "INSERT" {
         sql = "INSERT INTO personas (id, nombre, apaterno, amaterno, direccion, notas, estatus, cliente, referencia) VALUES (\(persona["id"]!), '\(persona["nombre"]!)', '\(persona["apaterno"]!)', '\(persona["amaterno"]!)', '\(persona["direccion"]!)', '\(persona["notas"]!)', '\(persona["estatus"]!)', '\(persona["cliente"]!)', '\(persona["referencia"]!)')"
     }
-    else if accion == "update" {
+    else if accion == "UPDATE" {
         sql = "UPDATE personas SET nombre = '\(persona["nombre"]!)', apaterno = '\(persona["apaterno"]!)', amaterno = '\(persona["amaterno"]!)', direccion = '\(persona["direccion"]!)', notas = '\(persona["notas"]!)', estatus = '\(persona["estatus"]!)', cliente = '\(persona["cliente"]!)', referencia = '\(persona["referencia"]!)' WHERE id = \(persona["id"]!)"
     }
-    else if accion == "delete" {
+    else if accion == "DELETE" {
         sql = "DELETE FROM personas WHERE id = \(persona["id"]!)"
     }
     let db = getDB()
@@ -296,19 +296,22 @@ func deleteCorreos(id: String) {
 }
 
 func selectEvento(id: String) -> [String:String] {
-    var evento: [String:String] = ["id":"", "persona":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
+    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
     let db = getDB()
     if db.open() {
         let query = "SELECT id, persona, eventid, tipo, fecha, evento, notas FROM eventos WHERE eventid = '\(id)'"
         let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
         while results.next() == true {
             evento["id"] = results.string(forColumn: "id")
-            evento["persona"] = results.string(forColumn: "persona")
             evento["eventid"] = results.string(forColumn: "eventid")
             evento["tipo"] = results.string(forColumn: "tipo")
             evento["fecha"] = results.string(forColumn: "fecha")
             evento["evento"] = results.string(forColumn: "evento")
             evento["notas"] = results.string(forColumn: "notas")
+            let persona = results.string(forColumn: "persona")!
+            let res_persona: FMResultSet = db.executeQuery("SELECT nombre||' '||apaterno||' '||amaterno AS persona FROM personas WHERE id = \(persona)", withArgumentsIn: nil)
+            res_persona.next()
+            evento["persona"] = res_persona.string(forColumn: "persona")
         }
         db.close()
     }
@@ -320,13 +323,13 @@ func selectEvento(id: String) -> [String:String] {
 
 func executeEventos(accion: String, evento: [String:String]) {
     var sql: String = ""
-    if accion == "insert" {
+    if accion == "INSERT" {
         sql = "INSERT INTO eventos (id, persona, eventid, tipo, fecha, evento, notas) VALUES (\(evento["id"]!), \(evento["persona"]!), '\(evento["eventid"]!)', '\(evento["tipo"]!)', '\(evento["fecha"]!)', '\(evento["evento"]!)', '\(evento["notas"]!)')"
     }
-    else if accion == "update" {
+    else if accion == "UPDATE" {
         sql = "UPDATE eventos SET persona = \(evento["persona"]!), eventid = '\(evento["eventid"]!)', tipo = '\(evento["tipo"]!)', fecha = '\(evento["fecha"]!)', evento = '\(evento["evento"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
     }
-    else if accion == "delete" {
+    else if accion == "DELETE" {
         sql = "DELETE FROM eventos WHERE id = \(evento["id"]!)"
     }
     let db = getDB()

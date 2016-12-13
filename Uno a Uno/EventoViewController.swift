@@ -16,10 +16,12 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     var fecha: Date = Date()
     var cals: [EKCalendar]?
     var calendars: [EKCalendar] = []
-    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
+    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "calendario":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
     let eventStore = EKEventStore()
+    var eventid: String = ""
     var id: String = ""
     var tipo: String = ""
+    var persona: String = ""
     
     @IBOutlet weak var pickerCalendario: UIPickerView!
     @IBOutlet weak var pickerTipo: UIPickerView!
@@ -41,14 +43,33 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 calendars.append(cal)
             }
         }
-        datepickerFecha.date = fecha
-        if nuevo {
-            id = selectMaxId(tabla: "eventos")
-        }
-        else {
-            evento = selectEvento(id: evento["eventid"]!)
-            id = evento["id"]!
-            pickerTipo.selectRow(evento["tipo"] == "Llamada" ? 1 : 0, inComponent: 0, animated: true)
+        datepickerFecha.setDate(fecha, animated: true)
+        if !nuevo {
+            let tmpevento = selectEvento(id: eventid)
+            if tmpevento["id"] == "" {
+                textEvento.text = evento["evento"]
+                var i: Int = 0
+                for cal in calendars {
+                    if cal.title == evento["calendario"] {
+                        pickerCalendario.selectRow(i, inComponent: 0, animated: true)
+                    }
+                    i += 1
+                }
+            }
+            else {
+                id = tmpevento["id"]!
+                textEvento.text = tmpevento["evento"]
+                textPersona.text = tmpevento["persona"]
+                textNotas.text = tmpevento["notas"]
+                pickerTipo.selectRow(evento["tipo"] == "Llamada" ? 1 : 0, inComponent: 0, animated: true)
+                var i: Int = 0
+                for cal in calendars {
+                    if cal.title == tmpevento["calendario"] {
+                        pickerCalendario.selectRow(i, inComponent: 0, animated: true)
+                    }
+                    i += 1
+                }
+            }
         }
     }
 
@@ -103,21 +124,56 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     @IBAction func guardarEvento(_ sender: UIButton) {
-        let newEvent = EKEvent(eventStore: eventStore)
-        newEvent.calendar = calendars[idx]
-        newEvent.title = textEvento.text!
-        newEvent.startDate = datepickerFecha.date
-        newEvent.endDate = datepickerFecha.date
-        //evento["id"] =
-        //print(newEvent.calendarItemIdentifier)
-        print(newEvent.eventIdentifier)
-        
-        
-        do {
-            try eventStore.save(newEvent, span: .thisEvent)
-        } catch {
-            mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
-            print(error)
+        var event = EKEvent(eventStore: eventStore)
+        evento["persona"] = persona
+        evento["tipo"] = tipo
+        evento["calendario"] = calendars[idx].title
+        evento["fecha"] = datepickerFecha.date.description
+        evento["evento"] = textEvento.text
+        evento["notas"] = textNotas.text
+        print(evento)
+        if nuevo {
+            event.calendar = calendars[idx]
+            event.title = textEvento.text!
+            event.startDate = datepickerFecha.date
+            event.endDate = datepickerFecha.date
+            evento["eventid"] = event.eventIdentifier
+            if id == "" {
+                id = selectMaxId(tabla: "eventos")
+                evento["id"] = id
+                executeEventos(accion: "INSERT", evento: evento)
+            }
+            do {
+                try eventStore.save(event, span: .thisEvent)
+                mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
+            }
+            catch {
+                mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
+                print(error)
+            }
+        }
+        else {
+            event = eventStore.event(withIdentifier: eventid)!
+            event.calendar = calendars[idx]
+            event.title = textEvento.text!
+            event.startDate = datepickerFecha.date
+            event.endDate = datepickerFecha.date
+            if id == "" {
+                id = selectMaxId(tabla: "eventos")
+                evento["id"] = id
+                executeEventos(accion: "INSERT", evento: evento)
+            }
+            else {
+                executeEventos(accion: "UPDATE", evento: evento)
+            }
+            do {
+                try eventStore.save(event, span: .thisEvent)
+                mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
+            }
+            catch {
+                mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
+                print(error)
+            }
         }
     }
 

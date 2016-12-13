@@ -127,10 +127,10 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
         referido["referencia"] = textReferencia.text
         referido["cliente"] = "0"
         if nuevo {
-            executePersonas(accion: "insert", persona: referido)
+            executePersonas(accion: "INSERT", persona: referido)
         }
         else {
-            executePersonas(accion: "update", persona: referido)
+            executePersonas(accion: "UPDATE", persona: referido)
         }
         update(telefonos: telefonos, id: id)
         update(correos: correos, id: id)
@@ -140,7 +140,7 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     @IBAction func eliminarReferido(_ sender: UIButton) {
         if !nuevo {
-            executePersonas(accion: "delete", persona: referido)
+            executePersonas(accion: "DELETE", persona: referido)
             deleteTelefonos(id: id)
             deleteCorreos(id: id)
             mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
