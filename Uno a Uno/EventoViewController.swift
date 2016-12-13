@@ -141,6 +141,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             if id == "" {
                 id = selectMaxId(tabla: "eventos")
                 evento["id"] = id
+                print("INSERT \(evento)")
                 executeEventos(accion: "INSERT", evento: evento)
             }
             do {
@@ -161,9 +162,11 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             if id == "" {
                 id = selectMaxId(tabla: "eventos")
                 evento["id"] = id
+                print("INSERT \(evento)")
                 executeEventos(accion: "INSERT", evento: evento)
             }
             else {
+                print("UPDATE \(evento)")
                 executeEventos(accion: "UPDATE", evento: evento)
             }
             do {
