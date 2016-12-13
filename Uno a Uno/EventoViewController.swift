@@ -61,7 +61,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 textEvento.text = tmpevento["evento"]
                 textPersona.text = tmpevento["persona"]
                 textNotas.text = tmpevento["notas"]
-                pickerTipo.selectRow(evento["tipo"] == "Llamada" ? 1 : 0, inComponent: 0, animated: true)
+                pickerTipo.selectRow(tmpevento["tipo"] == "Llamada" ? 1 : 0, inComponent: 0, animated: true)
                 var i: Int = 0
                 for cal in calendars {
                     if cal.title == tmpevento["calendario"] {
