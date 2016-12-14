@@ -153,6 +153,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func unwindRegistro(sender: UIStoryboardSegue) {
     }
     
+    @IBAction func unwindConfiguracion(sender: UIStoryboardSegue) {
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

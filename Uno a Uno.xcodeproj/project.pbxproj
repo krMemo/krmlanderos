@@ -10,6 +10,8 @@
 		FC11F0F81DE74BAA008A9232 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */; };
 		FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC207BFF1D98247400AC15F2 /* Assets.xcassets */; };
 		FC226B551DA0F7D500905277 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC226B541DA0F7D500905277 /* Functions.swift */; };
+		FC25E97E1E00EF4800F803B0 /* LlamadaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC25E97D1E00EF4800F803B0 /* LlamadaViewController.swift */; };
+		FC25E9801E013BB000F803B0 /* ConfiguracionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC25E97F1E013BB000F803B0 /* ConfiguracionViewController.swift */; };
 		FC2898421D9C78E7007212B9 /* RegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2898411D9C78E7007212B9 /* RegistroViewController.swift */; };
 		FC2CA1891DEB616900EAD96A /* TelefonosCorreosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */; };
 		FC5A66931DA5810C00A62D26 /* CalendarioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5A66921DA5810C00A62D26 /* CalendarioController.swift */; };
@@ -69,6 +71,8 @@
 		FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuscarViewController.swift; sourceTree = "<group>"; };
 		FC207BFF1D98247400AC15F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC226B541DA0F7D500905277 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		FC25E97D1E00EF4800F803B0 /* LlamadaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LlamadaViewController.swift; sourceTree = "<group>"; };
+		FC25E97F1E013BB000F803B0 /* ConfiguracionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfiguracionViewController.swift; sourceTree = "<group>"; };
 		FC2898411D9C78E7007212B9 /* RegistroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroViewController.swift; sourceTree = "<group>"; };
 		FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelefonosCorreosViewController.swift; sourceTree = "<group>"; };
 		FC5A66921DA5810C00A62D26 /* CalendarioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarioController.swift; sourceTree = "<group>"; };
@@ -222,7 +226,9 @@
 				FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */,
 				FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */,
 				FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */,
+				FC25E97D1E00EF4800F803B0 /* LlamadaViewController.swift */,
 				FCE057231DD81300001A4A98 /* ReportesViewController.swift */,
+				FC25E97F1E013BB000F803B0 /* ConfiguracionViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
 				FCE057261DD8272A001A4A98 /* Web */,
@@ -346,6 +352,7 @@
 				FC5A67861DA6FA4100A62D26 /* CVCalendarMonthContentViewController.swift in Sources */,
 				FC2898421D9C78E7007212B9 /* RegistroViewController.swift in Sources */,
 				FC722DBB1DB00B2B00A39926 /* FMResultSet.m in Sources */,
+				FC25E97E1E00EF4800F803B0 /* LlamadaViewController.swift in Sources */,
 				FC5A67801DA6FA4100A62D26 /* CVCalendarContentViewController.swift in Sources */,
 				FC5A67871DA6FA4100A62D26 /* CVCalendarMonthView.swift in Sources */,
 				FC6DD8201DC3C78900D46AA1 /* ReferidoViewController.swift in Sources */,
@@ -377,6 +384,7 @@
 				FC5A678F1DA6FA4100A62D26 /* CVCalendarViewPresentationMode.swift in Sources */,
 				FC11F0F81DE74BAA008A9232 /* BuscarViewController.swift in Sources */,
 				FC5DCB791DB8450300361ED4 /* MainTabBarController.swift in Sources */,
+				FC25E9801E013BB000F803B0 /* ConfiguracionViewController.swift in Sources */,
 				FC5A67811DA6FA4100A62D26 /* CVCalendarDayView.swift in Sources */,
 				FC94586D1DCB2995000DB971 /* EventoViewController.swift in Sources */,
 				FC5A67881DA6FA4100A62D26 /* CVCalendarTouchController.swift in Sources */,

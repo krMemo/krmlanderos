@@ -11,11 +11,12 @@ import UIKit
 var llamada: Bool = false
 var llamada1: Bool = false
 
-class ClientesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ClientesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var tableClientes: UITableView!
     
     var idx: Int = -1
+    var id: String = ""
     var nuevo: Bool = true
     var clientes: [[String:String]] = selectPersonas(esCliente: "1")
     var telefono: String = ""
@@ -43,6 +44,7 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
+        id = clientes[indexPath.row]["id"]!
         telefono = clientes[indexPath.row]["telefono"]!
     }
     
@@ -74,17 +76,20 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func llamar(_ sender: UIButton) {
-        if let url = NSURL(string: "tel://\(telefono)") {
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: {
-                (success) in
-                print("Open \(success)")
-                llamada = true
-                if llamada1 {
-                    mostrarAviso(titulo: "x", mensaje: "llamada", viewController: self)
-                }
-            })
-            UIApplication.shared.completeStateRestoration()
+        if idx >= 0 {
+            let popController = UIStoryboard(name: "iPhone", bundle: nil).instantiateViewController(withIdentifier: "popoverId")
+            popController.modalPresentationStyle = UIModalPresentationStyle.popover
+            popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.any
+            popController.popoverPresentationController?.delegate = self
+            popController.popoverPresentationController?.sourceView = sender as UIView
+            popController.popoverPresentationController?.sourceRect = sender.bounds
+            popController.setValue(id, forKey: "id")
+            self.present(popController, animated: true, completion: nil)
         }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
     
     @IBAction func unwindCliente(sender: UIStoryboardSegue) {
