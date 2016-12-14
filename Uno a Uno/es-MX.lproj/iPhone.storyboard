@@ -98,6 +98,7 @@
                     <connections>
                         <outlet property="tableClientes" destination="BMb-cJ-ERU" id="nI1-Kk-Q0g"/>
                         <segue destination="sLb-2m-UuZ" kind="show" identifier="segueCliente" id="kRl-MG-QFq"/>
+                        <segue destination="umP-tK-IPB" kind="show" identifier="segueDetalle" id="gdk-RJ-MjZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLj-fw-SL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -590,6 +591,26 @@
             </objects>
             <point key="canvasLocation" x="1668" y="1317.3913043478262"/>
         </scene>
+        <!--Detalle-->
+        <scene sceneID="qtJ-Js-jmD">
+            <objects>
+                <viewController title="Detalle" id="umP-tK-IPB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gl6-t8-gYM"/>
+                        <viewControllerLayoutGuide type="bottom" id="NtW-2Y-zqR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pn6-xa-kn4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICd-0O-VS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2433" y="1317"/>
+        </scene>
         <!--Referidos-->
         <scene sceneID="IqJ-JQ-HPn">
             <objects>
@@ -677,6 +698,7 @@
                     <connections>
                         <outlet property="tableReferidos" destination="Q1g-G3-gu1" id="dWQ-nq-MxH"/>
                         <segue destination="EqI-Cg-BaQ" kind="show" identifier="segueReferido" id="OTy-xz-MZx"/>
+                        <segue destination="umP-tK-IPB" kind="show" id="oTM-pM-Pyq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMx-wd-pFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1342,13 +1364,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar hidden="YES" contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-tl-1je">
-                                <rect key="frame" x="16" y="58" width="343" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="35" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-aI-jbO">
-                                <rect key="frame" x="16" y="102" width="343" height="545"/>
+                                <rect key="frame" x="16" y="114" width="343" height="533"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1396,6 +1413,11 @@
                                     <action selector="cancelar:" destination="aGS-tb-iYd" eventType="touchUpInside" id="y5y-ge-g5g"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Nombre" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-tl-1je">
+                                <rect key="frame" x="16" y="70" width="343" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1548,10 +1570,10 @@
             </objects>
             <point key="canvasLocation" x="936.79999999999995" y="2168.3658170914546"/>
         </scene>
-        <!--Llamada View Controller-->
+        <!--Llamadas-->
         <scene sceneID="gVF-my-Zfd">
             <objects>
-                <viewController storyboardIdentifier="popoverId" id="GYD-vD-b5V" customClass="LlamadaViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popoverId" title="Llamadas" id="GYD-vD-b5V" customClass="LlamadaViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i1X-qM-EHn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1597,7 +1619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGb-Gy-1Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432.8000000000002" y="1316.4917541229386"/>
+            <point key="canvasLocation" x="158" y="852"/>
         </scene>
     </scenes>
     <resources>
@@ -1618,7 +1640,8 @@
         <image name="unoauno_img" width="250" height="124"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zxd-KO-E0r"/>
-        <segue reference="A3s-F0-1hm"/>
+        <segue reference="oTM-pM-Pyq"/>
+        <segue reference="pC2-3y-5T2"/>
+        <segue reference="JFs-g0-M8Q"/>
     </inferredMetricsTieBreakers>
 </document>

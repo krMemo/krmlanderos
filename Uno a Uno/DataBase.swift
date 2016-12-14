@@ -119,7 +119,7 @@ func selectPersonas(esCliente: String) -> [[String:String]] {
 
 func selectAllPersonas() -> [[String:String]] {
     var personas: [[String:String]] = []
-    var persona: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":""]
+    var persona: [String:String] = ["id":"", "nombre":""]
     let db = getDB()
     if db.open() {
         let results: FMResultSet = db.executeQuery("SELECT id, nombre||' '||apaterno||' '||amaterno AS 'nombre' FROM personas", withArgumentsIn: nil)

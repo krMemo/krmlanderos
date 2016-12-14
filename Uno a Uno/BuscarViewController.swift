@@ -15,8 +15,8 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var id: String = ""
     var aceptar: Bool = true
     var personas = selectAllPersonas()
+    var filtro: [[String:String]] = []
     var searchActive : Bool = false
-    var filtered = selectAllPersonas()
     
     @IBOutlet weak var searchPersonas: UISearchBar!
     @IBOutlet weak var tablePersonas: UITableView!
@@ -27,36 +27,22 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tablePersonas.delegate = self
         tablePersonas.dataSource = self
     }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchBarSearchButtonClicked")
         searchActive = false;
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        /*filtered = personas.filter({
-            (text) -> Bool in
-            let tmp = text
-            //let range = tmp.rangeOfString(searchText, options: NSString.CompareOptions.CaseInsensitiveSearch)
-            return range.location != NSNotFound
-        })*/
-        if(filtered.count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
+        print("textDidChange")
+        for person in personas {
+            for (_, value) in person {
+                if searchText.range(of: value) != nil {
+                    filtro.append(person)
+                }
+            }
         }
+        searchActive = filtro.count == 0 ? false : true
         tablePersonas.reloadData()
     }
     
@@ -65,12 +51,20 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchActive {
+            return filtro.count
+        }
         return personas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        cell.textLabel?.text = personas[indexPath.row]["nombre"]!
+        if searchActive {
+            cell.textLabel?.text = filtro[indexPath.row]["nombre"]!
+        }
+        else {
+            cell.textLabel?.text = personas[indexPath.row]["nombre"]!
+        }
         return cell
     }
     
