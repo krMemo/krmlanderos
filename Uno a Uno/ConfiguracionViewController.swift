@@ -15,6 +15,10 @@ class ConfiguracionViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    @IBAction func importarContactos(_ sender: UIButton) {
+        
+    }
 
     @IBAction func cerrarSesion(_ sender: UIButton) {
         self.performSegue(withIdentifier: "unwindConfiguracion", sender: self)

@@ -39,11 +39,13 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        if textField.text != "" {
-            textField.borderStyle = UITextBorderStyle.none
+        let nextTage=textField.tag+1;
+        let nextResponder=textField.superview?.viewWithTag(nextTage) as UIResponder!
+        if (nextResponder != nil) {
+            nextResponder?.becomeFirstResponder()
         }
         else {
-            textField.borderStyle = UITextBorderStyle.roundedRect
+            textField.resignFirstResponder()
         }
         return false
     }

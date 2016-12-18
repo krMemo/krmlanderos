@@ -9,8 +9,9 @@
 import UIKit
 import EventKit
 
-class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    var kb: Bool = false
     var idx: Int = 0
     var nuevo: Bool = true
     var fecha: Date = Date()
@@ -22,6 +23,8 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     var id: String = ""
     var tipo: String = ""
     var persona: String = ""
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var pickerCalendario: UIPickerView!
     @IBOutlet weak var pickerTipo: UIPickerView!
@@ -37,6 +40,8 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         pickerTipo.delegate = self
         pickerTipo.dataSource = self
         textEvento.delegate = self
+        textPersona.delegate = self
+        textNotas.delegate = self
         cals = eventStore.calendars(for: EKEntityType.event)
         for cal in cals! {
             if cal.allowsContentModifications {
@@ -71,8 +76,44 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 }
             }
         }
+        
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.items = [
+            UIBarButtonItem(title: "Cancelar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(kbCancelar)),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Aceptar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(kbAceptar))
+        ]
+        
+        textNotas.inputAccessoryView = toolBar
+        
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        let nextTag = textField.tag + 1;
+        kb = nextTag == 2 ? true : false
+        let nextResponder=textField.superview?.viewWithTag(nextTag) as UIResponder!
+        if (nextResponder != nil) {
+            nextResponder?.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
+    func kbAceptar() {
+        kb = false
+        self.view.endEditing(true)
+    }
+    
+    func kbCancelar() {
+        kb = false
+        textNotas.text = ""
+        self.view.endEditing(true)
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -106,17 +147,6 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         else if pickerView == pickerCalendario {
             idx = row
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        if textField.text != "" {
-            textField.borderStyle = UITextBorderStyle.none
-        }
-        else {
-            textField.borderStyle = UITextBorderStyle.roundedRect
-        }
-        return false
     }
     
     @IBAction func buscarPersona(_ sender: UIButton) {
@@ -178,6 +208,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 print(error)
             }
         }
+        performSegue(withIdentifier: "unwindEvento", sender: self)
     }
 
     @IBAction func unwindBuscar(sender: UIStoryboardSegue) {

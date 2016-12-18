@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import AddressBook
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -22,8 +24,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textCorreo.delegate = self
         textContrasenia.delegate = self
         crearDB()
-        checaAutorizacionCal()
+        autorizacionCalendario()
     }
+    
+    func autorizacionCalendario() {
+        let eventStore = EKEventStore()
+        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
+        switch (status) {
+        case EKAuthorizationStatus.authorized:
+            permisoCalendario = true
+        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied, EKAuthorizationStatus.notDetermined:
+            DispatchQueue.main.async(execute: {
+                eventStore.requestAccess(to: EKEntityType.event, completion: {
+                    (accessGranted: Bool, error: Error?) in
+                    if accessGranted == true {
+                        permisoCalendario = true
+                    }
+                    else {
+                        permisoCalendario = false
+                    }
+                })
+            })
+        }
+    }
+    
+    
+    /*func autorizacionContactos() {
+        let abAuthStatus = ABAddressBookGetAuthorizationStatus()
+        if abAuthStatus == .denied || abAuthStatus == .restricted {
+           
+        }
+    }*/
+    
     
     override func viewWillAppear(_ animated: Bool) {
         let screenSize:CGFloat = self.view.bounds.height
@@ -53,6 +85,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        let nextTage=textField.tag+1;
+        let nextResponder=textField.superview?.viewWithTag(nextTage) as UIResponder!
+        if (nextResponder != nil) {
+            nextResponder?.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
         return false
     }
     

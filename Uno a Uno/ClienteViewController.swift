@@ -49,10 +49,6 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             UIBarButtonItem(title: "Aceptar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.kbAceptar))
         ]
         
-        textNombre.inputAccessoryView = toolBar
-        textApaterno.inputAccessoryView = toolBar
-        textAmaterno.inputAccessoryView = toolBar
-        textDireccion.inputAccessoryView = toolBar
         textNotas.inputAccessoryView = toolBar
 
         if nuevo {

@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if permiso {
+        if permisoCalendario {
             self.tabBar.items?[0].isEnabled = true
             self.selectedIndex = 0
         }

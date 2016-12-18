@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import EventKit
 
-var permiso: Bool = false
+var permisoCalendario: Bool = false
+var permisoContactos: Bool = false
 
 extension String {
     var lang: String {
@@ -28,27 +28,6 @@ func isValidEmail(testStr:String) -> Bool {
     let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
     let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
     return emailTest.evaluate(with: testStr)
-}
-
-func checaAutorizacionCal() {
-    let eventStore = EKEventStore()
-    let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-    switch (status) {
-    case EKAuthorizationStatus.authorized:
-        permiso = true
-    case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied, EKAuthorizationStatus.notDetermined:
-        DispatchQueue.main.async(execute: {
-            eventStore.requestAccess(to: EKEntityType.event, completion: {
-                (accessGranted: Bool, error: Error?) in
-                if accessGranted == true {
-                    permiso = true
-                }
-                else {
-                    permiso = false
-                }
-            })
-        })
-    }
 }
 
 func dicTojson() {

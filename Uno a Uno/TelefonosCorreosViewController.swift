@@ -70,6 +70,14 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
+        if TC == "T" {
+            textTelCor.text = telefono["telefono"]
+            textTipo.text = telefono["tipo"]
+        }
+        else if TC == "C" {
+            textTelCor.text = correo["correo"]
+            textTipo.text = correo["tipo"]
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,6 +109,8 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
             correos.append(correo)
         }
         tableTelCor.reloadData()
+        textTelCor.text = ""
+        textTipo.text = ""
     }
     
     @IBAction func selPrincipal(_ sender: UIButton) {

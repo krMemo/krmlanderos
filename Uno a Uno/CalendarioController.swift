@@ -33,7 +33,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         calendarView.calendarDelegate = self
         tableEventos.delegate = self
         tableEventos.dataSource = self
-        if permiso {
+        if permisoCalendario {
             cals = eventStore.calendars(for: EKEntityType.event)
             for cal in cals {
                 if cal.allowsContentModifications {
