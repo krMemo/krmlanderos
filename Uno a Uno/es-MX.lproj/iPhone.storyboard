@@ -951,7 +951,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Buscar" image="sombra" selectedImage="searchS" id="Apr-Qp-TwZ"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Buscar" image="search" selectedImage="searchS" id="Apr-Qp-TwZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRR-rg-CW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1680,6 +1680,7 @@
         <image name="larrow" width="265" height="195"/>
         <image name="linea" width="700" height="100"/>
         <image name="rarrow" width="265" height="195"/>
+        <image name="search" width="32" height="32"/>
         <image name="searchS" width="32" height="32"/>
         <image name="sombra" width="700" height="200"/>
         <image name="unoauno_img" width="250" height="124"/>
