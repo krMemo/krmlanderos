@@ -44,6 +44,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         tableEventos.reloadData()
+        print(calendars)
     }
 
     override func viewDidLayoutSubviews() {
@@ -161,6 +162,9 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = events[indexPath.row].title
         cell.detailTextLabel?.text = String(describing: events[indexPath.row].startDate)
+        let cal = events[indexPath.row].calendar
+        let uiColor = UIColor(cgColor: cal.cgColor)
+        cell.imageView?.image = UIImage(named: imageColor(color: uiColor.hexRGBColor))
         return cell
     }
     

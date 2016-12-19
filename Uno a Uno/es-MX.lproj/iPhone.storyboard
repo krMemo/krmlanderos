@@ -92,9 +92,9 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Clientes" image="iconCli" selectedImage="iconCliS" id="BEV-1K-6nc"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Clientes" image="iconCli" selectedImage="iconCliS" id="BEV-1K-6nc"/>
                     <connections>
                         <outlet property="tableClientes" destination="BMb-cJ-ERU" id="nI1-Kk-Q0g"/>
                         <segue destination="sLb-2m-UuZ" kind="show" identifier="segueCliente" id="kRl-MG-QFq"/>
@@ -103,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLj-fw-SL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="457.42128935532236"/>
+            <point key="canvasLocation" x="1871" y="72"/>
         </scene>
         <!--Cliente-->
         <scene sceneID="U0f-uq-yat">
@@ -327,7 +327,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -348,7 +348,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8hn-hF-lyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4Xr-Ef-bzM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="1317.3913043478262"/>
+            <point key="canvasLocation" x="1870" y="831"/>
         </scene>
         <!--Referido-->
         <scene sceneID="nOq-1c-z1X">
@@ -568,7 +568,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -589,7 +589,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ns-75-CWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W6u-IQ-bKO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="1317.3913043478262"/>
+            <point key="canvasLocation" x="2753" y="831"/>
         </scene>
         <!--Detalle-->
         <scene sceneID="qtJ-Js-jmD">
@@ -602,14 +602,14 @@
                     <view key="view" contentMode="scaleToFill" id="pn6-xa-kn4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ICd-0O-VS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2433" y="1317"/>
+            <point key="canvasLocation" x="3516" y="831"/>
         </scene>
         <!--Referidos-->
         <scene sceneID="IqJ-JQ-HPn">
@@ -692,9 +692,9 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Referidos" image="iconRef" selectedImage="iconRefS" id="txv-l1-sbH"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Referidos" image="iconRef" selectedImage="iconRefS" id="txv-l1-sbH"/>
                     <connections>
                         <outlet property="tableReferidos" destination="Q1g-G3-gu1" id="dWQ-nq-MxH"/>
                         <segue destination="EqI-Cg-BaQ" kind="show" identifier="segueReferido" id="OTy-xz-MZx"/>
@@ -703,7 +703,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMx-wd-pFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="456.52173913043481"/>
+            <point key="canvasLocation" x="2753" y="72"/>
         </scene>
         <!--Reportes-->
         <scene sceneID="Hi0-Ko-R24">
@@ -724,16 +724,16 @@
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" calendarEvent="YES"/>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Reportes" image="iconRep" selectedImage="iconRepS" id="mH3-94-ZPL" userLabel="Reportes"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Reportes" image="iconRep" selectedImage="iconRepS" id="mH3-94-ZPL" userLabel="Reportes"/>
                     <connections>
                         <outlet property="webViewReporte" destination="raj-ag-M3O" id="5Eh-z6-MFt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45X-GH-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432.8000000000002" y="456.52173913043481"/>
+            <point key="canvasLocation" x="4276" y="72"/>
         </scene>
         <!--Configuración-->
         <scene sceneID="Jdf-es-YBL">
@@ -771,9 +771,9 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Configuración" image="iconCon" selectedImage="iconConS" id="iHA-a2-nPK" userLabel="Configuración"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Configuración" image="iconCon" selectedImage="iconConS" id="iHA-a2-nPK" userLabel="Configuración"/>
                     <connections>
                         <segue destination="GRw-9c-Ln8" kind="unwind" identifier="unwindConfiguracion" unwindAction="unwindConfiguracionWithSender:" id="YEP-22-3ht"/>
                     </connections>
@@ -781,7 +781,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNO-tN-2A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="GRw-9c-Ln8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2432.8000000000002" y="-259.52023988005999"/>
+            <point key="canvasLocation" x="5066" y="72"/>
         </scene>
         <!--Evento-->
         <scene sceneID="C9Z-Hy-Oi2">
@@ -906,7 +906,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -924,7 +924,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bd-Pj-KdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Mi-Aj-Cml" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="-258.62068965517244"/>
+            <point key="canvasLocation" x="1014" y="831"/>
         </scene>
         <!--Buscar-->
         <scene sceneID="1Ii-dr-8HH">
@@ -949,13 +949,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Buscar" id="Apr-Qp-TwZ"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Buscar" image="sombra" selectedImage="searchS" id="Apr-Qp-TwZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRR-rg-CW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-636.4317841079461"/>
+            <point key="canvasLocation" x="3516" y="72"/>
         </scene>
         <!--Calendario-->
         <scene sceneID="f7f-J4-E98">
@@ -1040,7 +1040,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="leo-Tc-2pC" detailTextLabel="nN6-8Y-FfG" imageView="QhQ-5f-yU9" rowHeight="46" style="IBUITableViewCellStyleSubtitle" id="O8X-rL-Q87">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="leo-Tc-2pC" detailTextLabel="nN6-8Y-FfG" rowHeight="46" style="IBUITableViewCellStyleSubtitle" id="O8X-rL-Q87">
                                         <rect key="frame" x="0.0" y="28" width="343" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O8X-rL-Q87" id="PRG-lz-uKW">
@@ -1048,23 +1048,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="leo-Tc-2pC">
-                                                    <rect key="frame" x="62" y="5" width="34" height="21"/>
+                                                    <rect key="frame" x="15" y="5" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nN6-8Y-FfG">
-                                                    <rect key="frame" x="62" y="26" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="26" width="44" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="add" id="QhQ-5f-yU9">
-                                                    <rect key="frame" x="15" y="6" width="32" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -1072,7 +1068,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calendario" image="iconCal" selectedImage="iconCalS" id="xbX-Pd-GKC"/>
                     <connections>
@@ -1085,7 +1081,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2by-MI-mAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="-259.52023988005999"/>
+            <point key="canvasLocation" x="1015" y="72"/>
         </scene>
         <!--Principal-->
         <scene sceneID="ory-e3-8ah">
@@ -1202,7 +1198,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296050089335" green="0.95415742310543539" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fwb-HM-WmH" firstAttribute="leading" secondItem="f4k-fE-VP1" secondAttribute="leading" id="2Ha-xm-2Nv"/>
                             <constraint firstItem="fwb-HM-WmH" firstAttribute="leading" secondItem="f4k-fE-VP1" secondAttribute="leading" id="84B-L4-LQu"/>
@@ -1363,7 +1359,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jfW-dS-92A" secondAttribute="trailing" id="319-S3-CkE"/>
                             <constraint firstItem="GZh-mm-bhA" firstAttribute="top" secondItem="EI3-e6-Grh" secondAttribute="bottom" constant="20" id="6cU-VG-Uzq"/>
@@ -1463,7 +1459,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1476,7 +1472,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLw-jd-L90" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5Z6-G3-bUe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="2167.4662668665669"/>
+            <point key="canvasLocation" x="1014" y="1647"/>
         </scene>
         <!--Telefonos Correos View Controller-->
         <scene sceneID="HQz-Ig-dTD">
@@ -1599,7 +1595,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="labelTelCor" destination="4zC-nI-M8d" id="OP6-lX-TWL"/>
@@ -1612,7 +1608,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqq-cM-fsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lQ6-vB-aTq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="2168.3658170914546"/>
+            <point key="canvasLocation" x="2753" y="1647"/>
         </scene>
         <!--Llamadas-->
         <scene sceneID="gVF-my-Zfd">
@@ -1667,11 +1663,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGb-Gy-1Fg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="157.59999999999999" y="851.42428785607206"/>
+            <point key="canvasLocation" x="-666" y="1560"/>
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="32" height="32"/>
         <image name="iconCal" width="32" height="32"/>
         <image name="iconCalS" width="32" height="32"/>
         <image name="iconCli" width="32" height="32"/>
@@ -1685,12 +1680,13 @@
         <image name="larrow" width="265" height="195"/>
         <image name="linea" width="700" height="100"/>
         <image name="rarrow" width="265" height="195"/>
+        <image name="searchS" width="32" height="32"/>
         <image name="sombra" width="700" height="200"/>
         <image name="unoauno_img" width="250" height="124"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oTM-pM-Pyq"/>
-        <segue reference="eu1-0t-R0k"/>
+        <segue reference="A3s-F0-1hm"/>
         <segue reference="zxd-KO-E0r"/>
     </inferredMetricsTieBreakers>
 </document>
