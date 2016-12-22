@@ -44,7 +44,6 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         tableEventos.reloadData()
-        print(calendars)
     }
 
     override func viewDidLayoutSubviews() {

@@ -40,7 +40,7 @@ func crearDB() {
         else {
             print("Tabla 'correos': OK")
         }
-        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, persona INTEGER, eventid TEXT, tipo TEXT, fecha TEXT, evento TEXT, notas TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY, persona INTEGER, eventid TEXT, correo TEXT, tipo TEXT, fecha TEXT, duracion TEXT, evento TEXT, ubicacion TEXT, notas TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
@@ -161,6 +161,48 @@ func executePersonas(accion: String, persona: [String:String]) {
     else {
         print("Error: \(db.lastErrorMessage())")
     }
+}
+
+func selectPersona(id: String) -> [String:String] {
+    var persona: [String:String] = ["id":"", "nombrec":"", "nombre":"", "apaterno":"", "amaterno":"", "direccion":"", "notas":"", "estatus":"", "cliente":"", "telefono":"", "correo":"", "referencia":""]
+    let db = getDB()
+    if db.open() {
+        var query = "SELECT id, nombre||' '||apaterno||' '||amaterno AS nombrec, nombre, apaterno, amaterno, direccion, notas, estatus, cliente, referencia FROM personas WHERE id = \(id)"
+        let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
+        while results.next() == true {
+            query = "SELECT telefono FROM telefonos WHERE principal = 1 AND id = \(id)"
+            let res_telefono: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
+            query = "SELECT correo FROM correos WHERE principal = 1 AND id = \(id)"
+            let res_correo: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
+            persona["id"] = results.string(forColumn: "id")
+            persona["nombrec"] = results.string(forColumn: "nombrec")
+            persona["nombre"] = results.string(forColumn: "nombre")
+            persona["apaterno"] = results.string(forColumn: "apaterno")
+            persona["amaterno"] = results.string(forColumn: "amaterno")
+            persona["direccion"] = results.string(forColumn: "direccion")
+            persona["notas"] = results.string(forColumn: "notas")
+            persona["estatus"] = results.string(forColumn: "estatus")
+            persona["cliente"] = results.string(forColumn: "cliente")
+            persona["referencia"] = results.string(forColumn: "referencia")
+            if res_telefono.next() == true {
+                persona["telefono"] = res_telefono.string(forColumn: "telefono")
+            }
+            else {
+                persona["telefono"] = ""
+            }
+            if res_correo.next() == true {
+                persona["correo"] = res_correo.string(forColumn: "correo")
+            }
+            else {
+                persona["correo"] = ""
+            }
+        }
+        db.close()
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+    return persona
 }
 
 func selectTefonos(id: String) -> [[String:String]] {
@@ -296,22 +338,26 @@ func deleteCorreos(id: String) {
 }
 
 func selectEvento(id: String) -> [String:String] {
-    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
+    var evento: [String:String] = ["id":"", "persona":"", "referencia":"", "eventid":"", "correo":"", "tipo":"", "fecha":"", "duracion":"", "evento":"", "ubicacion":"", "notas":""]
     let db = getDB()
     if db.open() {
-        let query = "SELECT id, persona, eventid, tipo, fecha, evento, notas FROM eventos WHERE eventid = '\(id)'"
+        let query = "SELECT id, persona, eventid, correo, tipo, fecha, duracion, evento, ubicacion, notas FROM eventos WHERE eventid = '\(id)'"
         let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
         while results.next() == true {
             evento["id"] = results.string(forColumn: "id")
             evento["eventid"] = results.string(forColumn: "eventid")
+            evento["correo"] = results.string(forColumn: "correo")
             evento["tipo"] = results.string(forColumn: "tipo")
             evento["fecha"] = results.string(forColumn: "fecha")
             evento["evento"] = results.string(forColumn: "evento")
+            evento["duracion"] = results.string(forColumn: "duracion")
+            evento["ubicacion"] = results.string(forColumn: "ubicacion")
             evento["notas"] = results.string(forColumn: "notas")
             let persona = results.string(forColumn: "persona")!
-            let res_persona: FMResultSet = db.executeQuery("SELECT nombre||' '||apaterno||' '||amaterno AS persona FROM personas WHERE id = \(persona)", withArgumentsIn: nil)
+            let res_persona: FMResultSet = db.executeQuery("SELECT nombre||' '||apaterno||' '||amaterno AS persona, referencia FROM personas WHERE id = \(persona)", withArgumentsIn: nil)
             res_persona.next()
             evento["persona"] = res_persona.string(forColumn: "persona")
+            evento["referencia"] = res_persona.string(forColumn: "referencia")
         }
         db.close()
     }
@@ -324,10 +370,10 @@ func selectEvento(id: String) -> [String:String] {
 func executeEventos(accion: String, evento: [String:String]) {
     var sql: String = ""
     if accion == "INSERT" {
-        sql = "INSERT INTO eventos (id, persona, eventid, tipo, fecha, evento, notas) VALUES (\(evento["id"]!), \(evento["persona"]!), '\(evento["eventid"]!)', '\(evento["tipo"]!)', '\(evento["fecha"]!)', '\(evento["evento"]!)', '\(evento["notas"]!)')"
+        sql = "INSERT INTO eventos (id, persona, eventid, tipo, fecha, duracion, evento, correo, ubicacion, notas) VALUES (\(evento["id"]!), \(evento["persona"]!), '\(evento["eventid"]!)', '\(evento["tipo"]!)', '\(evento["fecha"]!)', '\(evento["duracion"]!)', '\(evento["evento"]!)', '\(evento["correo"]!)', '\(evento["ubicacion"]!)', '\(evento["notas"]!)')"
     }
     else if accion == "UPDATE" {
-        sql = "UPDATE eventos SET persona = \(evento["persona"]!), eventid = '\(evento["eventid"]!)', tipo = '\(evento["tipo"]!)', fecha = '\(evento["fecha"]!)', evento = '\(evento["evento"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
+        sql = "UPDATE eventos SET persona = \(evento["persona"]!), eventid = '\(evento["eventid"]!)', tipo = '\(evento["tipo"]!)', fecha = '\(evento["fecha"]!)', duracion = '\(evento["duracion"]!)', evento = '\(evento["evento"]!)', correo = '\(evento["correo"]!)', ubicacion = '\(evento["ubicacion"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
     }
     else if accion == "DELETE" {
         sql = "DELETE FROM eventos WHERE id = \(evento["id"]!)"

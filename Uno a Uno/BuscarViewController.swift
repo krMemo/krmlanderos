@@ -86,7 +86,7 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else {
                 let eventoVC = segue.destination as! EventoViewController
                 eventoVC.textPersona.text = persona
-                eventoVC.persona = id
+                eventoVC.idpersona = id
             }
         }
     }

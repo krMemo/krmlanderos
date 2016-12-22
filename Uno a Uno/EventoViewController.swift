@@ -12,36 +12,50 @@ import EventKit
 class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     var kb: Bool = false
-    var idx: Int = 0
+    var idxTipo: Int = 0
+    var idxDur: Int = 0
+    var idxCal: Int = 0
     var nuevo: Bool = true
     var fecha: Date = Date()
     var cals: [EKCalendar]?
     var calendars: [EKCalendar] = []
-    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "calendario":"", "tipo":"", "fecha":"", "evento":"", "notas":""]
+    var evento: [String:String] = ["id":"", "eventid":"", "persona":"", "referencia":"", "correo":"", "ubicacion":"", "notas":"", "calendario":"", "tipo":"", "fecha":"", "duracion":"", "alarma":""]
     let eventStore = EKEventStore()
     var eventid: String = ""
     var id: String = ""
-    var tipo: String = ""
-    var persona: String = ""
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+    var idpersona: String = ""
+    let dicDuracion: [Int:String] = [0:"Minutos", 1:"Horas", 2:"Días"]
+    let dicD: [String:String] = ["Minutos":"M", "Horas":"H", "Días":"D"]
+    let dicTipo: [Int:String] = [0:"Llamada", 1:"Cita", 2:"Seguimiento", 3:"Tarea", 4:"Confirmación", 5:"Cumpleaños"]
+    let dicT: [String:String] = ["Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "Tarea":"TA", "Confirmación":"CO", "Cumpleaños":"CU"]
     
     @IBOutlet weak var pickerCalendario: UIPickerView!
     @IBOutlet weak var pickerTipo: UIPickerView!
+    @IBOutlet weak var pickerMHD: UIPickerView!
     @IBOutlet weak var datepickerFecha: UIDatePicker!
-    @IBOutlet weak var textEvento: UITextField!
+    @IBOutlet weak var datepickerAlarma: UIDatePicker!
     @IBOutlet weak var textPersona: UITextField!
+    @IBOutlet weak var textCorreo: UITextField!
+    @IBOutlet weak var textUbicacion: UITextField!
     @IBOutlet weak var textNotas: UITextView!
+    @IBOutlet weak var textDuracion: UITextField!
+    @IBOutlet weak var scroll: UIScrollView!
+    @IBOutlet weak var labelReferencia: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scroll.contentSize = CGSize(width: self.view.frame.size.width, height: 900)
         pickerCalendario.delegate = self
         pickerCalendario.dataSource = self
         pickerTipo.delegate = self
         pickerTipo.dataSource = self
-        textEvento.delegate = self
+        pickerMHD.delegate = self
+        pickerMHD.dataSource = self
         textPersona.delegate = self
+        textCorreo.delegate = self
+        textUbicacion.delegate = self
         textNotas.delegate = self
+        textDuracion.delegate = self
         cals = eventStore.calendars(for: EKEntityType.event)
         for cal in cals! {
             if cal.allowsContentModifications {
@@ -52,7 +66,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         if !nuevo {
             let tmpevento = selectEvento(id: eventid)
             if tmpevento["id"] == "" {
-                textEvento.text = evento["evento"]
+                textPersona.text = evento["evento"]
                 var i: Int = 0
                 for cal in calendars {
                     if cal.title == evento["calendario"] {
@@ -63,10 +77,14 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             }
             else {
                 id = tmpevento["id"]!
-                textEvento.text = tmpevento["evento"]
+                textPersona.text = tmpevento["evento"]
                 textPersona.text = tmpevento["persona"]
                 textNotas.text = tmpevento["notas"]
-                pickerTipo.selectRow(tmpevento["tipo"] == "Llamada" ? 1 : 0, inComponent: 0, animated: true)
+                for tipo in dicTipo {
+                    if tipo.value == tmpevento["tipo"] {
+                        pickerTipo.selectRow(tipo.key, inComponent: 0, animated: true)
+                    }
+                }
                 var i: Int = 0
                 for cal in calendars {
                     if cal.title == tmpevento["calendario"] {
@@ -92,8 +110,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         let nextTag = textField.tag + 1;
-        kb = nextTag == 2 ? true : false
-        let nextResponder=textField.superview?.viewWithTag(nextTag) as UIResponder!
+        let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder!
         if (nextResponder != nil) {
             nextResponder?.becomeFirstResponder()
         }
@@ -121,9 +138,12 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var numero: Int = 0
         if pickerView == pickerTipo {
-            numero = 2
+            numero = dicTipo.count
         }
-        else if pickerView == pickerCalendario {
+        if pickerView == pickerMHD {
+            numero = dicDuracion.count
+        }
+        if pickerView == pickerCalendario {
             numero = calendars.count
         }
         return numero
@@ -132,21 +152,15 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var titulo: String = ""
         if pickerView == pickerTipo {
-            titulo = row == 1 ? "Llamada" : "Cita"
+            titulo = dicTipo[row]!
         }
-        else if pickerView == pickerCalendario {
+        if pickerView == pickerMHD {
+            titulo = dicDuracion[row]!
+        }
+        if pickerView == pickerCalendario {
             titulo = calendars[row].title
         }
         return titulo
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == pickerTipo {
-            tipo = row == 1 ? "Llamada" : "Cita"
-        }
-        else if pickerView == pickerCalendario {
-            idx = row
-        }
     }
     
     @IBAction func buscarPersona(_ sender: UIButton) {
@@ -155,18 +169,32 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     @IBAction func guardarEvento(_ sender: UIButton) {
         var event = EKEvent(eventStore: eventStore)
-        evento["persona"] = persona
-        evento["tipo"] = tipo
-        evento["calendario"] = calendars[idx].title
+        evento["persona"] = idpersona
+        evento["tipo"] = dicT[dicTipo[pickerTipo.selectedRow(inComponent: 0)]!]
+        evento["calendario"] = calendars[pickerCalendario.selectedRow(inComponent: 0)].title
+        var segundos: Int = 0
+        if pickerMHD.description == "Minutos" {
+            segundos = Int(textDuracion.text!)! * 60
+        }
+        else if pickerMHD.description == "Horas" {
+            segundos = Int(textDuracion.text!)! * 60 * 60
+        }
+        else if pickerMHD.description == "Días" {
+            segundos = Int(textDuracion.text!)! * 60 * 60 * 24
+        }
+        evento["duracion"] = String(segundos)
         evento["fecha"] = datepickerFecha.date.description
-        evento["evento"] = textEvento.text
+        evento["evento"] = textPersona.text
+        evento["correo"] = textCorreo.text
+        evento["ubicacion"] = textUbicacion.text
         evento["notas"] = textNotas.text
         print(evento)
         if nuevo {
-            event.calendar = calendars[idx]
-            event.title = textEvento.text!
+            event.calendar = calendars[pickerCalendario.selectedRow(inComponent: 0)]
+            event.title = textPersona.text!
             event.startDate = datepickerFecha.date
-            event.endDate = datepickerFecha.date
+            event.endDate = datepickerFecha.date + TimeInterval(segundos)
+            event.addAlarm(EKAlarm.init(absoluteDate: datepickerAlarma.date))
             evento["eventid"] = event.eventIdentifier
             if id == "" {
                 id = selectMaxId(tabla: "eventos")
@@ -185,10 +213,11 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
         else {
             event = eventStore.event(withIdentifier: eventid)!
-            event.calendar = calendars[idx]
-            event.title = textEvento.text!
+            event.calendar = calendars[pickerCalendario.selectedRow(inComponent: 0)]
+            event.title = textPersona.text!
             event.startDate = datepickerFecha.date
-            event.endDate = datepickerFecha.date
+            event.endDate = datepickerFecha.date + TimeInterval(segundos)
+            
             if id == "" {
                 id = selectMaxId(tabla: "eventos")
                 evento["id"] = id
@@ -212,7 +241,12 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     }
 
     @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
-        
+        if idpersona != "" {
+            let persona = selectPersona(id: idpersona)
+            labelReferencia.text = "Referencia: " + persona["referencia"]!
+            textCorreo.text = persona["correo"]
+            textUbicacion.text = persona["direccion"]
+        }
     }
     
     @IBAction func cancelar(_ sender: UIButton) {
