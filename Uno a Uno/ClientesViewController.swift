@@ -8,44 +8,79 @@
 
 import UIKit
 
-var llamada: Bool = false
-var llamada1: Bool = false
+class ClientesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
 
-class ClientesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
-
+    @IBOutlet weak var searchClientes: UISearchBar!
     @IBOutlet weak var tableClientes: UITableView!
     
     var idx: Int = -1
     var id: String = ""
     var nuevo: Bool = true
+    var searchActive: Bool = false
     var clientes: [[String:String]] = selectPersonas(esCliente: "1")
-    var telefono: String = ""
+    var filtro: [[String:String]] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchClientes.delegate = self
         tableClientes.delegate = self
         tableClientes.dataSource = self
     }
 
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        filtro = []
+        for cliente in clientes {
+            if (cliente["nombrec"]?.contains(searchBar.text!))! {
+                filtro.append(cliente)
+            }
+        }
+        tableClientes.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchActive = false
+            tableClientes.reloadData()
+        }
+        else {
+            searchActive = true
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clientes.count
+        if searchActive {
+            return filtro.count
+        }
+        else {
+            return clientes.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        cell.textLabel?.text = clientes[indexPath.row]["nombrec"]!
-        cell.detailTextLabel?.text = clientes[indexPath.row]["telefono"]!
+        if searchActive {
+            cell.textLabel?.text = filtro[indexPath.row]["nombrec"]!
+            cell.detailTextLabel?.text = filtro[indexPath.row]["referencia"]!
+        }
+        else {
+            cell.textLabel?.text = clientes[indexPath.row]["nombrec"]!
+            cell.detailTextLabel?.text = clientes[indexPath.row]["referencia"]!
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
-        id = clientes[indexPath.row]["id"]!
-        telefono = clientes[indexPath.row]["telefono"]!
+        if searchActive {
+            id = filtro[indexPath.row]["id"]!
+        }
+        else {
+            id = clientes[indexPath.row]["id"]!
+        }
     }
     
     @IBAction func addCliente(_ sender: UIButton) {
@@ -63,15 +98,28 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if idx >= 0 && nuevo == false {
             let clienteVC = segue.destination as! ClienteViewController
-            clienteVC.nuevo = false
-            clienteVC.cliente["id"] = clientes[idx]["id"]
-            clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
-            clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
-            clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
-            clienteVC.cliente["cliente"] = clientes[idx]["cliente"]
-            clienteVC.cliente["direccion"] = clientes[idx]["direccion"]
-            clienteVC.cliente["notas"] = clientes[idx]["notas"]
-            clienteVC.cliente["referencia"] = clientes[idx]["referencia"]
+            if searchActive {
+                clienteVC.nuevo = false
+                clienteVC.cliente["id"] = filtro[idx]["id"]
+                clienteVC.cliente["nombre"] = filtro[idx]["nombre"]
+                clienteVC.cliente["apaterno"] = filtro[idx]["apaterno"]
+                clienteVC.cliente["amaterno"] = filtro[idx]["amaterno"]
+                clienteVC.cliente["cliente"] = filtro[idx]["cliente"]
+                clienteVC.cliente["direccion"] = filtro[idx]["direccion"]
+                clienteVC.cliente["notas"] = filtro[idx]["notas"]
+                clienteVC.cliente["referencia"] = filtro[idx]["referencia"]
+            }
+            else {
+                clienteVC.nuevo = false
+                clienteVC.cliente["id"] = clientes[idx]["id"]
+                clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
+                clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
+                clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
+                clienteVC.cliente["cliente"] = clientes[idx]["cliente"]
+                clienteVC.cliente["direccion"] = clientes[idx]["direccion"]
+                clienteVC.cliente["notas"] = clientes[idx]["notas"]
+                clienteVC.cliente["referencia"] = clientes[idx]["referencia"]
+            }
         }
     }
     

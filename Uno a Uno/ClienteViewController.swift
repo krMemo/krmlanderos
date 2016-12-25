@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Contacts
 
 class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -124,6 +125,18 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         cliente["cliente"] = "1"
         if nuevo {
             executePersonas(accion: "INSERT", persona: cliente)
+            let contactStore = CNContactStore()
+            let contact = CNMutableContact()
+            contact.givenName = textNombre.text!
+            contact.familyName = textApaterno.text! + " " + textAmaterno.text!
+            do {
+                let saveRequest = CNSaveRequest()
+                saveRequest.add(contact, toContainerWithIdentifier: nil)
+                try contactStore.execute(saveRequest)
+            }
+            catch {
+                print("No se pudo guardar contacto")
+            }
         }
         else {
             executePersonas(accion: "UPDATE", persona: cliente)

@@ -35,7 +35,9 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Calendar information needed for tracking events with contacts within this app.</string>
+	<string>Access to Calendar is needed to function properly.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Access to Contacts is needed to function properly.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

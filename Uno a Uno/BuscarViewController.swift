@@ -29,23 +29,25 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBarSearchButtonClicked")
-        searchActive = false;
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("textDidChange")
+        filtro = []
         for person in personas {
-            for (_, value) in person {
-                if searchText.range(of: value) != nil {
-                    filtro.append(person)
-                }
+            if (person["nombre"]?.contains(searchBar.text!))! {
+                filtro.append(person)
             }
         }
-        searchActive = filtro.count == 0 ? false : true
         tablePersonas.reloadData()
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchActive = false
+            tablePersonas.reloadData()
+        }
+        else {
+            searchActive = true
+        }
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -54,7 +56,9 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if searchActive {
             return filtro.count
         }
-        return personas.count
+        else {
+            return personas.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,8 +73,14 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        persona = personas[indexPath.row]["nombre"]!
-        id = personas[indexPath.row]["id"]!
+        if searchActive {
+            persona = filtro[indexPath.row]["nombre"]!
+            id = filtro[indexPath.row]["id"]!
+        }
+        else {
+            persona = personas[indexPath.row]["nombre"]!
+            id = personas[indexPath.row]["id"]!
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

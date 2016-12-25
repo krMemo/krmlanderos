@@ -119,13 +119,14 @@ func selectPersonas(esCliente: String) -> [[String:String]] {
 
 func selectAllPersonas() -> [[String:String]] {
     var personas: [[String:String]] = []
-    var persona: [String:String] = ["id":"", "nombre":""]
+    var persona: [String:String] = ["id":"", "nombre":"", "referencia":""]
     let db = getDB()
     if db.open() {
-        let results: FMResultSet = db.executeQuery("SELECT id, nombre||' '||apaterno||' '||amaterno AS 'nombre' FROM personas", withArgumentsIn: nil)
+        let results: FMResultSet = db.executeQuery("SELECT id, nombre||' '||apaterno||' '||amaterno AS 'nombre', referencia FROM personas", withArgumentsIn: nil)
         while results.next() == true {
             persona["id"] = results.string(forColumn: "id")
             persona["nombre"] = results.string(forColumn: "nombre")
+            persona["referencia"] = results.string(forColumn: "referencia")
             personas.append(persona)
         }
         db.close()

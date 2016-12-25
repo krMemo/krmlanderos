@@ -47,10 +47,6 @@ class LlamadaViewController: UIViewController, UITableViewDelegate, UITableViewD
             UIApplication.shared.open(url as URL, options: [:], completionHandler: {
                 (success) in
                 print("Open \(success)")
-                llamada = true
-                if llamada1 {
-                    mostrarAviso(titulo: "x", mensaje: "llamada", viewController: self)
-                }
             })
             UIApplication.shared.completeStateRestoration()
         }

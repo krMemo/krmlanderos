@@ -8,7 +8,7 @@
 
 import UIKit
 import EventKit
-import AddressBook
+import Contacts
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -25,36 +25,51 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textContrasenia.delegate = self
         crearDB()
         autorizacionCalendario()
+        autorizacionContactos()
     }
     
     func autorizacionCalendario() {
-        let eventStore = EKEventStore()
+        DispatchQueue.main.async(execute: {
         let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        switch (status) {
-        case EKAuthorizationStatus.authorized:
-            permisoCalendario = true
-        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied, EKAuthorizationStatus.notDetermined:
-            DispatchQueue.main.async(execute: {
+        switch status {
+            case .authorized:
+                permisoCalendario = true
+            case .restricted, .denied, .notDetermined:
+                let eventStore = EKEventStore()
                 eventStore.requestAccess(to: EKEntityType.event, completion: {
                     (accessGranted: Bool, error: Error?) in
-                    if accessGranted == true {
+                    if accessGranted {
                         permisoCalendario = true
                     }
                     else {
                         permisoCalendario = false
                     }
                 })
-            })
-        }
+            }
+        })
     }
     
-    
-    /*func autorizacionContactos() {
-        let abAuthStatus = ABAddressBookGetAuthorizationStatus()
-        if abAuthStatus == .denied || abAuthStatus == .restricted {
-           
-        }
-    }*/
+    func autorizacionContactos() {
+        DispatchQueue.main.async(execute: {
+        let authorizationStatus = CNContactStore.authorizationStatus(for: CNEntityType.contacts)
+        switch authorizationStatus {
+            case .authorized:
+                permisoContactos = true
+            case .restricted, .denied, .notDetermined:
+                let contactStore = CNContactStore()
+                contactStore.requestAccess(for: CNEntityType.contacts, completionHandler: {
+                    (access: Bool, error: Error?) -> Void in
+                    if access {
+                        permisoContactos = true
+                    }
+                    else {
+                        permisoContactos = true
+                    }
+                })
+            }
+                
+        })
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
