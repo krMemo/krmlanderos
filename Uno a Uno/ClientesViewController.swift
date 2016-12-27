@@ -35,12 +35,14 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         tableClientes.reloadData()
+        self.view.endEditing(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             searchActive = false
             tableClientes.reloadData()
+            self.view.endEditing(true)
         }
         else {
             searchActive = true

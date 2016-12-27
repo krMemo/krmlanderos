@@ -62,39 +62,9 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
                 calendars.append(cal)
             }
         }
-        datepickerFecha.setDate(fecha, animated: true)
         if !nuevo {
-            let tmpevento = selectEvento(id: eventid)
-            if tmpevento["id"] == "" {
-                textPersona.text = evento["evento"]
-                var i: Int = 0
-                for cal in calendars {
-                    if cal.title == evento["calendario"] {
-                        pickerCalendario.selectRow(i, inComponent: 0, animated: true)
-                    }
-                    i += 1
-                }
-            }
-            else {
-                id = tmpevento["id"]!
-                textPersona.text = tmpevento["evento"]
-                textPersona.text = tmpevento["persona"]
-                textNotas.text = tmpevento["notas"]
-                for tipo in dicTipo {
-                    if tipo.value == tmpevento["tipo"] {
-                        pickerTipo.selectRow(tipo.key, inComponent: 0, animated: true)
-                    }
-                }
-                var i: Int = 0
-                for cal in calendars {
-                    if cal.title == tmpevento["calendario"] {
-                        pickerCalendario.selectRow(i, inComponent: 0, animated: true)
-                    }
-                    i += 1
-                }
-            }
+            cargaDatos()
         }
-        
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
         toolBar.barStyle = UIBarStyle.default
         toolBar.items = [
@@ -102,14 +72,51 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Aceptar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(kbAceptar))
         ]
-        
         textNotas.inputAccessoryView = toolBar
-        
+    }
+    
+    func carga(calendario: String, tipo: String) {
+        var i: Int = 0
+        for cal in calendars {
+            if cal.title == calendario {
+                pickerCalendario.selectRow(i, inComponent: 0, animated: true)
+            }
+            i += 1
+        }
+        if tipo != "" {
+            for tipos in dicTipo {
+                if dicT[tipos.value] == tipo {
+                    pickerTipo.selectRow(tipos.key, inComponent: 0, animated: true)
+                }
+            }
+        }
+    }
+    
+    func cargaDatos() {
+        print(eventid)
+        let tmpevento = selectEvento(id: eventid)
+        print(tmpevento)
+        if tmpevento["id"] == "" {
+            let event = eventStore.event(withIdentifier: eventid)
+            textPersona.text = event?.title
+            textUbicacion.text = event?.location
+            textNotas.text = event?.notes
+            datepickerFecha.setDate(fecha, animated: true)
+            carga(calendario: (event?.calendar.title)!, tipo: "")
+        }
+        else {
+            id = tmpevento["id"]!
+            textPersona.text = tmpevento["evento"]
+            textCorreo.text = tmpevento["correo"]
+            textNotas.text = tmpevento["notas"]
+            textUbicacion.text = tmpevento["ubicacion"]
+            carga(calendario: tmpevento["calendario"]!, tipo: tmpevento["tipo"]!)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        let nextTag = textField.tag + 1;
+        let nextTag = textField.tag + 1
         let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder!
         if (nextResponder != nil) {
             nextResponder?.becomeFirstResponder()
@@ -167,85 +174,85 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         self.performSegue(withIdentifier: "segueBuscar", sender: self)
     }
     
+    func validaInfo() -> Bool {
+        if idpersona == "" {
+            mostrarAviso(titulo: "Importante", mensaje: "Debe seleccionar una persona para el evento.", viewController: self)
+            return false
+        }
+        return true
+    }
+    
     @IBAction func guardarEvento(_ sender: UIButton) {
-        var event = EKEvent(eventStore: eventStore)
-        evento["persona"] = idpersona
-        evento["tipo"] = dicT[dicTipo[pickerTipo.selectedRow(inComponent: 0)]!]
-        evento["calendario"] = calendars[pickerCalendario.selectedRow(inComponent: 0)].title
-        var segundos: Int = 0
-        if pickerMHD.description == "Minutos" {
-            segundos = Int(textDuracion.text!)! * 60
-        }
-        else if pickerMHD.description == "Horas" {
-            segundos = Int(textDuracion.text!)! * 60 * 60
-        }
-        else if pickerMHD.description == "Días" {
-            segundos = Int(textDuracion.text!)! * 60 * 60 * 24
-        }
-        evento["duracion"] = String(segundos)
-        evento["fecha"] = datepickerFecha.date.description
-        evento["evento"] = textPersona.text
-        evento["correo"] = textCorreo.text
-        evento["ubicacion"] = textUbicacion.text
-        evento["notas"] = textNotas.text
-        print(evento)
-        if nuevo {
-            event.calendar = calendars[pickerCalendario.selectedRow(inComponent: 0)]
-            event.title = textPersona.text!
-            event.startDate = datepickerFecha.date
-            event.endDate = datepickerFecha.date + TimeInterval(segundos)
-            event.addAlarm(EKAlarm.init(absoluteDate: datepickerAlarma.date))
-            evento["eventid"] = event.eventIdentifier
-            if id == "" {
-                id = selectMaxId(tabla: "eventos")
-                evento["id"] = id
-                print("INSERT \(evento)")
-                executeEventos(accion: "INSERT", evento: evento)
+        if validaInfo() {
+            var event = eventStore.event(withIdentifier: eventid)
+            if event == nil {
+                event = EKEvent(eventStore: eventStore)
             }
+            event!.calendar = calendars[pickerCalendario.selectedRow(inComponent: 0)]
+            event!.title = textPersona.text!
+            event!.startDate = datepickerFecha.date
+            event!.endDate = datepickerFecha.date + TimeInterval(getSeg())
+            event!.addAlarm(EKAlarm.init(absoluteDate: datepickerAlarma.date))
             do {
-                try eventStore.save(event, span: .thisEvent)
+                try eventStore.save((event)!, span: .thisEvent)
                 mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
             }
             catch {
                 mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
-                print(error)
             }
-        }
-        else {
-            event = eventStore.event(withIdentifier: eventid)!
-            event.calendar = calendars[pickerCalendario.selectedRow(inComponent: 0)]
-            event.title = textPersona.text!
-            event.startDate = datepickerFecha.date
-            event.endDate = datepickerFecha.date + TimeInterval(segundos)
-            
+            print(event!.eventIdentifier as Any)
+            evento["eventid"] = event?.eventIdentifier
+            evento["persona"] = idpersona
+            evento["tipo"] = dicT[dicTipo[pickerTipo.selectedRow(inComponent: 0)]!]
+            evento["calendario"] = calendars[pickerCalendario.selectedRow(inComponent: 0)].title
+            evento["duracion"] = String(getSeg())
+            evento["fecha"] = datepickerFecha.date.description
+            evento["evento"] = textPersona.text
+            evento["correo"] = textCorreo.text
+            evento["ubicacion"] = textUbicacion.text
+            evento["notas"] = textNotas.text
             if id == "" {
-                id = selectMaxId(tabla: "eventos")
-                evento["id"] = id
+                evento["id"] = selectMaxId(tabla: "eventos")
+            }
+            if nuevo {
                 print("INSERT \(evento)")
                 executeEventos(accion: "INSERT", evento: evento)
             }
             else {
-                print("UPDATE \(evento)")
-                executeEventos(accion: "UPDATE", evento: evento)
+                if id == "" {
+                    print("INSERT \(evento)")
+                    executeEventos(accion: "INSERT", evento: evento)
+                }
+                else {
+                    print("UPDATE \(evento)")
+                    executeEventos(accion: "UPDATE", evento: evento)
+                }
             }
-            do {
-                try eventStore.save(event, span: .thisEvent)
-                mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
-            }
-            catch {
-                mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
-                print(error)
-            }
+            performSegue(withIdentifier: "unwindEvento", sender: self)
         }
-        performSegue(withIdentifier: "unwindEvento", sender: self)
     }
 
+    func getSeg() -> Int {
+        var segundos: Int = 0
+        if pickerMHD.selectedRow(inComponent: 0) == 0 {
+            segundos = Int(textDuracion.text!)! * 60
+        }
+        else if pickerMHD.selectedRow(inComponent: 0) == 1 {
+            segundos = Int(textDuracion.text!)! * 60 * 60
+        }
+        else if pickerMHD.selectedRow(inComponent: 0) == 2 {
+            segundos = Int(textDuracion.text!)! * 60 * 60 * 24
+        }
+        print(segundos)
+        return segundos
+    }
+    
     @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
         if idpersona != "" {
             let persona = selectPersona(id: idpersona)
             labelReferencia.text = "Referencia: " + persona["referencia"]!
-            textCorreo.text = persona["correo"]
-            textUbicacion.text = persona["direccion"]
+            textCorreo.text = textCorreo.text == "" ? persona["correo"] : textCorreo.text
+            textUbicacion.text = textUbicacion.text == "" ? persona["direccion"] : textUbicacion.text
         }
     }
     
