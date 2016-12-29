@@ -98,7 +98,7 @@
                         <outlet property="searchClientes" destination="6z0-MM-Fjd" id="4fp-yI-IbR"/>
                         <outlet property="tableClientes" destination="BMb-cJ-ERU" id="nI1-Kk-Q0g"/>
                         <segue destination="sLb-2m-UuZ" kind="show" identifier="segueCliente" id="kRl-MG-QFq"/>
-                        <segue destination="umP-tK-IPB" kind="show" identifier="segueDetalle" id="gdk-RJ-MjZ"/>
+                        <segue destination="umP-tK-IPB" kind="show" identifier="segueClienteDet" id="gdk-RJ-MjZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLj-fw-SL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -562,10 +562,10 @@
             </objects>
             <point key="canvasLocation" x="2752.8000000000002" y="830.73463268365822"/>
         </scene>
-        <!--Detalle-->
+        <!--Cliente Detalle-->
         <scene sceneID="qtJ-Js-jmD">
             <objects>
-                <viewController title="Detalle" id="umP-tK-IPB" sceneMemberID="viewController">
+                <viewController title="Cliente Detalle" id="umP-tK-IPB" customClass="ClienteDetViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gl6-t8-gYM"/>
                         <viewControllerLayoutGuide type="bottom" id="NtW-2Y-zqR"/>
@@ -573,7 +573,6 @@
                     <view key="view" contentMode="scaleToFill" id="pn6-xa-kn4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.56464296049999996" green="0.95415742309999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -581,6 +580,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ICd-0O-VS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3574" y="831"/>
+        </scene>
+        <!--Referido Detalle-->
+        <scene sceneID="Rxs-JD-KkN">
+            <objects>
+                <viewController title="Referido Detalle" id="llR-3W-OlY" customClass="ReferidoDetViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pXN-hD-Wjg"/>
+                        <viewControllerLayoutGuide type="bottom" id="5WU-bu-eI5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HHE-cw-DlK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-ZI-4UY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4382" y="831"/>
+        </scene>
+        <!--Importar-->
+        <scene sceneID="QML-iU-4qJ">
+            <objects>
+                <viewController title="Importar" id="jtN-0q-QcL" customClass="ImportarViewController" customModule="Uno_a_Uno" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cxV-yx-3xD"/>
+                        <viewControllerLayoutGuide type="bottom" id="zet-Dr-R0r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CtE-gd-rDq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MyA-V5-AGw">
+                                <rect key="frame" x="16" y="66" width="343" height="581"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Ync-Cb-QYP">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ync-Cb-QYP" id="3EI-Gg-9wS">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-m7-IqM">
+                                <rect key="frame" x="16" y="28" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Importar"/>
+                                <connections>
+                                    <action selector="importar:" destination="jtN-0q-QcL" eventType="touchUpInside" id="HnA-X8-kS4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkB-sX-BRo">
+                                <rect key="frame" x="279" y="28" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="regresar:" destination="jtN-0q-QcL" eventType="touchUpInside" id="Jdj-Qg-t2E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeH-9l-3u5">
+                                <rect key="frame" x="157" y="28" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Todos"/>
+                                <connections>
+                                    <action selector="selectTodos:" destination="jtN-0q-QcL" eventType="touchUpInside" id="DNB-dL-3Pa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableContactos" destination="MyA-V5-AGw" id="Ryf-Tl-yEE"/>
+                        <segue destination="Akd-Ow-kvQ" kind="unwind" identifier="unwindImportar" unwindAction="unwindImportarWithSender:" id="yNh-dZ-9Wj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fV5-AM-Uvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Akd-Ow-kvQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4381.6000000000004" y="1646.6266866566718"/>
         </scene>
         <!--Referidos-->
         <scene sceneID="IqJ-JQ-HPn">
@@ -667,7 +752,7 @@
                         <outlet property="searchReferidos" destination="auW-hX-rME" id="S30-Ua-c5i"/>
                         <outlet property="tableReferidos" destination="Q1g-G3-gu1" id="dWQ-nq-MxH"/>
                         <segue destination="EqI-Cg-BaQ" kind="show" identifier="segueReferido" id="OTy-xz-MZx"/>
-                        <segue destination="umP-tK-IPB" kind="show" identifier="segueDetalle" id="oTM-pM-Pyq"/>
+                        <segue destination="llR-3W-OlY" kind="show" identifier="segueReferidoDet" id="wmN-yd-Ev1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMx-wd-pFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -745,6 +830,7 @@
                     <tabBarItem key="tabBarItem" tag="4" title="Configuración" image="iconCon" selectedImage="iconConS" id="iHA-a2-nPK" userLabel="Configuración"/>
                     <connections>
                         <segue destination="GRw-9c-Ln8" kind="unwind" identifier="unwindConfiguracion" unwindAction="unwindConfiguracionWithSender:" id="YEP-22-3ht"/>
+                        <segue destination="jtN-0q-QcL" kind="show" identifier="segueImportar" id="elZ-WF-ngl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNO-tN-2A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1700,7 +1786,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eu1-0t-R0k"/>
-        <segue reference="oTM-pM-Pyq"/>
         <segue reference="pC2-3y-5T2"/>
     </inferredMetricsTieBreakers>
 </document>
