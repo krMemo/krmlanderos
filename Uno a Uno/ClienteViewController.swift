@@ -56,15 +56,15 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             id = selectMaxId(tabla: "personas")
         }
         else {
-            id = cliente["id"]!
+            cliente = selectPersona(id)
             textNombre.text = cliente["nombre"]
             textApaterno.text = cliente["apaterno"]
             textAmaterno.text = cliente["amaterno"]
             textDireccion.text = cliente["direccion"]
             textNotas.text = cliente["notas"]
             textReferencia.text = cliente["referencia"]
-            telefonos = selectTefonos(id: id)
-            correos = selectCorreos(id: id)
+            telefonos = selectTefonos(id)
+            correos = selectCorreos(id)
         }
         /*
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -115,6 +115,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func guardarCliente(_ sender: UIButton) {
+        print(cliente["estatus"]!)
         cliente["id"] = id
         cliente["nombre"] = textNombre.text
         cliente["apaterno"] = textApaterno.text
@@ -141,8 +142,8 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         else {
             executePersonas(accion: "UPDATE", persona: cliente)
         }
-        update(telefonos: telefonos, id: id)
-        update(correos: correos, id: id)
+        update(id, telefonos: telefonos)
+        update(id, correos: correos)
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindCliente", sender: self)
     }
@@ -154,8 +155,8 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func eliminarCliente(_ sender: UIButton) {
         if !nuevo {
             executePersonas(accion: "DELETE", persona: cliente)
-            deleteTelefonos(id: id)
-            deleteCorreos(id: id)
+            deleteTelefonos(id)
+            deleteCorreos(id)
             mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
             self.performSegue(withIdentifier: "unwindCliente", sender: self)
         }

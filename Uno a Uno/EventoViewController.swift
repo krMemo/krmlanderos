@@ -94,7 +94,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     func cargaDatos() {
         print(eventid)
-        let tmpevento = selectEvento(id: eventid)
+        let tmpevento = selectEvento(eventid)
         print(tmpevento)
         if tmpevento["id"] == "" {
             let event = eventStore.event(withIdentifier: eventid)
@@ -249,7 +249,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
         if idpersona != "" {
-            let persona = selectPersona(id: idpersona)
+            let persona = selectPersona(idpersona)
             labelReferencia.text = "Referencia: " + persona["referencia"]!
             textCorreo.text = textCorreo.text == "" ? persona["correo"] : textCorreo.text
             textUbicacion.text = textUbicacion.text == "" ? persona["direccion"] : textUbicacion.text

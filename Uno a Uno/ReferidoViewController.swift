@@ -59,15 +59,15 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
             id = selectMaxId(tabla: "personas")
         }
         else {
-            id = referido["id"]!
+            referido = selectPersona(id)
             textNombre.text = referido["nombre"]
             textApaterno.text = referido["apaterno"]
             textAmaterno.text = referido["amaterno"]
             textDireccion.text = referido["direccion"]
             textNotas.text = referido["notas"]
             textReferencia.text = referido["referencia"]
-            telefonos = selectTefonos(id: id)
-            correos = selectCorreos(id: id)
+            telefonos = selectTefonos(id)
+            correos = selectCorreos(id)
         }
         /*
          NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -132,8 +132,8 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
         else {
             executePersonas(accion: "UPDATE", persona: referido)
         }
-        update(telefonos: telefonos, id: id)
-        update(correos: correos, id: id)
+        update(id, telefonos: telefonos)
+        update(id, correos: correos)
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindReferido", sender: self)
     }
@@ -141,8 +141,8 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBAction func eliminarReferido(_ sender: UIButton) {
         if !nuevo {
             executePersonas(accion: "DELETE", persona: referido)
-            deleteTelefonos(id: id)
-            deleteCorreos(id: id)
+            deleteTelefonos(id)
+            deleteCorreos(id)
             mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
             self.performSegue(withIdentifier: "unwindReferido", sender: self)
         }

@@ -99,7 +99,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         events = eventStore.events(matching: predicate)
         eventos = []
         for event in events {
-            evento = selectEvento(id: event.eventIdentifier)
+            evento = selectEvento(event.eventIdentifier)
             print(evento)
             eventos.append(evento)
         }

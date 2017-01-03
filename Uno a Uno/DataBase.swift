@@ -26,6 +26,13 @@ func crearDB() {
         else {
             print("Tabla 'personas': OK")
         }
+        sql_stmt = "CREATE TABLE IF NOT EXISTS historial (id INTEGER, estatus TEXT, fecha TEXT)"
+        if !(db.executeStatements(sql_stmt)) {
+            print("Error: \(db.lastErrorMessage())")
+        }
+        else {
+            print("Tabla 'historial': OK")
+        }
         sql_stmt = "CREATE TABLE IF NOT EXISTS telefonos (id INTEGER, idx INTEGER, principal INTEGER, telefono TEXT, tipo TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
@@ -164,7 +171,7 @@ func executePersonas(accion: String, persona: [String:String]) {
     }
 }
 
-func selectPersona(id: String) -> [String:String] {
+func selectPersona(_ id: String) -> [String:String] {
     var persona: [String:String] = ["id":"", "nombrec":"", "nombre":"", "apaterno":"", "amaterno":"", "direccion":"", "notas":"", "estatus":"", "cliente":"", "telefono":"", "correo":"", "referencia":""]
     let db = getDB()
     if db.open() {
@@ -206,7 +213,7 @@ func selectPersona(id: String) -> [String:String] {
     return persona
 }
 
-func selectTefonos(id: String) -> [[String:String]] {
+func selectTefonos(_ id: String) -> [[String:String]] {
     var telefonos: [[String:String]] = []
     var telefono: [String:String] = ["id":"", "idx":"", "principal":"", "telefono":"", "tipo":""]
     let db = getDB()
@@ -228,7 +235,7 @@ func selectTefonos(id: String) -> [[String:String]] {
     return telefonos
 }
 
-func update(telefonos: [[String:String]], id: String) {
+func update(_ id: String, telefonos: [[String:String]]) {
     let db = getDB()
     if db.open() {
         let result = db.executeStatements("DELETE FROM telefonos WHERE id = \(id)")
@@ -255,7 +262,7 @@ func update(telefonos: [[String:String]], id: String) {
     }
 }
 
-func deleteTelefonos(id: String) {
+func deleteTelefonos(_ id: String) {
     let db = getDB()
     if db.open() {
         let result = db.executeStatements("DELETE FROM telefonos WHERE id = \(id)")
@@ -272,7 +279,7 @@ func deleteTelefonos(id: String) {
     }
 }
 
-func selectCorreos(id: String) -> [[String:String]] {
+func selectCorreos(_ id: String) -> [[String:String]] {
     var correos: [[String:String]] = []
     var correo: [String:String] = ["id":"", "idx":"", "principal":"", "correo":"", "tipo":""]
     let db = getDB()
@@ -294,7 +301,7 @@ func selectCorreos(id: String) -> [[String:String]] {
     return correos
 }
 
-func update(correos: [[String:String]], id: String) {
+func update(_ id: String, correos: [[String:String]]) {
     let db = getDB()
     if db.open() {
         let result = db.executeStatements("DELETE FROM correos WHERE id = \(id)")
@@ -321,7 +328,7 @@ func update(correos: [[String:String]], id: String) {
     }
 }
 
-func deleteCorreos(id: String) {
+func deleteCorreos(_ id: String) {
     let db = getDB()
     if db.open() {
         let result = db.executeStatements("DELETE FROM correos WHERE id = \(id)")
@@ -338,7 +345,7 @@ func deleteCorreos(id: String) {
     }
 }
 
-func selectEvento(id: String) -> [String:String] {
+func selectEvento(_ id: String) -> [String:String] {
     var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "correo":"", "tipo":"", "fecha":"", "calendario":"", "duracion":"", "evento":"", "ubicacion":"", "notas":""]
     let db = getDB()
     if db.open() {
@@ -384,6 +391,42 @@ func executeEventos(accion: String, evento: [String:String]) {
         }
         else {
             print("'\(accion)' OK")
+            db.close()
+        }
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+}
+
+func selectHistorial(_ id: String) -> [[String:String]] {
+    var hist: [[String:String]] = []
+    var x: [String:String] = ["estatus":"", "fecha":""]
+    let db = getDB()
+    if db.open() {
+        let results: FMResultSet = db.executeQuery("SELECT estatus, fecha FROM historial WHERE id = \(id)", withArgumentsIn: nil)
+        while results.next() == true {
+            x["estatus"] = results.string(forColumn: "estatus")
+            x["fecha"] = results.string(forColumn: "fecha")
+            hist.append(x)
+        }
+        db.close()
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+    return hist
+}
+
+func addHistorial(_ id: String, estatus: String) {
+    let sql: String = "INSERT INTO historial (id, estatus, fecha) VALUES (\(id), '\(estatus)', '\(Date())')"
+    let db = getDB()
+    if db.open() {
+        let result = db.executeStatements(sql)
+        if !result {
+            print("Error: \(db.lastErrorMessage())")
+        }
+        else {
             db.close()
         }
     }

@@ -53,7 +53,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
             contacto["nombre"] = contact.givenName
             contacto["apaterno"] = contact.familyName
             contacto["estatus"] = ""
-            contacto["cliente"] = "0"
+            contacto["cliente"] = ""
             idx = 0
             for phone in contact.phoneNumbers {
                 telefono["identifier"] = contact.identifier
@@ -104,13 +104,15 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
         tableContactos.reloadData()
     }
     
-    @IBAction func importar(_ sender: UIButton) {
+    func importar(clientes: Bool) {
         var id: String = ""
         for var xcontact in contactos {
             if xcontact["importar"] == "1" {
-            print(xcontact)
+                xcontact["cliente"] = clientes ? "1" : "0"
+                xcontact["estatus"] = clientes ? "CO" : "PE"
                 id = selectMaxId(tabla: "personas")
                 xcontact["id"] = id
+                print(xcontact)
                 executePersonas(accion: "INSERT", persona: xcontact)
                 var xphones: [[String:String]] = []
                 for xphone in telefonos {
@@ -118,16 +120,24 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                         xphones.append(xphone)
                     }
                 }
-                update(telefonos: xphones, id: id)
+                update(id, telefonos: xphones)
                 var xmails: [[String:String]] = []
                 for xmail in correos {
                     if xmail["identifier"] == xcontact["identifier"] {
                         xmails.append(xmail)
                     }
                 }
-                update(correos: xmails, id: id)
+                update(id, correos: xmails)
             }
         }
+    }
+    
+    @IBAction func importarRef(_ sender: UIButton) {
+        importar(clientes: false)
+    }
+    
+    @IBAction func importarCli(_ sender: UIButton) {
+        importar(clientes: true)
     }
 
     @IBAction func regresar(_ sender: UIButton) {

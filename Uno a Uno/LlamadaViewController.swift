@@ -20,7 +20,7 @@ class LlamadaViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableTelefonos.delegate = self
         tableTelefonos.dataSource = self
         id = self.value(forKey: "id") as! String
-        telefonos = selectTefonos(id: id)
+        telefonos = selectTefonos(id)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
