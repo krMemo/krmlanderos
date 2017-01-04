@@ -54,7 +54,7 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func guardarEstatus(_ sender: UIButton) {
         referencia["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
-        executePersonas(accion: "UPDATE", persona: referencia)
+        executePersonas("UPDATE", persona: referencia)
         addHistorial(id, estatus: dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]!)
         mostrarAviso(titulo: "Aviso", mensaje: "Se cambió el estratus correctamente.", viewController: self)
     }

@@ -112,8 +112,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 xcontact["estatus"] = clientes ? "CO" : "PE"
                 id = selectMaxId(tabla: "personas")
                 xcontact["id"] = id
-                print(xcontact)
-                executePersonas(accion: "INSERT", persona: xcontact)
+                executePersonas("INSERT", persona: xcontact)
                 var xphones: [[String:String]] = []
                 for xphone in telefonos {
                     if xphone["identifier"] == xcontact["identifier"] {

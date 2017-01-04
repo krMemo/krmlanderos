@@ -125,7 +125,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         cliente["referencia"] = textReferencia.text
         cliente["cliente"] = "1"
         if nuevo {
-            executePersonas(accion: "INSERT", persona: cliente)
+            executePersonas("INSERT", persona: cliente)
             let contactStore = CNContactStore()
             let contact = CNMutableContact()
             contact.givenName = textNombre.text!
@@ -140,7 +140,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             }
         }
         else {
-            executePersonas(accion: "UPDATE", persona: cliente)
+            executePersonas("UPDATE", persona: cliente)
         }
         update(id, telefonos: telefonos)
         update(id, correos: correos)
@@ -154,7 +154,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func eliminarCliente(_ sender: UIButton) {
         if !nuevo {
-            executePersonas(accion: "DELETE", persona: cliente)
+            executePersonas("DELETE", persona: cliente)
             deleteTelefonos(id)
             deleteCorreos(id)
             mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)

@@ -47,6 +47,7 @@
 		FC5DCB791DB8450300361ED4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */; };
 		FC5DCB831DC01E2A00361ED4 /* ClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */; };
 		FC5DCB851DC0946F00361ED4 /* ReferidosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */; };
+		FC5E81DF1E1D3B8600C13B7C /* SegurosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E81DE1E1D3B8600C13B7C /* SegurosViewController.swift */; };
 		FC6DD81E1DC3C76500D46AA1 /* ClienteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */; };
 		FC6DD8201DC3C78900D46AA1 /* ReferidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */; };
 		FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */; };
@@ -112,6 +113,7 @@
 		FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientesViewController.swift; sourceTree = "<group>"; };
 		FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidosViewController.swift; sourceTree = "<group>"; };
+		FC5E81DE1E1D3B8600C13B7C /* SegurosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegurosViewController.swift; sourceTree = "<group>"; };
 		FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClienteViewController.swift; sourceTree = "<group>"; };
 		FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidoViewController.swift; sourceTree = "<group>"; };
 		FC70B4271D7F7ECC00728E8A /* Uno a Uno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Uno a Uno.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 				FCE057231DD81300001A4A98 /* ReportesViewController.swift */,
 				FC25E97F1E013BB000F803B0 /* ConfiguracionViewController.swift */,
 				FCA966B01E143D71006E4F10 /* ImportarViewController.swift */,
+				FC5E81DE1E1D3B8600C13B7C /* SegurosViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
 				FCE057261DD8272A001A4A98 /* Web */,
@@ -382,6 +385,7 @@
 				FC5A678A1DA6FA4100A62D26 /* CVCalendarViewAnimator.swift in Sources */,
 				FC5A678E1DA6FA4100A62D26 /* CVCalendarViewDelegate.swift in Sources */,
 				FC5A67991DA6FA4100A62D26 /* CVShape.swift in Sources */,
+				FC5E81DF1E1D3B8600C13B7C /* SegurosViewController.swift in Sources */,
 				FC5A678D1DA6FA4100A62D26 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */,
 				FC5A678B1DA6FA4100A62D26 /* CVCalendarViewAnimatorDelegate.swift in Sources */,

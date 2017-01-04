@@ -55,7 +55,7 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBAction func guardarEstatus(_ sender: UIButton) {
         cliente["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
-        executePersonas(accion: "UPDATE", persona: cliente)
+        executePersonas("UPDATE", persona: cliente)
         addHistorial(id, estatus: dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]!)
         mostrarAviso(titulo: "Aviso", mensaje: "Se cambió el estratus correctamente.", viewController: self)
     }
