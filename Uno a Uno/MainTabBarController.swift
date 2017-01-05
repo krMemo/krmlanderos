@@ -21,6 +21,7 @@ class MainTabBarController: UITabBarController {
             self.tabBar.items?[0].isEnabled = false
             self.selectedIndex = 1
         }
+        writeFiles()
     }
 
     override func didReceiveMemoryWarning() {

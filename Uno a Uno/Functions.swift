@@ -30,61 +30,44 @@ func isValidEmail(testStr:String) -> Bool {
     return emailTest.evaluate(with: testStr)
 }
 
-func dicTojson() {
-    
-    let dict1 = ["mes": "ENE 16", "llamadas": 13, "citas": 21] as [String : Any]
-    let dict2 = ["mes": "FEB 16", "llamadas": 10, "citas": 23] as [String : Any]
-    let dict = [dict1, dict2]
-    let d = ["datos": dict]
-    
-    var file = "file.txt"
-    let text = "some text"
-    
-    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-        print(dir)
-        let path = dir.appendingPathComponent(file)
-        do {
-            try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-        }
-        catch {
-        }
-        do {
-            let text2 = try String(contentsOf: path, encoding: String.Encoding.utf8)
-            print(text2)
-        }
-        catch {
-        }
-    }
-    
+func dicTojson(dictionary: [[String:String]]) {
+    let dict = ["datos": dictionary]
     do {
-        let theJSONData = try JSONSerialization.data(withJSONObject: d, options:.prettyPrinted)
-        let theJSONText = NSString(data: theJSONData, encoding: String.Encoding.ascii.rawValue)
-        print("JSON string = \(theJSONText!)")
+        let jsonData = try JSONSerialization.data(withJSONObject: dict, options:.prettyPrinted)
+        let jsonText = NSString(data: jsonData, encoding: String.Encoding.ascii.rawValue)!
+        let json: String = "json = \(jsonText)"
+        let docPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        do {
+            try json.write(to: docPath.appendingPathComponent("datos.json"), atomically: false, encoding: String.Encoding.utf8)
+        }
+        catch {
+            print("No se escribió la información")
+        }
+        do {
+            let text = try String(contentsOf: docPath.appendingPathComponent("datos.json"), encoding: String.Encoding.utf8)
+            print(text)
+        }
+        catch {
+        }
     }
     catch {
-        
+        print("No se guardó la información")
     }
+}
     
-    let bundlePath = Bundle.main.path(forResource: "Web/reporte", ofType: ".html")
-    print(bundlePath ?? "x", "\n")
-    
-    if let destPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-        file = "reporte.html"
-        let path = destPath.appendingPathComponent(file)
-        print(path)
-        let fullDestPathString = String(describing: path)
-        print(fullDestPathString)
-        let fileManager = FileManager.default
-        print(fileManager.fileExists(atPath: bundlePath!))
+func writeFiles() {
+    let files = ["reporte.html", "jquery.js", "highcharts.js", "touchSwipe.js", "transform.js", "styles.css"]
+    let x = FileManager.default
+    let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let bundlePath = Bundle.main.resourceURL!
+    for file in files {
         do {
-            try fileManager.copyItem(atPath: bundlePath!, toPath: fullDestPathString)
+            try x.copyItem(at: bundlePath.appendingPathComponent("Web/" + file), to: documentPath.appendingPathComponent(file))
         }
         catch {
-            print("\n")
-            print(error)
+            print("Error en la copia de archivos.")
         }
     }
-    
 }
 
 func fechaAct() -> Date {

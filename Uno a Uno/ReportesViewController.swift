@@ -14,8 +14,10 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dicTojson(dictionary: selectReporte())
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         webViewReporte.delegate = self
-        webViewReporte.loadRequest(URLRequest(url: URL(fileURLWithPath: Bundle.main.path(forResource: "Web/reporte", ofType: "html")!)))
+        webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("reporte.html")))
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {

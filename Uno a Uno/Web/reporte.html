@@ -96,9 +96,9 @@ function setDatos()
         $('table#tabla').append('<tr></tr>');
 		mes[x] = datos[i].mes;
 		$('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: left; font-weight: bold;">' + mes[x] + '</td>');
-		llamadas[x] = datos[i].llamadas;
+		llamadas[x] = parseInt(datos[i].llamadas);
 		$('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: center;">' + llamadas[x] + '</td>');
-		citas[x] = datos[i].citas;
+		citas[x] = parseInt(datos[i].citas);
 		$('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: center;">' + citas[x] + '</td>');
 	}
 
