@@ -513,7 +513,6 @@ func selectReporte() -> [[String:String]] {
     
     if db.open() {
         for i in (-11 ... 0).reversed() {
-            evento["mes"] = mes[0]
             query = "SELECT COUNT(*) AS citas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'CT' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
