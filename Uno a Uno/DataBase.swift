@@ -498,7 +498,7 @@ func update(_ id: String, seguros: [[String:String]]) {
 func selectReporte() -> [[String:String]] {
     var query: String = ""
     var results: FMResultSet
-    let mes: [String] = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"]
+    //let mes: [String] = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"]
     var eventos: [[String:String]] = []
     var evento: [String:String] = ["mes":"", "llamadas":"", "citas":""]
     let db = getDB()
