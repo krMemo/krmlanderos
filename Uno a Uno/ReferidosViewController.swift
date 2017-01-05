@@ -72,6 +72,9 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.textLabel?.text = referidos[indexPath.row]["nombrec"]!
             cell.detailTextLabel?.text = referidos[indexPath.row]["referencia"]!
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -83,9 +86,6 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         else {
             id = referidos[indexPath.row]["id"]!
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
     }
     
     func doubleTapped() {

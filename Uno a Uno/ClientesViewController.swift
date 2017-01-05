@@ -72,6 +72,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textLabel?.text = clientes[indexPath.row]["nombrec"]!
             cell.detailTextLabel?.text = clientes[indexPath.row]["referencia"]!
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -83,9 +86,6 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             id = clientes[indexPath.row]["id"]!
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
     }
     
     func doubleTapped() {
@@ -108,14 +108,8 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "segueCliente" {
             if idx >= 0 && nuevo == false {
                 let clienteVC = segue.destination as! ClienteViewController
-                if searchActive {
-                    clienteVC.nuevo = false
-                    clienteVC.id = filtro[idx]["id"]!
-                }
-                else {
-                    clienteVC.nuevo = false
-                    clienteVC.id = clientes[idx]["id"]!
-                }
+                clienteVC.nuevo = nuevo
+                clienteVC.id = id
             }
         }
         else if segue.identifier == "segueClienteDet" {

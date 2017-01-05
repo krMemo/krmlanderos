@@ -445,7 +445,7 @@ func selectSeguros(_ id: String) -> [[String:String]] {
     var seguro: [String:String] = ["id":"", "idx":"", "aseguradora":"", "planseguro":"", "referencia":"", "poliza":"", "vigencia":"", "plazo":"", "formapago":"", "institucion":"", "periodicidad":""]
     let db = getDB()
     if db.open() {
-        let query = "SELECT id, idx, aseguradora, planseguro, referencia, poliza, vigencia, plazo, formapago, institucion, periodicidad WHERE id = '\(id)'"
+        let query = "SELECT id, idx, aseguradora, planseguro, referencia, poliza, vigencia, plazo, formapago, institucion, periodicidad FROM seguros WHERE id = \(id)"
         let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
         while results.next() == true {
             seguro["id"] = results.string(forColumn: "id")
@@ -460,6 +460,7 @@ func selectSeguros(_ id: String) -> [[String:String]] {
             seguro["institucion"] = results.string(forColumn: "institucion")
             seguro["periodicidad"] = results.string(forColumn: "periodicidad")
             seguros.append(seguro)
+            print(seguros)
         }
         db.close()
     }
@@ -469,7 +470,7 @@ func selectSeguros(_ id: String) -> [[String:String]] {
     return seguros
 }
 
-func updateSeguros(_ id: String, seguros: [[String:String]]) {
+func update(_ id: String, seguros: [[String:String]]) {
     let db = getDB()
     if db.open() {
         let result = db.executeStatements("DELETE FROM seguros WHERE id = \(id)")

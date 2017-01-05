@@ -213,7 +213,6 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
-    
     }
 
     @IBAction func unwindTelCor(sender: UIStoryboardSegue) {
