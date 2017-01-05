@@ -35,12 +35,14 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         tableReferidos.reloadData()
+        self.view.endEditing(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             searchActive = false
             tableReferidos.reloadData()
+            self.view.endEditing(true)
         }
         else {
             searchActive = true
@@ -70,6 +72,9 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.textLabel?.text = referidos[indexPath.row]["nombrec"]!
             cell.detailTextLabel?.text = referidos[indexPath.row]["referencia"]!
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -81,6 +86,10 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         else {
             id = referidos[indexPath.row]["id"]!
         }
+    }
+    
+    func doubleTapped() {
+        self.performSegue(withIdentifier: "segueReferidoDet", sender: self)
     }
     
     @IBAction func addReferido(_ sender: UIButton) {
@@ -96,30 +105,22 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if idx >= 0 && nuevo == false {
-            let referidoVC = segue.destination as! ReferidoViewController
-            if searchActive {
-                referidoVC.nuevo = false
-                referidoVC.referido["id"] = filtro[idx]["id"]
-                referidoVC.referido["nombre"] = filtro[idx]["nombre"]
-                referidoVC.referido["apaterno"] = filtro[idx]["apaterno"]
-                referidoVC.referido["amaterno"] = filtro[idx]["amaterno"]
-                referidoVC.referido["cliente"] = filtro[idx]["cliente"]
-                referidoVC.referido["direccion"] = filtro[idx]["direccion"]
-                referidoVC.referido["notas"] = filtro[idx]["notas"]
-                referidoVC.referido["referencia"] = filtro[idx]["referencia"]
+        if segue.identifier == "segueReferido" {
+            if idx >= 0 && nuevo == false {
+                let referidoVC = segue.destination as! ReferidoViewController
+                if searchActive {
+                    referidoVC.nuevo = false
+                    referidoVC.id = filtro[idx]["id"]!
+                }
+                else {
+                    referidoVC.nuevo = false
+                    referidoVC.id = referidos[idx]["id"]!
+                }
             }
-            else {
-                referidoVC.nuevo = false
-                referidoVC.referido["id"] = referidos[idx]["id"]
-                referidoVC.referido["nombre"] = referidos[idx]["nombre"]
-                referidoVC.referido["apaterno"] = referidos[idx]["apaterno"]
-                referidoVC.referido["amaterno"] = referidos[idx]["amaterno"]
-                referidoVC.referido["cliente"] = referidos[idx]["cliente"]
-                referidoVC.referido["direccion"] = referidos[idx]["direccion"]
-                referidoVC.referido["notas"] = referidos[idx]["notas"]
-                referidoVC.referido["referencia"] = referidos[idx]["referencia"]
-            }
+        }
+        else if segue.identifier == "segueReferidoDet" {
+            let referidoDetVC = segue.destination as! ReferidoDetViewController
+            referidoDetVC.id = id
         }
     }
     
@@ -144,6 +145,9 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         referidos = selectPersonas(esCliente: "0")
         tableReferidos.reloadData()
         idx = -1
+    }
+    
+    @IBAction func unwindReferidoDet(sender: UIStoryboardSegue) {
     }
     
     override func didReceiveMemoryWarning() {

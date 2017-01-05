@@ -47,6 +47,7 @@
 		FC5DCB791DB8450300361ED4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */; };
 		FC5DCB831DC01E2A00361ED4 /* ClientesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */; };
 		FC5DCB851DC0946F00361ED4 /* ReferidosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */; };
+		FC5E81DF1E1D3B8600C13B7C /* SegurosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5E81DE1E1D3B8600C13B7C /* SegurosViewController.swift */; };
 		FC6DD81E1DC3C76500D46AA1 /* ClienteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */; };
 		FC6DD8201DC3C78900D46AA1 /* ReferidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */; };
 		FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC70B42A1D7F7ECC00728E8A /* AppDelegate.swift */; };
@@ -62,6 +63,9 @@
 		FC95CBF81DAEA15700F5E67C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBEF1DAEA15700F5E67C /* iPhone.storyboard */; };
 		FC95CBFA1DAEA15700F5E67C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBF31DAEA15700F5E67C /* Localizable.strings */; };
 		FC95CBFB1DAEA15700F5E67C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC95CBF51DAEA15700F5E67C /* LaunchScreen.storyboard */; };
+		FCA966AD1E1436D9006E4F10 /* ClienteDetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA966AC1E1436D9006E4F10 /* ClienteDetViewController.swift */; };
+		FCA966AF1E1437A8006E4F10 /* ReferidoDetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA966AE1E1437A8006E4F10 /* ReferidoDetViewController.swift */; };
+		FCA966B11E143D71006E4F10 /* ImportarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA966B01E143D71006E4F10 /* ImportarViewController.swift */; };
 		FCAEBF4D1D99BB2F00409702 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */; };
 		FCE057241DD81300001A4A98 /* ReportesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE057231DD81300001A4A98 /* ReportesViewController.swift */; };
 		FCE057271DD8272A001A4A98 /* Web in Resources */ = {isa = PBXBuildFile; fileRef = FCE057261DD8272A001A4A98 /* Web */; };
@@ -109,6 +113,7 @@
 		FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientesViewController.swift; sourceTree = "<group>"; };
 		FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidosViewController.swift; sourceTree = "<group>"; };
+		FC5E81DE1E1D3B8600C13B7C /* SegurosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegurosViewController.swift; sourceTree = "<group>"; };
 		FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClienteViewController.swift; sourceTree = "<group>"; };
 		FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidoViewController.swift; sourceTree = "<group>"; };
 		FC70B4271D7F7ECC00728E8A /* Uno a Uno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Uno a Uno.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +139,9 @@
 		FC95CBFD1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/iPhone.storyboard"; sourceTree = "<group>"; };
 		FC95CBFF1DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC95CC001DAEA17800F5E67C /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "es-MX"; path = "es-MX.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		FCA966AC1E1436D9006E4F10 /* ClienteDetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClienteDetViewController.swift; sourceTree = "<group>"; };
+		FCA966AE1E1437A8006E4F10 /* ReferidoDetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferidoDetViewController.swift; sourceTree = "<group>"; };
+		FCA966B01E143D71006E4F10 /* ImportarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportarViewController.swift; sourceTree = "<group>"; };
 		FCAEBF4C1D99BB2F00409702 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FCE057231DD81300001A4A98 /* ReportesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportesViewController.swift; sourceTree = "<group>"; };
 		FCE057261DD8272A001A4A98 /* Web */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Web; sourceTree = "<group>"; };
@@ -222,13 +230,17 @@
 				FC94586C1DCB2995000DB971 /* EventoViewController.swift */,
 				FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */,
 				FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */,
+				FCA966AC1E1436D9006E4F10 /* ClienteDetViewController.swift */,
 				FC5DCB841DC0946F00361ED4 /* ReferidosViewController.swift */,
 				FC6DD81F1DC3C78900D46AA1 /* ReferidoViewController.swift */,
+				FCA966AE1E1437A8006E4F10 /* ReferidoDetViewController.swift */,
 				FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */,
 				FC2CA1881DEB616900EAD96A /* TelefonosCorreosViewController.swift */,
 				FC25E97D1E00EF4800F803B0 /* LlamadaViewController.swift */,
 				FCE057231DD81300001A4A98 /* ReportesViewController.swift */,
 				FC25E97F1E013BB000F803B0 /* ConfiguracionViewController.swift */,
+				FCA966B01E143D71006E4F10 /* ImportarViewController.swift */,
+				FC5E81DE1E1D3B8600C13B7C /* SegurosViewController.swift */,
 				FC226B541DA0F7D500905277 /* Functions.swift */,
 				FC722DBD1DB00BC500A39926 /* DataBase.swift */,
 				FCE057261DD8272A001A4A98 /* Web */,
@@ -357,7 +369,9 @@
 				FC5A67871DA6FA4100A62D26 /* CVCalendarMonthView.swift in Sources */,
 				FC6DD8201DC3C78900D46AA1 /* ReferidoViewController.swift in Sources */,
 				FC5A67951DA6FA4100A62D26 /* CVRange.swift in Sources */,
+				FCA966B11E143D71006E4F10 /* ImportarViewController.swift in Sources */,
 				FC722DBA1DB00B2B00A39926 /* FMDatabaseQueue.m in Sources */,
+				FCA966AF1E1437A8006E4F10 /* ReferidoDetViewController.swift in Sources */,
 				FC5A66931DA5810C00A62D26 /* CalendarioController.swift in Sources */,
 				FC70B42B1D7F7ECC00728E8A /* AppDelegate.swift in Sources */,
 				FC5A67911DA6FA4100A62D26 /* CVCalendarWeekday.swift in Sources */,
@@ -371,6 +385,7 @@
 				FC5A678A1DA6FA4100A62D26 /* CVCalendarViewAnimator.swift in Sources */,
 				FC5A678E1DA6FA4100A62D26 /* CVCalendarViewDelegate.swift in Sources */,
 				FC5A67991DA6FA4100A62D26 /* CVShape.swift in Sources */,
+				FC5E81DF1E1D3B8600C13B7C /* SegurosViewController.swift in Sources */,
 				FC5A678D1DA6FA4100A62D26 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				FC722DB81DB00B2B00A39926 /* FMDatabaseAdditions.m in Sources */,
 				FC5A678B1DA6FA4100A62D26 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
@@ -386,6 +401,7 @@
 				FC5DCB791DB8450300361ED4 /* MainTabBarController.swift in Sources */,
 				FC25E9801E013BB000F803B0 /* ConfiguracionViewController.swift in Sources */,
 				FC5A67811DA6FA4100A62D26 /* CVCalendarDayView.swift in Sources */,
+				FCA966AD1E1436D9006E4F10 /* ClienteDetViewController.swift in Sources */,
 				FC94586D1DCB2995000DB971 /* EventoViewController.swift in Sources */,
 				FC5A67881DA6FA4100A62D26 /* CVCalendarTouchController.swift in Sources */,
 				FC226B551DA0F7D500905277 /* Functions.swift in Sources */,

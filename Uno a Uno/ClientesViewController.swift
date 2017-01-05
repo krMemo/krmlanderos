@@ -35,12 +35,14 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         tableClientes.reloadData()
+        self.view.endEditing(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             searchActive = false
             tableClientes.reloadData()
+            self.view.endEditing(true)
         }
         else {
             searchActive = true
@@ -70,6 +72,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textLabel?.text = clientes[indexPath.row]["nombrec"]!
             cell.detailTextLabel?.text = clientes[indexPath.row]["referencia"]!
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -81,6 +86,10 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             id = clientes[indexPath.row]["id"]!
         }
+    }
+    
+    func doubleTapped() {
+        self.performSegue(withIdentifier: "segueClienteDet", sender: self)
     }
     
     @IBAction func addCliente(_ sender: UIButton) {
@@ -96,30 +105,16 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if idx >= 0 && nuevo == false {
-            let clienteVC = segue.destination as! ClienteViewController
-            if searchActive {
-                clienteVC.nuevo = false
-                clienteVC.cliente["id"] = filtro[idx]["id"]
-                clienteVC.cliente["nombre"] = filtro[idx]["nombre"]
-                clienteVC.cliente["apaterno"] = filtro[idx]["apaterno"]
-                clienteVC.cliente["amaterno"] = filtro[idx]["amaterno"]
-                clienteVC.cliente["cliente"] = filtro[idx]["cliente"]
-                clienteVC.cliente["direccion"] = filtro[idx]["direccion"]
-                clienteVC.cliente["notas"] = filtro[idx]["notas"]
-                clienteVC.cliente["referencia"] = filtro[idx]["referencia"]
+        if segue.identifier == "segueCliente" {
+            if idx >= 0 && nuevo == false {
+                let clienteVC = segue.destination as! ClienteViewController
+                clienteVC.nuevo = nuevo
+                clienteVC.id = id
             }
-            else {
-                clienteVC.nuevo = false
-                clienteVC.cliente["id"] = clientes[idx]["id"]
-                clienteVC.cliente["nombre"] = clientes[idx]["nombre"]
-                clienteVC.cliente["apaterno"] = clientes[idx]["apaterno"]
-                clienteVC.cliente["amaterno"] = clientes[idx]["amaterno"]
-                clienteVC.cliente["cliente"] = clientes[idx]["cliente"]
-                clienteVC.cliente["direccion"] = clientes[idx]["direccion"]
-                clienteVC.cliente["notas"] = clientes[idx]["notas"]
-                clienteVC.cliente["referencia"] = clientes[idx]["referencia"]
-            }
+        }
+        else if segue.identifier == "segueClienteDet" {
+            let clienteDetVC = segue.destination as! ClienteDetViewController
+            clienteDetVC.id = id
         }
     }
     
@@ -144,6 +139,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         clientes = selectPersonas(esCliente: "1")
         tableClientes.reloadData()
         idx = -1
+    }
+    
+    @IBAction func unwindClienteDet(sender: UIStoryboardSegue) {
     }
     
     override func didReceiveMemoryWarning() {

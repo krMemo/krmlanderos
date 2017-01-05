@@ -20,6 +20,8 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     var cals: [EKCalendar] = []
     var calendars: [EKCalendar] = []
     var events: [EKEvent] = []
+    var eventos: [[String:String]] = []
+    var evento: [String:String] = [:]
     
     @IBOutlet weak var labelMes: UILabel!
     @IBOutlet weak var calendarmenuView: CVCalendarMenuView!
@@ -95,6 +97,12 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         fecha = date.convertedDate()!
         let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
+        eventos = []
+        for event in events {
+            evento = selectEvento(event.eventIdentifier)
+            print(evento)
+            eventos.append(evento)
+        }
         tableEventos.reloadData()
     }
     
@@ -146,7 +154,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-        return 15
+        return 16
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -154,13 +162,19 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return eventos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        cell.textLabel?.text = events[indexPath.row].title
-        cell.detailTextLabel?.text = String(describing: events[indexPath.row].startDate)
+        if eventos[indexPath.row]["id"] == "" {
+            cell.textLabel?.text = events[indexPath.row].title
+            cell.detailTextLabel?.text = events[indexPath.row].notes
+        }
+        else {
+            cell.textLabel?.text = eventos[indexPath.row]["evento"]! 
+            cell.detailTextLabel?.text = eventos[indexPath.row]["notas"]!
+        }
         let cal = events[indexPath.row].calendar
         let uiColor = UIColor(cgColor: cal.cgColor)
         cell.imageView?.image = UIImage(named: imageColor(color: uiColor.hexRGBColor))
@@ -204,10 +218,6 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         eventoVC.fecha = fecha
         if idx >= 0 && nuevo == false {
             eventoVC.eventid = eventId
-            eventoVC.evento["eventid"] = events[idx].eventIdentifier
-            eventoVC.evento["fecha"] = String(describing: events[idx].startDate)
-            eventoVC.evento["evento"] = events[idx].title
-            eventoVC.evento["calendario"] = events[idx].calendar.title
         }
     }
     
