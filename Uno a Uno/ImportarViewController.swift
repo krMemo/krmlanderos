@@ -93,8 +93,13 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-            cell.textLabel?.text = contactos[indexPath.row]["nombrec"]!
-            cell.accessoryType = contactos[indexPath.row]["importar"] == "1" ? .checkmark : .none
+        cell.textLabel?.text = contactos[indexPath.row]["nombrec"]!
+        for tel in telefonos {
+            if tel["identifier"] == contactos[indexPath.row]["identifier"]! {
+            cell.detailTextLabel?.text = tel["telefono"]
+            }
+        }
+        cell.accessoryType = contactos[indexPath.row]["importar"] == "1" ? .checkmark : .none
         return cell
     }
     
