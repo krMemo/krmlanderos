@@ -60,21 +60,25 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 telefono["identifier"] = contact.identifier
                 telefono["idx"] = String(idx)
                 telefono["telefono"] = phone.value.stringValue
-                telefono["tipo"] = phone.label
+                telefono["tipo"] = removeChars(phone.label!)
+                telefono["principal"] = "0"
                 telefonos.append(telefono)
                 idx += 1
             }
             print(telefonos)
+            print(telefonos.count)
             idx = 0
             for mail in contact.emailAddresses {
                 correo["identifier"] = contact.identifier
                 correo["idx"] = String(idx)
                 correo["correo"] = String(mail.value)
-                correo["tipo"] = mail.label
+                correo["tipo"] = removeChars(mail.label!)
+                correo["principal"] = "0"
                 correos.append(correo)
                 idx += 1
             }
             print(correos)
+            print(correos.count)
             contactos.append(contacto)
         }
     }
@@ -117,21 +121,25 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 xcontact["id"] = id
                 executePersonas("INSERT", persona: xcontact)
                 var xphones: [[String:String]] = []
-                for xphone in telefonos {
+                for var xphone in telefonos {
                     if xphone["identifier"] == xcontact["identifier"] {
+                        xphone["id"] = id
                         xphones.append(xphone)
                     }
                 }
                 update(id, telefonos: xphones)
                 var xmails: [[String:String]] = []
-                for xmail in correos {
+                for var xmail in correos {
                     if xmail["identifier"] == xcontact["identifier"] {
+                        xmail["id"] = id
                         xmails.append(xmail)
                     }
                 }
                 update(id, correos: xmails)
             }
         }
+        mostrarAviso(titulo: "", mensaje: "Los contactos se importaron exitosamente", viewController: self)
+        self.performSegue(withIdentifier: "unwindImportar", sender: self)
     }
     
     @IBAction func importarRef(_ sender: UIButton) {

@@ -24,6 +24,16 @@ func mostrarAviso(titulo: String, mensaje: String, viewController: UIViewControl
     viewController.present(alertController, animated: true, completion: nil)
 }
 
+func removeChars(_ str: String) -> String {
+    var ret: String = str
+    ret = ret.replacingOccurrences(of: "!", with: "")
+    ret = ret.replacingOccurrences(of: "$", with: "")
+    ret = ret.replacingOccurrences(of: "_", with: "")
+    ret = ret.replacingOccurrences(of: "<", with: "")
+    ret = ret.replacingOccurrences(of: ">", with: "")
+    return ret
+}
+
 func isValidEmail(testStr:String) -> Bool {
     let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
     let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
