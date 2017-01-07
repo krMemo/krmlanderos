@@ -45,6 +45,12 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         }
         let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
+        eventos = []
+        for event in events {
+            evento = selectEvento(event.eventIdentifier)
+            print(evento)
+            eventos.append(evento)
+        }
         tableEventos.reloadData()
     }
 
@@ -135,20 +141,8 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let tmpfecha = dayView.date.convertedDate()!
         let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         let tmpevents = eventStore.events(matching: predicate)
-        if tmpevents.count == 1 {
-            let uiColor1 = UIColor(cgColor: tmpevents[0].calendar.cgColor)
-            return [uiColor1]
-        }
-        else if tmpevents.count == 2 {
-            let uiColor1 = UIColor(cgColor: tmpevents[0].calendar.cgColor)
-            let uiColor2 = UIColor(cgColor: tmpevents[1].calendar.cgColor)
-            return [uiColor1, uiColor2]
-        }
-        else if tmpevents.count >= 3 {
-            let uiColor1 = UIColor(cgColor: tmpevents[0].calendar.cgColor)
-            let uiColor2 = UIColor(cgColor: tmpevents[1].calendar.cgColor)
-            let uiColor3 = UIColor(cgColor: tmpevents[2].calendar.cgColor)
-            return [uiColor1, uiColor2, uiColor3]
+        if tmpevents.count >= 1 {
+            return [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)]
         }
         return []
     }

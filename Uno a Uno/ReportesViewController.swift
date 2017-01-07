@@ -20,6 +20,13 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
         webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("reporte.html")))
     }
 
+    @IBAction func recargar(_ sender: UIButton) {
+        dicTojson(dictionary: selectReporte())
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        webViewReporte.delegate = self
+        webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("reporte.html")))
+    }
+    
     func webViewDidStartLoad(_ webView: UIWebView) {
         print("Started to load")
     }

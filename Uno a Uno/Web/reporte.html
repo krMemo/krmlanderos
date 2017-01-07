@@ -14,16 +14,15 @@
 
 	<body>
 
-        <p id="titulo" style="position:absolute;top:-15px;left:0px;">Reporte</p>
+        <p id="titulo" style="position:absolute;top:-25px;left:0px;">Llamadas y citas</p>
         
-        <div id="main" style="position:absolute;top:50px;left:0px;">
+        <div id="main" style="position:absolute;top:30px;left:0px;">
             <div id="container" style="position:absolute;top:0px;left:0px;"></div>
             <div id="controls">
                 <a id="begin" href="#" onClick="irInicio();" style="position:absolute;top:-45px;left:10px;font-size:20px;"> << </a>
                 <a id="back" href="#" onClick="irAnterior();" style="position:absolute;top:-45px;left:100px;font-size:20px;"> < </a>
                 <a id="next" href="#" onClick="irSiguiente();" style="position:absolute;top:-45px;left:225px;font-size:20px;"> > </a>
                 <a id="end" href="#" onClick="irFinal();" style="position:absolute;top:-45px;left:300px;font-size:20px;"> >> </a>
-                <p style="position:absolute;top:550px;left:10px;font-size:15px">Proyecto:<input type="text" id="proyecto"/><input type="button" value="Buscar" onclick="buscarP();"/></p>
                 <div style="height:15px;"></div>
             </div>
             <div id="datos" style="position:absolute;top:5px;left:0px;"></div>
@@ -129,11 +128,6 @@ function setDatos()
     }
     
 }
-        
-function seleccionarProyecto(proyecto)
-{   window.location.assign('proyecto:' + proyecto);
-    return;
-}
 
 function irInicio()
 {	idxMin = 0;
@@ -162,37 +156,6 @@ function irFinal()
 {   idxMin = maximo - columnas;
     idxMax = maximo;
     setDatos();
-}
-
-function buscarP()
-{
-    buscarProyecto($('#proyecto').val());
-}
-
-function buscarProyecto(periodo) {
-    var busqueda = false;
-    for(var i = 0; i < maximo; i++) {
-        if(periodo == datos[i].mes) {
-            if(i<columnas) {
-                idxMin = 0;
-                idxMax = columnas;
-            }
-            else if(i>(maximo - columnas)) {
-                idxMin = maximo - columnas;
-                idxMax = maximo;
-            }
-            else {
-                idxMin = i;
-                idxMax = i + columnas;
-            }
-            busqueda = true;
-        }
-    }
-    if(busqueda)
-        setDatos();
-    else
-        alert("No se encontr\u00f3. Verifique la informaci\u00f3n.");
-    $('#proyecto').val('');
 }
 
 $('#container').highcharts({

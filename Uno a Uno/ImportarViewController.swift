@@ -24,7 +24,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
         tableContactos.dataSource = self
         let contactStore = CNContactStore()
         var allContainers: [CNContainer] = []
-        let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactEmailAddressesKey, CNContactPhoneNumbersKey, CNContactPostalAddressesKey] as [Any]
+        let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactEmailAddressesKey, CNContactPhoneNumbersKey, CNContactPostalAddressesKey] as [Any]
         do {
             allContainers = try contactStore.containers(matching: nil)
         }
@@ -42,6 +42,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error fetching results for container")
             }
         }
+        results.sort{$0.givenName < $1.givenName}
         for contact in results {
             var idx: Int
             var contacto: [String:String] = ["identifier":"", "nombrec":"", "importar":"", "id":"", "nombre":"", "apaterno":"", "amaterno":"", "direccion":"", "notas":"", "estatus":"", "cliente":"", "referencia":""]
@@ -63,6 +64,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 telefonos.append(telefono)
                 idx += 1
             }
+            print(telefonos)
             idx = 0
             for mail in contact.emailAddresses {
                 correo["identifier"] = contact.identifier
@@ -72,6 +74,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 correos.append(correo)
                 idx += 1
             }
+            print(correos)
             contactos.append(contacto)
         }
     }
