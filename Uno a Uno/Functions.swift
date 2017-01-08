@@ -11,6 +11,35 @@ import UIKit
 var permisoCalendario: Bool = false
 var permisoContactos: Bool = false
 
+class CustomCell: UITableViewCell {
+    
+    var lblNombre: UILabel!
+    var lblReferencia: UILabel!
+    var lblEstatus: UILabel!
+    
+    init(frame: CGRect) {
+        super.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        lblNombre = UILabel(frame: CGRect(x: 15, y: 10, width: 200, height: 18))
+        lblNombre.textColor = .black
+        lblNombre.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        addSubview(lblNombre)
+        lblReferencia = UILabel(frame: CGRect(x: 15, y: 30, width: 200, height: 15))
+        lblReferencia.textColor = .darkGray
+        lblReferencia.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
+        addSubview(lblReferencia)
+        lblEstatus = UILabel(frame: CGRect(x: 200, y: 15, width: 150, height: 18))
+        lblEstatus.textColor = .black
+        lblEstatus.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        lblEstatus.textAlignment = .right
+        addSubview(lblEstatus)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 extension String {
     var lang: String {
         return NSLocalizedString(self, comment: "")

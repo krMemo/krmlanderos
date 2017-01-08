@@ -19,6 +19,7 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     var searchActive: Bool = false
     var referidos: [[String:String]] = selectPersonas(esCliente: "0")
     var filtro: [[String:String]] = []
+    let dicEstatus: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "CO":"Contrato", "NI":"No Interesado"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,14 +64,16 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cell = CustomCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
         if searchActive {
-            cell.textLabel?.text = filtro[indexPath.row]["nombrec"]!
-            cell.detailTextLabel?.text = filtro[indexPath.row]["referencia"]!
+            cell.lblNombre.text = filtro[indexPath.row]["nombrec"]!
+            cell.lblReferencia.text = filtro[indexPath.row]["referencia"]!
+            cell.lblEstatus.text = dicEstatus[filtro[indexPath.row]["estatus"]!]
         }
         else {
-            cell.textLabel?.text = referidos[indexPath.row]["nombrec"]!
-            cell.detailTextLabel?.text = referidos[indexPath.row]["referencia"]!
+            cell.lblNombre.text = referidos[indexPath.row]["nombrec"]!
+            cell.lblReferencia.text = referidos[indexPath.row]["referencia"]!
+            cell.lblEstatus.text = dicEstatus[referidos[indexPath.row]["estatus"]!]
         }
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
