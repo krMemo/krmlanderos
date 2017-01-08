@@ -40,6 +40,47 @@ class CustomCell: UITableViewCell {
     
 }
 
+class EventCell: UITableViewCell {
+    
+    var lblNombre: UILabel!
+    var lblReferencia: UILabel!
+    var lblNotas: UILabel!
+    var lblHora: UILabel!
+    var imgCal: UIImageView!
+    
+    init(frame: CGRect) {
+        super.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        lblNombre = UILabel(frame: CGRect(x: 50, y: 10, width: 200, height: 18))
+        lblNombre.textColor = .black
+        lblNombre.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        addSubview(lblNombre)
+        lblReferencia = UILabel(frame: CGRect(x: 50, y: 10, width: 200, height: 18))
+        lblReferencia.textColor = .black
+        lblReferencia.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        addSubview(lblReferencia)
+        lblHora = UILabel(frame: CGRect(x: 50, y: 30, width: 200, height: 15))
+        lblHora.textColor = .darkGray
+        lblHora.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
+        addSubview(lblHora)
+        lblNotas = UILabel(frame: CGRect(x: 100, y: 30, width: 200, height: 15))
+        lblNotas.textColor = .black
+        lblNotas.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        addSubview(lblNotas)
+        imgCal = UIImageView()
+        imgCal.contentMode = .scaleAspectFit
+        imgCal.frame.size.width = 20
+        imgCal.frame.size.height = 20
+        imgCal.frame.origin.x = 15
+        imgCal.frame.origin.y = 12
+        addSubview(imgCal)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 extension String {
     var lang: String {
         return NSLocalizedString(self, comment: "")

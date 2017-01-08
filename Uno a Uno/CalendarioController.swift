@@ -48,7 +48,6 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         eventos = []
         for event in events {
             evento = selectEvento(event.eventIdentifier)
-            print(evento)
             eventos.append(evento)
         }
         tableEventos.reloadData()
@@ -160,18 +159,24 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let cell = EventCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 30))
         if eventos[indexPath.row]["id"] == "" {
-            cell.textLabel?.text = events[indexPath.row].title
-            cell.detailTextLabel?.text = events[indexPath.row].notes
+            cell.lblNombre.text = events[indexPath.row].title
+            cell.lblReferencia.text = ""
+            cell.lblNotas.text = events[indexPath.row].notes
+            let df = DateFormatter()
+            df.dateFormat = "H:mm"
+            let startDate = df.string(from: events[indexPath.row].startDate)
+            cell.lblHora.text = startDate
         }
         else {
-            cell.textLabel?.text = eventos[indexPath.row]["evento"]! 
-            cell.detailTextLabel?.text = eventos[indexPath.row]["notas"]!
+            cell.lblNombre.text = eventos[indexPath.row]["evento"]!
+            //cell.lblReferencia.text = eventos[indexPath.row][""]!
+            cell.lblNotas.text = eventos[indexPath.row]["notas"]!
         }
         let cal = events[indexPath.row].calendar
         let uiColor = UIColor(cgColor: cal.cgColor)
-        cell.imageView?.image = UIImage(named: imageColor(color: uiColor.hexRGBColor))
+        cell.imgCal.image = UIImage(named: imageColor(color: uiColor.hexRGBColor))
         return cell
     }
     

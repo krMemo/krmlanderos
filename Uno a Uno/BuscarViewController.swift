@@ -14,7 +14,7 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var persona: String = ""
     var id: String = ""
     var aceptar: Bool = true
-    var personas = selectAllPersonas()
+    var personas: [[String:String]] = []
     var filtro: [[String:String]] = []
     var searchActive : Bool = false
     
@@ -23,6 +23,8 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        personas = selectAllPersonas()
+        personas.sort {$0["nombre"]! < $1["nombre"]!}
         searchPersonas.delegate = self
         tablePersonas.delegate = self
         tablePersonas.dataSource = self
@@ -35,6 +37,7 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 filtro.append(person)
             }
         }
+        filtro.sort {$0["nombre"]! < $1["nombre"]!}
         tablePersonas.reloadData()
     }
     

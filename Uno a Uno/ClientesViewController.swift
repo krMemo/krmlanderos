@@ -17,7 +17,7 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     var id: String = ""
     var nuevo: Bool = true
     var searchActive: Bool = false
-    var clientes: [[String:String]] = selectPersonas(esCliente: "1")
+    var clientes: [[String:String]] = []
     var filtro: [[String:String]] = []
     let dicEstatus: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "CO":"Contrato", "NI":"No Interesado"]
         
@@ -28,6 +28,13 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         tableClientes.dataSource = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        clientes = selectPersonas(esCliente: "1")
+        clientes.sort {$0["nombrec"]! < $1["nombrec"]!}
+        tableClientes.reloadData()
+        idx = -1
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         filtro = []
         for cliente in clientes {
@@ -35,6 +42,7 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
                 filtro.append(cliente)
             }
         }
+        filtro.sort {$0["nombrec"]! < $1["nombrec"]!}
         tableClientes.reloadData()
         self.view.endEditing(true)
     }

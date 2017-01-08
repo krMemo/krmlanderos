@@ -17,7 +17,7 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     var id: String = ""
     var nuevo: Bool = true
     var searchActive: Bool = false
-    var referidos: [[String:String]] = selectPersonas(esCliente: "0")
+    var referidos: [[String:String]] = []
     var filtro: [[String:String]] = []
     let dicEstatus: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "CO":"Contrato", "NI":"No Interesado"]
     
@@ -27,6 +27,13 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         tableReferidos.delegate = self
         tableReferidos.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        referidos = selectPersonas(esCliente: "0")
+        referidos.sort {$0["nombrec"]! < $1["nombrec"]!}
+        tableReferidos.reloadData()
+        idx = -1
+    }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         filtro = []
@@ -35,6 +42,7 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
                 filtro.append(referido)
             }
         }
+        filtro.sort {$0["nombrec"]! < $1["nombrec"]!}
         tableReferidos.reloadData()
         self.view.endEditing(true)
     }

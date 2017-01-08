@@ -1094,40 +1094,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkB-sX-BRo">
-                                <rect key="frame" x="16" y="28" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkB-sX-BRo">
+                                <rect key="frame" x="16" y="27" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancelar"/>
+                                <state key="normal" title="Regresar"/>
                                 <connections>
                                     <action selector="regresar:" destination="jtN-0q-QcL" eventType="touchUpInside" id="Jdj-Qg-t2E"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeH-9l-3u5">
-                                <rect key="frame" x="16" y="66" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Todos"/>
-                                <connections>
-                                    <action selector="selectTodos:" destination="jtN-0q-QcL" eventType="touchUpInside" id="DNB-dL-3Pa"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHV-Eo-DfJ">
-                                <rect key="frame" x="172" y="28" width="187" height="30"/>
+                                <rect key="frame" x="294" y="28" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Importar como Referidos"/>
+                                <state key="normal" title="Importar"/>
                                 <connections>
-                                    <action selector="importarRef:" destination="jtN-0q-QcL" eventType="touchUpInside" id="fc3-Ry-uyb"/>
+                                    <action selector="importar:" destination="jtN-0q-QcL" eventType="touchUpInside" id="OCo-AG-URW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-m7-IqM">
-                                <rect key="frame" x="184" y="52" width="175" height="30"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rRe-QL-p2s">
+                                <rect key="frame" x="310" y="78" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Importar como Clientes"/>
                                 <connections>
-                                    <action selector="importarCli:" destination="jtN-0q-QcL" eventType="touchUpInside" id="wNr-37-07d"/>
+                                    <action selector="seleccionarTodos:" destination="jtN-0q-QcL" eventType="valueChanged" id="yad-HB-KOm"/>
                                 </connections>
-                            </button>
+                            </switch>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cit-4W-g4t">
-                                <rect key="frame" x="208" y="90" width="144" height="29"/>
+                                <rect key="frame" x="115" y="30" width="144" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Clientes"/>
@@ -1140,6 +1131,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="segCliRef" destination="cit-4W-g4t" id="QmZ-7m-FLc"/>
+                        <outlet property="switchTodos" destination="rRe-QL-p2s" id="Kgd-Gf-66L"/>
                         <outlet property="tableContactos" destination="MyA-V5-AGw" id="Ryf-Tl-yEE"/>
                         <segue destination="Akd-Ow-kvQ" kind="unwind" identifier="unwindImportar" unwindAction="unwindImportarWithSender:" id="yNh-dZ-9Wj"/>
                     </connections>
@@ -1575,7 +1568,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="leo-Tc-2pC" detailTextLabel="nN6-8Y-FfG" rowHeight="46" style="IBUITableViewCellStyleSubtitle" id="O8X-rL-Q87">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="leo-Tc-2pC" detailTextLabel="nN6-8Y-FfG" style="IBUITableViewCellStyleSubtitle" id="O8X-rL-Q87">
                                         <rect key="frame" x="0.0" y="28" width="359" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O8X-rL-Q87" id="PRG-lz-uKW">

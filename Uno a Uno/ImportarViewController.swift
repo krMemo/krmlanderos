@@ -17,6 +17,8 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
     var todos: Bool = false
     
     @IBOutlet weak var tableContactos: UITableView!
+    @IBOutlet weak var segCliRef: UISegmentedControl!
+    @IBOutlet weak var switchTodos: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,14 +110,6 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
         tableContactos.reloadData()
     }
     
-    @IBAction func selectTodos(_ sender: UIButton) {
-        todos = todos ? false : true
-        for x in 0 ..< contactos.count {
-            contactos[x]["importar"] = todos ? "1" : "0"
-        }
-        tableContactos.reloadData()
-    }
-    
     func importar(clientes: Bool) {
         var id: String = ""
         for var xcontact in contactos {
@@ -143,16 +137,19 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 update(id, correos: xmails)
             }
         }
+    }
+    
+    @IBAction func seleccionarTodos(_ sender: UISwitch) {
+        for x in 0 ..< contactos.count {
+            contactos[x]["importar"] = switchTodos.isOn ? "1" : "0"
+        }
+        tableContactos.reloadData()
+    }
+    
+    @IBAction func importar(_ sender: UIButton) {
+        importar(clientes: segCliRef.selectedSegmentIndex == 0 ? true : false)
         mostrarAviso(titulo: "", mensaje: "Los contactos se importaron exitosamente", viewController: self)
         self.performSegue(withIdentifier: "unwindImportar", sender: self)
-    }
-    
-    @IBAction func importarRef(_ sender: UIButton) {
-        importar(clientes: false)
-    }
-    
-    @IBAction func importarCli(_ sender: UIButton) {
-        importar(clientes: true)
     }
 
     @IBAction func regresar(_ sender: UIButton) {

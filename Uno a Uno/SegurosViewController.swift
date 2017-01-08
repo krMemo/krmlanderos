@@ -29,9 +29,6 @@ class SegurosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         seguros = selectSeguros(id)
-        print(seguros)
-        print(idx)
-        print(nuevo)
         if nuevo {
             idx = String(seguros.count)
         }
