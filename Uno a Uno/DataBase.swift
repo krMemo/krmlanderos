@@ -351,11 +351,11 @@ func deleteCorreos(_ id: String) {
 }
 
 func selectEvento(_ id: String) -> [String:String] {
-    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "correo":"", "tipo":"", "fecha":"", "calendario":"", "duracion":"", "evento":"", "ubicacion":"", "notas":""]
+    var evento: [String:String] = ["id":"", "persona":"", "eventid":"", "correo":"", "tipo":"", "fecha":"", "calendario":"", "duracion":"", "evento":"", "ubicacion":"", "notas":"", "referencia":""]
     let db = getDB()
     if db.open() {
-        let query = "SELECT id, persona, eventid, correo, tipo, calendario, fecha, duracion, evento, ubicacion, notas FROM eventos WHERE eventid = '\(id)'"
-        let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
+        var query = "SELECT id, persona, eventid, correo, tipo, calendario, fecha, duracion, evento, ubicacion, notas FROM eventos WHERE eventid = '\(id)'"
+        var results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
         while results.next() == true {
             evento["id"] = results.string(forColumn: "id")
             evento["persona"] = results.string(forColumn: "persona")
@@ -368,6 +368,11 @@ func selectEvento(_ id: String) -> [String:String] {
             evento["duracion"] = results.string(forColumn: "duracion")
             evento["ubicacion"] = results.string(forColumn: "ubicacion")
             evento["notas"] = results.string(forColumn: "notas")
+            query = "SELECT nombre||' '||apaterno||' '||amaterno AS nombrec, referencia FROM personas WHERE id = \(evento["persona"]!)"
+            results = db.executeQuery(query, withArgumentsIn: nil)
+            while results.next() == true {
+                evento["referencia"] = results.string(forColumn: "referencia")
+            }
         }
         db.close()
     }

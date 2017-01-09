@@ -159,20 +159,23 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let df = DateFormatter()
         let cell = EventCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 30))
         if eventos[indexPath.row]["id"] == "" {
             cell.lblNombre.text = events[indexPath.row].title
             cell.lblReferencia.text = ""
             cell.lblNotas.text = events[indexPath.row].notes
-            let df = DateFormatter()
-            df.dateFormat = "H:mm"
-            let startDate = df.string(from: events[indexPath.row].startDate)
-            cell.lblHora.text = startDate
+            df.dateFormat = "HH:mm"
+            cell.lblHora.text = df.string(from: events[indexPath.row].startDate)
         }
         else {
             cell.lblNombre.text = eventos[indexPath.row]["evento"]!
-            //cell.lblReferencia.text = eventos[indexPath.row][""]!
+            cell.lblReferencia.text = eventos[indexPath.row]["referencia"]!
             cell.lblNotas.text = eventos[indexPath.row]["notas"]!
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+            let f = df.date(from: eventos[indexPath.row]["fecha"]!)
+            df.dateFormat = "HH:mm"
+            cell.lblHora.text = df.string(from: f!)
         }
         let cal = events[indexPath.row].calendar
         let uiColor = UIColor(cgColor: cal.cgColor)

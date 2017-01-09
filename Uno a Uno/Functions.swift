@@ -50,19 +50,20 @@ class EventCell: UITableViewCell {
     
     init(frame: CGRect) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        lblNombre = UILabel(frame: CGRect(x: 50, y: 10, width: 200, height: 18))
+        lblNombre = UILabel(frame: CGRect(x: 45, y: 10, width: 150, height: 18))
         lblNombre.textColor = .black
         lblNombre.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         addSubview(lblNombre)
-        lblReferencia = UILabel(frame: CGRect(x: 50, y: 10, width: 200, height: 18))
-        lblReferencia.textColor = .black
-        lblReferencia.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        lblReferencia = UILabel(frame: CGRect(x: 230, y: 10, width: 100, height: 18))
+        lblReferencia.textColor = .darkGray
+        lblReferencia.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
+        lblReferencia.textAlignment = .right
         addSubview(lblReferencia)
-        lblHora = UILabel(frame: CGRect(x: 50, y: 30, width: 200, height: 15))
+        lblHora = UILabel(frame: CGRect(x: 45, y: 30, width: 200, height: 15))
         lblHora.textColor = .darkGray
         lblHora.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         addSubview(lblHora)
-        lblNotas = UILabel(frame: CGRect(x: 100, y: 30, width: 200, height: 15))
+        lblNotas = UILabel(frame: CGRect(x: 85, y: 30, width: 250, height: 15))
         lblNotas.textColor = .black
         lblNotas.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         addSubview(lblNotas)
