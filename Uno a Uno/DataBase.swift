@@ -355,7 +355,7 @@ func selectEvento(_ id: String) -> [String:String] {
     let db = getDB()
     if db.open() {
         var query = "SELECT id, persona, eventid, correo, tipo, calendario, fecha, duracion, evento, ubicacion, notas FROM eventos WHERE eventid = '\(id)'"
-        var results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
+        let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
         while results.next() == true {
             evento["id"] = results.string(forColumn: "id")
             evento["persona"] = results.string(forColumn: "persona")
@@ -368,10 +368,10 @@ func selectEvento(_ id: String) -> [String:String] {
             evento["duracion"] = results.string(forColumn: "duracion")
             evento["ubicacion"] = results.string(forColumn: "ubicacion")
             evento["notas"] = results.string(forColumn: "notas")
-            query = "SELECT nombre||' '||apaterno||' '||amaterno AS nombrec, referencia FROM personas WHERE id = \(evento["persona"]!)"
-            results = db.executeQuery(query, withArgumentsIn: nil)
-            while results.next() == true {
-                evento["referencia"] = results.string(forColumn: "referencia")
+            query = "SELECT referencia FROM personas WHERE id = \(evento["persona"]!)"
+            let results1 = db.executeQuery(query, withArgumentsIn: nil)
+            while results1?.next() == true {
+                evento["referencia"] = results1?.string(forColumn: "referencia")
             }
         }
         db.close()

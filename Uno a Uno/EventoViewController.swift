@@ -65,6 +65,9 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         if !nuevo {
             cargaDatos()
         }
+        else {
+            datepickerFecha.setDate(fecha, animated: true)
+        }
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50))
         toolBar.barStyle = UIBarStyle.default
         toolBar.items = [
@@ -101,7 +104,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             textPersona.text = event?.title
             textUbicacion.text = event?.location
             textNotas.text = event?.notes
-            datepickerFecha.setDate(fecha, animated: true)
+            datepickerFecha.setDate((event?.startDate)!, animated: true)
             carga(calendario: (event?.calendar.title)!, tipo: "")
         }
         else {
@@ -111,6 +114,10 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             textNotas.text = tmpevento["notas"]
             textUbicacion.text = tmpevento["ubicacion"]
             carga(calendario: tmpevento["calendario"]!, tipo: tmpevento["tipo"]!)
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+            let f = df.date(from: tmpevento["fecha"]!)
+            datepickerFecha.setDate(f!, animated: true)
         }
     }
     
