@@ -96,9 +96,8 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     }
     
     func cargaDatos() {
-        print(eventid)
         let tmpevento = selectEvento(eventid)
-        print(tmpevento)
+        print("carga: \(tmpevento)")
         if tmpevento["id"] == "" {
             let event = eventStore.event(withIdentifier: eventid)
             textPersona.text = event?.title
@@ -109,16 +108,21 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
         else {
             id = tmpevento["id"]!
+            print(id)
+            idpersona = tmpevento["persona"]!
+            print(idpersona)
             textPersona.text = tmpevento["evento"]
             textCorreo.text = tmpevento["correo"]
             textNotas.text = tmpevento["notas"]
             textUbicacion.text = tmpevento["ubicacion"]
+            labelReferencia.text = "Referencia: " + tmpevento["referencia"]!
             carga(calendario: tmpevento["calendario"]!, tipo: tmpevento["tipo"]!)
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
             let f = df.date(from: tmpevento["fecha"]!)
             datepickerFecha.setDate(f!, animated: true)
         }
+        datepickerFecha.isUserInteractionEnabled = false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -202,12 +206,9 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             event!.addAlarm(EKAlarm.init(absoluteDate: datepickerAlarma.date))
             do {
                 try eventStore.save((event)!, span: .thisEvent)
-                mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
             }
             catch {
-                mostrarAviso(titulo: "ATENCION".lang, mensaje: "No se guardó el evento", viewController: self)
             }
-            print(event!.eventIdentifier as Any)
             evento["eventid"] = event?.eventIdentifier
             evento["persona"] = idpersona
             evento["tipo"] = dicT[dicTipo[pickerTipo.selectedRow(inComponent: 0)]!]
@@ -221,24 +222,43 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             if id == "" {
                 evento["id"] = selectMaxId(tabla: "eventos")
             }
+            else {
+                evento["id"] = id
+            }
             if nuevo {
                 print("INSERT \(evento)")
                 executeEventos(accion: "INSERT", evento: evento)
+                mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
             }
             else {
                 if id == "" {
                     print("INSERT \(evento)")
                     executeEventos(accion: "INSERT", evento: evento)
+                    mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
                 }
                 else {
                     print("UPDATE \(evento)")
                     executeEventos(accion: "UPDATE", evento: evento)
+                    mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se guardó el evento exitosamente", viewController: self)
                 }
             }
             performSegue(withIdentifier: "unwindEvento", sender: self)
         }
     }
 
+    @IBAction func borrar(_ sender: UIButton) {
+        evento["id"] = id
+        /*let event = eventStore.event(withIdentifier: eventid)
+        do {
+            try eventStore.remove(event!, span: .thisEvent)
+        }
+        catch {
+        }*/
+        executeEventos(accion: "DELETE", evento: evento)
+        mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se eliminó el evento exitosamente", viewController: self)
+        performSegue(withIdentifier: "unwindEvento", sender: self)
+    }
+    
     func getSeg() -> Int {
         var segundos: Int = 0
         if pickerMHD.selectedRow(inComponent: 0) == 0 {
@@ -250,7 +270,6 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         else if pickerMHD.selectedRow(inComponent: 0) == 2 {
             segundos = Int(textDuracion.text!)! * 60 * 60 * 24
         }
-        print(segundos)
         return segundos
     }
     

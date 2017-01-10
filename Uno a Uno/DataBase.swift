@@ -391,6 +391,7 @@ func executeEventos(accion: String, evento: [String:String]) {
         sql = "UPDATE eventos SET persona = \(evento["persona"]!), eventid = '\(evento["eventid"]!)', tipo = '\(evento["tipo"]!)', calendario = '\(evento["calendario"]!)', fecha = '\(evento["fecha"]!)', duracion = '\(evento["duracion"]!)', evento = '\(evento["evento"]!)', correo = '\(evento["correo"]!)', ubicacion = '\(evento["ubicacion"]!)', notas = '\(evento["notas"]!)' WHERE id = \(evento["id"]!)"
     }
     else if accion == "DELETE" {
+        print(evento["id"])
         sql = "DELETE FROM eventos WHERE id = \(evento["id"]!)"
     }
     let db = getDB()
