@@ -134,6 +134,9 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
         }
         update(id, telefonos: telefonos)
         update(id, correos: correos)
+        if referido["referencia"] != "" {
+            addHistorial(id, estatus: "REF")
+        }
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindReferido", sender: self)
     }

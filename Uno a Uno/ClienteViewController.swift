@@ -115,7 +115,6 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func guardarCliente(_ sender: UIButton) {
-        print(cliente["estatus"]!)
         cliente["id"] = id
         cliente["nombre"] = textNombre.text
         cliente["apaterno"] = textApaterno.text
@@ -123,6 +122,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         cliente["direccion"] = textDireccion.text
         cliente["notas"] = textNotas.text
         cliente["referencia"] = textReferencia.text
+        cliente["estatus"] = "CO"
         cliente["cliente"] = "1"
         if nuevo {
             executePersonas("INSERT", persona: cliente)
@@ -144,6 +144,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         update(id, telefonos: telefonos)
         update(id, correos: correos)
+        addHistorial(id, estatus: "CLI")
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindCliente", sender: self)
     }

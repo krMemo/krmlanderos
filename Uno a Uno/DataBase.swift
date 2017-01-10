@@ -411,14 +411,14 @@ func executeEventos(accion: String, evento: [String:String]) {
 
 func selectHistorial(_ id: String) -> [[String:String]] {
     var hist: [[String:String]] = []
-    var x: [String:String] = ["estatus":"", "fecha":""]
+    var h: [String:String] = ["estatus":"", "fecha":""]
     let db = getDB()
     if db.open() {
         let results: FMResultSet = db.executeQuery("SELECT estatus, fecha FROM historial WHERE id = \(id)", withArgumentsIn: nil)
         while results.next() == true {
-            x["estatus"] = results.string(forColumn: "estatus")
-            x["fecha"] = results.string(forColumn: "fecha")
-            hist.append(x)
+            h["estatus"] = results.string(forColumn: "estatus")
+            h["fecha"] = results.string(forColumn: "fecha")
+            hist.append(h)
         }
         db.close()
     }
@@ -429,16 +429,21 @@ func selectHistorial(_ id: String) -> [[String:String]] {
 }
 
 func addHistorial(_ id: String, estatus: String) {
-    let sql: String = "INSERT INTO historial (id, estatus, fecha) VALUES (\(id), '\(estatus)', '\(Date())')"
     let db = getDB()
     if db.open() {
-        let result = db.executeStatements(sql)
-        if !result {
-            print("Error: \(db.lastErrorMessage())")
+        var num: String = ""
+        let results: FMResultSet = db.executeQuery("SELECT COUNT(*) AS num FROM historial WHERE estatus IN ('CLI', 'REF') AND id = \(id)", withArgumentsIn: nil)
+        while results.next() == true {
+            num = results.string(forColumn: "num")
         }
-        else {
-            db.close()
+        if num == "0" {
+            let sql: String = "INSERT INTO historial (id, estatus, fecha) VALUES (\(id), '\(estatus)', '\(Date())')"
+            let result = db.executeStatements(sql)
+            if !result {
+                print("Error: \(db.lastErrorMessage())")
+            }
         }
+        db.close()
     }
     else {
         print("Error: \(db.lastErrorMessage())")
@@ -556,17 +561,17 @@ func reporteClientesReferidos() -> [[String:String]] {
     
     if db.open() {
         for i in (-11 ... 0).reversed() {
-            query = "SELECT COUNT(*) AS citas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'CT' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
+            query = "SELECT COUNT(*) AS clientes, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'CLI' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
-                evento["clientes"] = results.string(forColumn: "citas")
+                evento["clientes"] = results.string(forColumn: "clientes")
                 date = dateFormat.date(from: results.string(forColumn: "ini"))!
                 evento["mes"] = mesFormat.string(from: date)
             }
-            query = "SELECT COUNT(*) AS llamadas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'LL' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
+            query = "SELECT COUNT(*) AS referidos, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'REF' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
-                evento["referidos"] = results.string(forColumn: "llamadas")
+                evento["referidos"] = results.string(forColumn: "referidos")
             }
             eventos.append(evento)
         }
