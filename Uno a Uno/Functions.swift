@@ -111,7 +111,7 @@ func isValidEmail(testStr:String) -> Bool {
     return emailTest.evaluate(with: testStr)
 }
 
-func dicTojson(dictionary: [[String:String]]) {
+func dicTojson(archivo: String, _ dictionary: [[String:String]]) {
     let dict = ["datos": dictionary]
     do {
         let jsonData = try JSONSerialization.data(withJSONObject: dict, options:.prettyPrinted)
@@ -119,13 +119,13 @@ func dicTojson(dictionary: [[String:String]]) {
         let json: String = "json = \(jsonText)"
         let docPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         do {
-            try json.write(to: docPath.appendingPathComponent("datos.json"), atomically: false, encoding: String.Encoding.utf8)
+            try json.write(to: docPath.appendingPathComponent(archivo), atomically: false, encoding: String.Encoding.utf8)
         }
         catch {
             print("No se escribió la información")
         }
         do {
-            let text = try String(contentsOf: docPath.appendingPathComponent("datos.json"), encoding: String.Encoding.utf8)
+            let text = try String(contentsOf: docPath.appendingPathComponent(archivo), encoding: String.Encoding.utf8)
             print(text)
         }
         catch {
@@ -137,7 +137,7 @@ func dicTojson(dictionary: [[String:String]]) {
 }
     
 func writeFiles() {
-    let files = ["reporte.html", "jquery.js", "highcharts.js", "touchSwipe.js", "transform.js", "styles.css"]
+    let files = ["repLlamadasCitas.html", "repClientesReferidos.html", "jquery.js", "highcharts.js", "touchSwipe.js", "transform.js", "styles.css"]
     let x = FileManager.default
     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     let bundlePath = Bundle.main.resourceURL!
@@ -146,7 +146,6 @@ func writeFiles() {
             try x.copyItem(at: bundlePath.appendingPathComponent("Web/" + file), to: documentPath.appendingPathComponent(file))
         }
         catch {
-            print("Error en la copia de archivos.")
         }
     }
 }

@@ -11,20 +11,38 @@ import UIKit
 class ReportesViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webViewReporte: UIWebView!
+    @IBOutlet weak var segReportes: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dicTojson(dictionary: selectReporte())
+        dicTojson(archivo: "LlamadasCitas.json", reporteLlamadasCitas())
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         webViewReporte.delegate = self
-        webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("reporte.html")))
+        webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repLlamadasCitas.html")))
+    }
+    
+    @IBAction func selectReporte(_ sender: UISegmentedControl) {
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        if segReportes.selectedSegmentIndex == 0 {
+            dicTojson(archivo: "LlamadasCitas.json", reporteLlamadasCitas())
+            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repLlamadasCitas.html")))
+        }
+        else if segReportes.selectedSegmentIndex == 1 {
+            dicTojson(archivo: "ClientesReferidos.json", reporteClientesReferidos())
+            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repClientesReferidos.html")))
+        }
     }
 
     @IBAction func recargar(_ sender: UIButton) {
-        dicTojson(dictionary: selectReporte())
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        webViewReporte.delegate = self
-        webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("reporte.html")))
+        if segReportes.selectedSegmentIndex == 0 {
+            dicTojson(archivo: "LlamadasCitas.json", reporteLlamadasCitas())
+            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repLlamadasCitas.html")))
+        }
+        else if segReportes.selectedSegmentIndex == 1 {
+            dicTojson(archivo: "ClientesReferidos.json", reporteClientesReferidos())
+            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repClientesReferidos.html")))
+        }
     }
     
     func webViewDidStartLoad(_ webView: UIWebView) {

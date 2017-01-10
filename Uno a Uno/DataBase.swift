@@ -500,7 +500,7 @@ func update(_ id: String, seguros: [[String:String]]) {
     }
 }
 
-func selectReporte() -> [[String:String]] {
+func reporteLlamadasCitas() -> [[String:String]] {
     var query: String = ""
     var results: FMResultSet
     var eventos: [[String:String]] = []
@@ -528,6 +528,45 @@ func selectReporte() -> [[String:String]] {
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
                 evento["llamadas"] = results.string(forColumn: "llamadas")
+            }
+            eventos.append(evento)
+        }
+        db.close()
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+    return eventos
+}
+
+func reporteClientesReferidos() -> [[String:String]] {
+    var query: String = ""
+    var results: FMResultSet
+    var eventos: [[String:String]] = []
+    var evento: [String:String] = ["mes":"", "clientes":"", "referidos":""]
+    let db = getDB()
+    
+    var date = Date()
+    let dateFormat = DateFormatter()
+    dateFormat.dateFormat = "yyyy-MM-dd"
+    let mesFormat = DateFormatter()
+    mesFormat.dateFormat = "MMM"
+    let anioFormat = DateFormatter()
+    anioFormat.dateFormat = "yyyy"
+    
+    if db.open() {
+        for i in (-11 ... 0).reversed() {
+            query = "SELECT COUNT(*) AS citas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'CT' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
+            results = db.executeQuery(query, withArgumentsIn: nil)
+            while results.next() == true {
+                evento["clientes"] = results.string(forColumn: "citas")
+                date = dateFormat.date(from: results.string(forColumn: "ini"))!
+                evento["mes"] = mesFormat.string(from: date)
+            }
+            query = "SELECT COUNT(*) AS llamadas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'LL' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
+            results = db.executeQuery(query, withArgumentsIn: nil)
+            while results.next() == true {
+                evento["referidos"] = results.string(forColumn: "llamadas")
             }
             eventos.append(evento)
         }
