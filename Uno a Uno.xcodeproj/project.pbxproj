@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC11F0F81DE74BAA008A9232 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */; };
+		FC1627CC1E26ABB4003BAE04 /* EventoDetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1627CB1E26ABB4003BAE04 /* EventoDetViewController.swift */; };
 		FC207C001D98247400AC15F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC207BFF1D98247400AC15F2 /* Assets.xcassets */; };
 		FC226B551DA0F7D500905277 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC226B541DA0F7D500905277 /* Functions.swift */; };
 		FC25E97E1E00EF4800F803B0 /* LlamadaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC25E97D1E00EF4800F803B0 /* LlamadaViewController.swift */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		FC11F0F71DE74BAA008A9232 /* BuscarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuscarViewController.swift; sourceTree = "<group>"; };
+		FC1627CB1E26ABB4003BAE04 /* EventoDetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventoDetViewController.swift; sourceTree = "<group>"; };
 		FC207BFF1D98247400AC15F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC226B541DA0F7D500905277 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		FC25E97D1E00EF4800F803B0 /* LlamadaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LlamadaViewController.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				FC5DCB781DB8450300361ED4 /* MainTabBarController.swift */,
 				FC5A66921DA5810C00A62D26 /* CalendarioController.swift */,
 				FC94586C1DCB2995000DB971 /* EventoViewController.swift */,
+				FC1627CB1E26ABB4003BAE04 /* EventoDetViewController.swift */,
 				FC5DCB821DC01E2A00361ED4 /* ClientesViewController.swift */,
 				FC6DD81D1DC3C76500D46AA1 /* ClienteViewController.swift */,
 				FCA966AC1E1436D9006E4F10 /* ClienteDetViewController.swift */,
@@ -362,6 +365,7 @@
 				FC5A67961DA6FA4100A62D26 /* CVScrollDirection.swift in Sources */,
 				FC722DB71DB00B2B00A39926 /* FMDatabase.m in Sources */,
 				FC5A67861DA6FA4100A62D26 /* CVCalendarMonthContentViewController.swift in Sources */,
+				FC1627CC1E26ABB4003BAE04 /* EventoDetViewController.swift in Sources */,
 				FC2898421D9C78E7007212B9 /* RegistroViewController.swift in Sources */,
 				FC722DBB1DB00B2B00A39926 /* FMResultSet.m in Sources */,
 				FC25E97E1E00EF4800F803B0 /* LlamadaViewController.swift in Sources */,
@@ -556,7 +560,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = N5H3628677;
 				INFOPLIST_FILE = "Uno a Uno/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unoauno.unoauno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -577,7 +581,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = N5H3628677;
 				INFOPLIST_FILE = "Uno a Uno/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unoauno.unoauno;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     var idx: Int = -1
     var eventId: String = ""
@@ -177,10 +177,25 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             df.dateFormat = "HH:mm"
             cell.lblHora.text = df.string(from: f!)
         }
+        
         let cal = events[indexPath.row].calendar
-        let uiColor = UIColor(cgColor: cal.cgColor)
-        cell.imgCal.image = UIImage(named: imageColor(color: uiColor.hexRGBColor))
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 25,y: 22), radius: CGFloat(10), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.fillColor = cal.cgColor
+        shapeLayer.strokeColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 1
+        cell.layer.addSublayer(shapeLayer)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(tap)
+        
         return cell
+    }
+    
+    func doubleTapped() {
+        performSegue(withIdentifier: "segueEventoDet", sender: self)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -215,11 +230,19 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let eventoVC = segue.destination as! EventoViewController
-        eventoVC.nuevo = nuevo
-        eventoVC.fecha = fecha
-        if idx >= 0 && nuevo == false {
-            eventoVC.eventid = eventId
+        if segue.identifier == "segueEvento" {
+            let eventoVC = segue.destination as! EventoViewController
+            eventoVC.nuevo = nuevo
+            eventoVC.fecha = fecha
+            if idx >= 0 && nuevo == false {
+                eventoVC.eventid = eventId
+            }
+        }
+        else if segue.identifier == "segueEventoDet" {
+            let eventodVC = segue.destination as! EventoDetViewController
+            if idx >= 0 {
+                eventodVC.id = eventId
+            }
         }
     }
     
@@ -230,6 +253,9 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         events = eventStore.events(matching: predicate)
         tableEventos.reloadData()
         calendarView.toggleViewWithDate(tmpfecha)
+    }
+    
+    @IBAction func unwindEventoDet(sender: UIStoryboardSegue) {
     }
     
     override func didReceiveMemoryWarning() {

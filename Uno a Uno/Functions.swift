@@ -67,13 +67,6 @@ class EventCell: UITableViewCell {
         lblNotas.textColor = .black
         lblNotas.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         addSubview(lblNotas)
-        imgCal = UIImageView()
-        imgCal.contentMode = .scaleAspectFit
-        imgCal.frame.size.width = 20
-        imgCal.frame.size.height = 20
-        imgCal.frame.origin.x = 15
-        imgCal.frame.origin.y = 12
-        addSubview(imgCal)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -155,46 +148,4 @@ func fechaAct() -> Date {
     let dateComponents = calendar.dateComponents([.day, .month, .year], from: Date())
     let date = calendar.date(from: dateComponents)!
     return date
-}
-
-func imageColor(color: String) -> String {
-    var img: String
-    switch color {
-    case "#1BADF8":
-        img = "cblue"
-    case "#A2845E":
-        img = "cbrown"
-    case "#63DA38":
-        img = "cgreen"
-    case "#FF9500":
-        img = "corange"
-    case "#CC73E1":
-        img = "cpurple"
-    case "#FF2968":
-        img = "cred"
-    case "#FFCC00":
-        img = "cyellow"
-    default:
-        img = ""
-    }
-    return img
-}
-
-extension UIColor {
-    var rgbComponents:(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
-        if getRed(&r, green: &g, blue: &b, alpha: &a) {
-            return (r,g,b,a)
-        }
-        return (0,0,0,0)
-    }
-    var hexRGBColor:String {
-        return String(format: "#%02X%02X%02X", Int(rgbComponents.red * 255), Int(rgbComponents.green * 255),Int(rgbComponents.blue * 255))
-    }
-    var hexRGBaColor:String {
-        return String(format: "#%02X%02X%02X%02X", Int(rgbComponents.red * 255), Int(rgbComponents.green * 255),Int(rgbComponents.blue * 255),Int(rgbComponents.alpha * 255) )
-    }
 }
