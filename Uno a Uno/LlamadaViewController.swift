@@ -42,7 +42,9 @@ class LlamadaViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let telefono = telefonos[indexPath.row]["telefono"]!
+        var telefono = telefonos[indexPath.row]["telefono"]!
+        telefono = removeChars(telefono)
+        telefono = telefono.removeWhitespace()
         if let url = NSURL(string: "tel://\(telefono)") {
             UIApplication.shared.open(url as URL, options: [:], completionHandler: {
                 (success) in

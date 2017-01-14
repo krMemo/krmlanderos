@@ -55,23 +55,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJn-Ej-jDR">
-                                <rect key="frame" x="10" y="30" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="phone">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="llamar:" destination="pUX-yR-ssj" eventType="touchUpInside" id="r14-rg-UC9"/>
-                                </connections>
-                            </button>
                             <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Buscar" translatesAutoresizingMaskIntoConstraints="NO" id="6z0-MM-Fjd">
                                 <rect key="frame" x="8" y="66" width="359" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsM-t6-OpM">
-                                <rect key="frame" x="294" y="26" width="30" height="30"/>
+                                <rect key="frame" x="284" y="26" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,13 +71,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wQ-pk-lLn">
-                                <rect key="frame" x="342" y="30" width="24" height="24"/>
+                                <rect key="frame" x="335" y="28" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="edit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="editCliente:" destination="pUX-yR-ssj" eventType="touchUpInside" id="ufO-xN-bZg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJn-Ej-jDR">
+                                <rect key="frame" x="16" y="28" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="phone">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="llamar:" destination="pUX-yR-ssj" eventType="touchUpInside" id="r14-rg-UC9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1148,18 +1148,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsJ-I4-Djt">
-                                <rect key="frame" x="342" y="30" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="edit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editReferido:" destination="PBE-SH-cOZ" eventType="touchUpInside" id="DEp-pN-741"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijy-78-c5V">
-                                <rect key="frame" x="10" y="30" width="22" height="22"/>
+                                <rect key="frame" x="16" y="28" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="phone"/>
                                 <connections>
@@ -1199,13 +1189,23 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGG-O8-xWL">
-                                <rect key="frame" x="294" y="26" width="30" height="30"/>
+                                <rect key="frame" x="284" y="26" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addReferido:" destination="PBE-SH-cOZ" eventType="touchUpInside" id="lu0-WS-xhs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsJ-I4-Djt">
+                                <rect key="frame" x="335" y="28" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="edit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editReferido:" destination="PBE-SH-cOZ" eventType="touchUpInside" id="DEp-pN-741"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1221,7 +1221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMx-wd-pFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="72"/>
+            <point key="canvasLocation" x="1869.5999999999999" y="71.514242878560722"/>
         </scene>
         <!--Reportes-->
         <scene sceneID="Hi0-Ko-R24">
@@ -1314,6 +1314,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Configuración" image="iconCon" selectedImage="iconConS" id="iHA-a2-nPK" userLabel="Configuración"/>
                     <connections>
+                        <outlet property="buttonImportar" destination="ICf-6h-Oiq" id="vch-jU-nxY"/>
                         <segue destination="GRw-9c-Ln8" kind="unwind" identifier="unwindConfiguracion" unwindAction="unwindConfiguracionWithSender:" id="YEP-22-3ht"/>
                         <segue destination="jtN-0q-QcL" kind="show" identifier="segueImportar" id="elZ-WF-ngl"/>
                     </connections>

@@ -63,7 +63,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         permisoContactos = true
                     }
                     else {
-                        permisoContactos = true
+                        permisoContactos = false
                     }
                 })
             }

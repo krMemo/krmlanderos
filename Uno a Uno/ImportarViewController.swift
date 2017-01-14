@@ -98,7 +98,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
         cell.textLabel?.text = contactos[indexPath.row]["nombrec"]!
         for tel in telefonos {
             if tel["identifier"] == contactos[indexPath.row]["identifier"]! {
-            cell.detailTextLabel?.text = tel["telefono"]
+                cell.detailTextLabel?.text = tel["telefono"]
             }
         }
         cell.accessoryType = contactos[indexPath.row]["importar"] == "1" ? .checkmark : .none

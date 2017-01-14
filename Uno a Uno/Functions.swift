@@ -59,11 +59,11 @@ class EventCell: UITableViewCell {
         lblReferencia.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         lblReferencia.textAlignment = .right
         addSubview(lblReferencia)
-        lblHora = UILabel(frame: CGRect(x: 45, y: 30, width: 200, height: 15))
+        lblHora = UILabel(frame: CGRect(x: 45, y: 30, width: 100, height: 15))
         lblHora.textColor = .darkGray
         lblHora.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         addSubview(lblHora)
-        lblNotas = UILabel(frame: CGRect(x: 85, y: 30, width: 250, height: 15))
+        lblNotas = UILabel(frame: CGRect(x: 110, y: 30, width: 230, height: 15))
         lblNotas.textColor = .black
         lblNotas.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         addSubview(lblNotas)
@@ -78,6 +78,9 @@ class EventCell: UITableViewCell {
 extension String {
     var lang: String {
         return NSLocalizedString(self, comment: "")
+    }
+    func removeWhitespace() -> String {
+        return self.components(separatedBy: .whitespaces).joined(separator: "")
     }
 }
 
@@ -95,6 +98,8 @@ func removeChars(_ str: String) -> String {
     ret = ret.replacingOccurrences(of: "_", with: "")
     ret = ret.replacingOccurrences(of: "<", with: "")
     ret = ret.replacingOccurrences(of: ">", with: "")
+    ret = ret.replacingOccurrences(of: "(", with: "")
+    ret = ret.replacingOccurrences(of: ")", with: "")
     return ret
 }
 

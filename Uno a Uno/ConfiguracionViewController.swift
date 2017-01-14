@@ -10,12 +10,19 @@ import UIKit
 
 class ConfiguracionViewController: UIViewController {
 
+    @IBOutlet weak var buttonImportar: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func importarContactos(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "segueImportar", sender: self)
+        if permisoContactos {
+            self.performSegue(withIdentifier: "segueImportar", sender: self)
+        }
+        else {
+            mostrarAviso(titulo: "Importante", mensaje: "Debe autorizar el acceso a sus contactos", viewController: self)
+        }
     }
 
     @IBAction func cerrarSesion(_ sender: UIButton) {
