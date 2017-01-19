@@ -107,9 +107,9 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueSeguros" {
+            let segurosVC = segue.destination as! SegurosViewController
+            segurosVC.nuevo = nuevoSeguro
             if idx >= 0 {
-                let segurosVC = segue.destination as! SegurosViewController
-                segurosVC.nuevo = nuevoSeguro
                 segurosVC.id = id
                 segurosVC.idx = String(idx)
             }

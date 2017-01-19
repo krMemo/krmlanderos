@@ -137,17 +137,18 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
+        var calendarColor: [UIColor] = []
         let tmpfecha = dayView.date.convertedDate()!
         let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         let tmpevents = eventStore.events(matching: predicate)
         if tmpevents.count >= 1 {
-            return [UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)]
+            calendarColor.append(UIColor.init(red: 0/255, green: 127/255, blue: 255/255, alpha: 1))
         }
-        return []
+        return calendarColor
     }
     
     func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-        return 16
+        return 17
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

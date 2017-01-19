@@ -28,11 +28,11 @@ class SegurosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        seguros = selectSeguros(id)
         if nuevo {
             idx = String(seguros.count)
         }
         else {
+            seguros = selectSeguros(id)
             for xseguro in seguros {
                 if xseguro["idx"] == idx {
                     txtAseguradora.text = xseguro["aseguradora"]

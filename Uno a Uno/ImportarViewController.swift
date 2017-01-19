@@ -62,25 +62,21 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 telefono["identifier"] = contact.identifier
                 telefono["idx"] = String(idx)
                 telefono["telefono"] = phone.value.stringValue
-                telefono["tipo"] = removeChars(phone.label!)
-                telefono["principal"] = "0"
+                telefono["tipo"] = removeChars(phone.label ?? "phone")
+                telefono["principal"] = idx == 0 ? "1" : "0"
                 telefonos.append(telefono)
                 idx += 1
             }
-            print(telefonos)
-            print(telefonos.count)
             idx = 0
             for mail in contact.emailAddresses {
                 correo["identifier"] = contact.identifier
                 correo["idx"] = String(idx)
                 correo["correo"] = String(mail.value)
-                correo["tipo"] = removeChars(mail.label!)
-                correo["principal"] = "0"
+                correo["tipo"] = removeChars(mail.label ?? "email")
+                correo["principal"] = idx == 0 ? "1" : "0"
                 correos.append(correo)
                 idx += 1
             }
-            print(correos)
-            print(correos.count)
             contactos.append(contacto)
         }
     }

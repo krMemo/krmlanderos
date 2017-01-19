@@ -309,11 +309,12 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "Enrique Landeros Reyes";
+				ORGANIZATIONNAME = UNOaUNO;
 				TargetAttributes = {
 					FC70B4261D7F7ECC00728E8A = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
