@@ -109,8 +109,8 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if segue.identifier == "segueSeguros" {
             let segurosVC = segue.destination as! SegurosViewController
             segurosVC.nuevo = nuevoSeguro
+            segurosVC.id = id
             if idx >= 0 {
-                segurosVC.id = id
                 segurosVC.idx = String(idx)
             }
         }

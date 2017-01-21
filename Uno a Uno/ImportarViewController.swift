@@ -92,11 +92,6 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = contactos[indexPath.row]["nombrec"]!
-        for tel in telefonos {
-            if tel["identifier"] == contactos[indexPath.row]["identifier"]! {
-                cell.detailTextLabel?.text = tel["telefono"]
-            }
-        }
         cell.accessoryType = contactos[indexPath.row]["importar"] == "1" ? .checkmark : .none
         return cell
     }
@@ -146,7 +141,7 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func importar(_ sender: UIButton) {
-        importar(clientes: segCliRef.selectedSegmentIndex == 0 ? true : false)
+        importar(clientes: segCliRef.selectedSegmentIndex == 0 ? false : true)
         mostrarAviso(titulo: "", mensaje: "Los contactos se importaron exitosamente", viewController: self)
         self.performSegue(withIdentifier: "unwindImportar", sender: self)
     }

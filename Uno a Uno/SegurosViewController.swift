@@ -19,20 +19,21 @@ class SegurosViewController: UIViewController {
     @IBOutlet weak var txtFormaPago: UITextField!
     @IBOutlet weak var txtInstitucion: UITextField!
     @IBOutlet weak var txtPeriodicidad: UITextField!
+    @IBOutlet weak var txtMonto: UITextField!
     
     var id: String = ""
     var idx: String = ""
     var nuevo: Bool = true
     var seguros: [[String:String]] = []
-    var seguro: [String:String] = ["id":"", "idx":"", "aseguradora":"", "planseguro":"", "referencia":"", "poliza":"", "vigencia":"", "plazo":"", "formapago":"", "institucion":"", "periodicidad":""]
+    var seguro: [String:String] = ["id":"", "idx":"", "aseguradora":"", "planseguro":"", "referencia":"", "poliza":"", "vigencia":"", "plazo":"", "formapago":"", "institucion":"", "periodicidad":"", "monto":""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        seguros = selectSeguros(id)
         if nuevo {
             idx = String(seguros.count)
         }
         else {
-            seguros = selectSeguros(id)
             for xseguro in seguros {
                 if xseguro["idx"] == idx {
                     txtAseguradora.text = xseguro["aseguradora"]
@@ -44,6 +45,7 @@ class SegurosViewController: UIViewController {
                     txtFormaPago.text = xseguro["formapago"]
                     txtInstitucion.text = xseguro["institucion"]
                     txtPeriodicidad.text = xseguro["periodicidad"]
+                    txtMonto.text = xseguro["monto"]
                 }
             }
         }
@@ -62,6 +64,7 @@ class SegurosViewController: UIViewController {
             seguro["formapago"] = txtFormaPago.text
             seguro["institucion"] = txtInstitucion.text
             seguro["periodicidad"] = txtPeriodicidad.text
+            seguro["monto"] = txtMonto.text
             seguros.append(seguro)
         }
         else {
@@ -75,6 +78,7 @@ class SegurosViewController: UIViewController {
             seguros[i]["formapago"] = txtFormaPago.text
             seguros[i]["institucion"] = txtInstitucion.text
             seguros[i]["periodicidad"] = txtPeriodicidad.text
+            seguros[i]["monto"] = txtMonto.text
         }
         update(id, seguros: seguros)
         mostrarAviso(titulo: "Aviso", mensaje: "Los datos se guardaron exitosamente.", viewController: self)

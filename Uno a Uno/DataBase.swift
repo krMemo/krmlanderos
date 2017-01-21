@@ -54,7 +54,7 @@ func crearDB() {
         else {
             print("Tabla 'eventos': OK")
         }
-        sql_stmt = "CREATE TABLE IF NOT EXISTS seguros (id INTEGER, idx INTEGER, aseguradora TEXT, planseguro TEXT, referencia TEXT, poliza TEXT, vigencia TEXT, plazo TEXT, formapago TEXT, institucion TEXT, periodicidad TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS seguros (id INTEGER, idx INTEGER, aseguradora TEXT, planseguro TEXT, referencia TEXT, poliza TEXT, vigencia TEXT, plazo TEXT, formapago TEXT, institucion TEXT, periodicidad TEXT, monto TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
@@ -453,10 +453,10 @@ func addHistorial(_ id: String, estatus: String) {
 
 func selectSeguros(_ id: String) -> [[String:String]] {
     var seguros: [[String:String]] = []
-    var seguro: [String:String] = ["id":"", "idx":"", "aseguradora":"", "planseguro":"", "referencia":"", "poliza":"", "vigencia":"", "plazo":"", "formapago":"", "institucion":"", "periodicidad":""]
+    var seguro: [String:String] = ["id":"", "idx":"", "aseguradora":"", "planseguro":"", "referencia":"", "poliza":"", "vigencia":"", "plazo":"", "formapago":"", "institucion":"", "periodicidad":"", "monto":""]
     let db = getDB()
     if db.open() {
-        let query = "SELECT id, idx, aseguradora, planseguro, referencia, poliza, vigencia, plazo, formapago, institucion, periodicidad FROM seguros WHERE id = \(id)"
+        let query = "SELECT id, idx, aseguradora, planseguro, referencia, poliza, vigencia, plazo, formapago, institucion, periodicidad, monto FROM seguros WHERE id = \(id)"
         let results: FMResultSet = db.executeQuery(query, withArgumentsIn: nil)
         while results.next() == true {
             seguro["id"] = results.string(forColumn: "id")
@@ -470,6 +470,7 @@ func selectSeguros(_ id: String) -> [[String:String]] {
             seguro["formapago"] = results.string(forColumn: "formapago")
             seguro["institucion"] = results.string(forColumn: "institucion")
             seguro["periodicidad"] = results.string(forColumn: "periodicidad")
+            seguro["monto"] = results.string(forColumn: "monto")
             seguros.append(seguro)
         }
         db.close()
@@ -489,7 +490,7 @@ func update(_ id: String, seguros: [[String:String]]) {
         }
         else {
             for seguro in seguros {
-                let sql = "INSERT INTO seguros (id, idx, aseguradora, planseguro, referencia, poliza, vigencia, plazo, formapago, institucion, periodicidad) VALUES (\(seguro["id"]!), \(seguro["idx"]!), '\(seguro["aseguradora"]!)', '\(seguro["planseguro"]!)', '\(seguro["referencia"]!)', '\(seguro["poliza"]!)', '\(seguro["vigencia"]!)', '\(seguro["plazo"]!)', '\(seguro["formapago"]!)', '\(seguro["institucion"]!)', '\(seguro["periodicidad"]!)')"
+                let sql = "INSERT INTO seguros (id, idx, aseguradora, planseguro, referencia, poliza, vigencia, plazo, formapago, institucion, periodicidad, monto) VALUES (\(seguro["id"]!), \(seguro["idx"]!), '\(seguro["aseguradora"]!)', '\(seguro["planseguro"]!)', '\(seguro["referencia"]!)', '\(seguro["poliza"]!)', '\(seguro["vigencia"]!)', '\(seguro["plazo"]!)', '\(seguro["formapago"]!)', '\(seguro["institucion"]!)', '\(seguro["periodicidad"]!)', '\(seguro["monto"]!)')"
                 let result = db.executeStatements(sql)
                 if !result {
                     print("Error: \(db.lastErrorMessage())")
