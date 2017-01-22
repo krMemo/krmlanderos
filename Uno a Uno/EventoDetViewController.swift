@@ -34,7 +34,7 @@ class EventoDetViewController: UIViewController {
             labelPersona.text = event?.title
             labelUbicacion.text = event?.location
             labelNotas.text = event?.notes
-            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            df.dateFormat = "dd-MM-yyyy HH:mm"
             labelFecha.text = df.string(from: (event?.startDate)!)
             labelCalendario.text = event?.calendar.title
         }
