@@ -18,6 +18,10 @@ class TelefonosCorreosViewController: UIViewController, UITableViewDelegate, UIT
     var telefono: [String:String] = ["id":"", "idx":"", "principal":"", "telefono":"", "tipo":""]
     var correos: [[String:String]] = []
     var correo: [String:String] = ["id":"", "idx":"", "principal":"", "correo":"", "tipo":""]
+    //@ELANDEROS CAMBIAR EL TEXT POR PICKER
+    let dicTipo: [Int:String] = [0:"Casa", 1:"Trabajo", 2:"Móvil", 3:"Otro"]
+    let dicT: [String:String] = ["Casa":"C", "Trabajo":"T", "Móvil":"M", "Otro":"O"]
+
     
     @IBOutlet weak var labelTelCor: UILabel!
     @IBOutlet weak var textTelCor: UITextField!
