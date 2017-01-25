@@ -53,13 +53,10 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueReferido" {
+        if segue.identifier == "segueRefDet" {
             let referidoVC = segue.destination as! ReferidoViewController
             referidoVC.id = id
-        }
-        else if segue.identifier == "segueRefDet" {
-            let referidoRefDetVC = segue.destination as! ReferidoViewController
-            referidoRefDetVC.id = id
+            referidoVC.nuevo = false
         }
     }
     

@@ -106,7 +106,7 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     @IBAction func editarCliente(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "segueCliDet", sender: self)
     }
     
     @IBAction func borrarCliente(_ sender: UIButton) {
@@ -129,6 +129,7 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
         else if segue.identifier == "segueCliDet" {
             let clienteVC = segue.destination as! ClienteViewController
             clienteVC.id = id
+            clienteVC.nuevo = false
         }
     }
     
