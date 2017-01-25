@@ -161,33 +161,28 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
         let cell = EventCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 30))
         if eventos[indexPath.row]["id"] == "" {
             cell.lblNombre.text = events[indexPath.row].title
             cell.lblReferencia.text = ""
             cell.lblNotas.text = events[indexPath.row].notes
-            df.dateFormat = "HH:mm"
+            df.dateFormat = "h:mm a."
             cell.lblHora.text = df.string(from: events[indexPath.row].startDate)
         }
         else {
             cell.lblNombre.text = eventos[indexPath.row]["evento"]!
             cell.lblReferencia.text = eventos[indexPath.row]["referencia"]!
             cell.lblNotas.text = eventos[indexPath.row]["notas"]!
-            df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
             let f = df.date(from: eventos[indexPath.row]["fecha"]!)
-            df.dateFormat = "HH:mm"
+            df.dateFormat = "h:mm a."
             cell.lblHora.text = df.string(from: f!)
         }
         
         let cal = events[indexPath.row].calendar
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 25,y: 22), radius: CGFloat(10), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-        shapeLayer.fillColor = cal.cgColor
-        shapeLayer.strokeColor = UIColor.clear.cgColor
-        shapeLayer.lineWidth = 1
-        cell.layer.addSublayer(shapeLayer)
-        
+        let line = UIView(frame: CGRect(x: 65, y: 10, width: 2, height: 35))
+        line.backgroundColor = UIColor(cgColor: cal.cgColor)
+        cell.addSubview(line)
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         cell.addGestureRecognizer(tap)

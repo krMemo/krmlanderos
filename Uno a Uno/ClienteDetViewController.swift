@@ -105,6 +105,18 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
         performSegue(withIdentifier: "segueSeguros", sender: self)
     }
     
+    @IBAction func editarCliente(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func borrarCliente(_ sender: UIButton) {
+        executePersonas("DELETE", persona: cliente)
+        deleteTelefonos(id)
+        deleteCorreos(id)
+        mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
+        self.performSegue(withIdentifier: "unwindClienteDet", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueSeguros" {
             let segurosVC = segue.destination as! SegurosViewController
@@ -113,6 +125,10 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
             if idx >= 0 {
                 segurosVC.idx = String(idx)
             }
+        }
+        else if segue.identifier == "segueCliDet" {
+            let clienteVC = segue.destination as! ClienteViewController
+            clienteVC.id = id
         }
     }
     

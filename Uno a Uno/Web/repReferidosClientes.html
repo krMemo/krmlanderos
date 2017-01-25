@@ -14,7 +14,7 @@
 
 	<body>
 
-        <p id="titulo" style="position:absolute;top:-25px;left:0px;">Clientes y Referidos</p>
+        <p id="titulo" style="position:absolute;top:-25px;left:0px;">Referidos y Clientes</p>
         
         <div id="main" style="position:absolute;top:30px;left:0px;">
             <div id="container" style="position:absolute;top:0px;left:0px;"></div>
@@ -32,7 +32,7 @@
 
 var scrpt = document.createElement("script");
 scrpt.type = "text/javascript";
-scrpt.src = "ClientesReferidos.json?modified=" + new Date().getTime();
+scrpt.src = "ReferidosClientes.json?modified=" + new Date().getTime();
 $("head").append(scrpt);
 
 var datos = json.datos;
@@ -80,29 +80,29 @@ $(function () { setDatos(); });
 
 function setDatos()
 {	var mes = new Array();
-	var clientes = new Array();
 	var referidos = new Array();
+    var clientes = new Array();
 	var chart = $('#container').highcharts();
 
 	$('div#datos').empty();
 	$('div#datos').append('<table id="tabla" cellpadding="5"></table>');
 	$('table#tabla').append('<tr></tr>');
 	$('table#tabla').children('tbody').children('tr').last().append('<th>Mes</th>');
+    $('table#tabla').children('tbody').children('tr').last().append('<th>Referidos</th>');
 	$('table#tabla').children('tbody').children('tr').last().append('<th>Clientes</th>');
-	$('table#tabla').children('tbody').children('tr').last().append('<th>Referidos</th>');
 
 	for(var i = idxMin, x = 0; i < idxMax; i++, x++) {
         $('table#tabla').append('<tr></tr>');
 		mes[x] = datos[i].mes;
 		$('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: left; font-weight: bold;">' + mes[x] + '</td>');
-		clientes[x] = parseInt(datos[i].clientes);
-		$('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: center;">' + clientes[x] + '</td>');
 		referidos[x] = parseInt(datos[i].referidos);
 		$('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: center;">' + referidos[x] + '</td>');
+        clientes[x] = parseInt(datos[i].clientes);
+        $('table#tabla').children('tbody').children('tr').last().append('<td style="text-align: center;">' + clientes[x] + '</td>');
 	}
 
-	chart.series[0].setData(clientes);
-	chart.series[1].setData(referidos);
+	chart.series[0].setData(referidos);
+    chart.series[1].setData(clientes);
 	chart.xAxis[0].setCategories(mes);
     
     if(idxMin > 0)
@@ -163,8 +163,7 @@ $('#container').highcharts({
 	chart: { type: 'column',
              backgroundColor: 'rgba(0, 0, 0, 0.0)'
            },
-    series: [ { name: 'Clientes' },
-              { name: 'Referidos' } ],
+    series: [ { name: 'Referidos' }, { name: 'Clientes' } ],
     colors: [ '#2020BB', '#BB2020' ],
     legend: { backgroundColor: 'rgba(234, 234, 234, 0.8)',
               borderRadius: 5,

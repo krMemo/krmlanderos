@@ -28,8 +28,8 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
             webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repLlamadasCitas.html")))
         }
         else if segReportes.selectedSegmentIndex == 1 {
-            dicTojson(archivo: "ClientesReferidos.json", reporteClientesReferidos())
-            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repClientesReferidos.html")))
+            dicTojson(archivo: "ReferidosClientes.json", reporteReferidosClientes())
+            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repReferidosClientes.html")))
         }
     }
 
@@ -40,8 +40,8 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
             webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repLlamadasCitas.html")))
         }
         else if segReportes.selectedSegmentIndex == 1 {
-            dicTojson(archivo: "ClientesReferidos.json", reporteClientesReferidos())
-            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repClientesReferidos.html")))
+            dicTojson(archivo: "ReferidosClientes.json", reporteReferidosClientes())
+            webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repReferidosClientes.html")))
         }
     }
     

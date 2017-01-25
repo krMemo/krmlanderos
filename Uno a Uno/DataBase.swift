@@ -517,19 +517,17 @@ func reporteLlamadasCitas() -> [[String:String]] {
     var date = Date()
     let dateFormat = DateFormatter()
     dateFormat.dateFormat = "yyyy-MM-dd"
-    let mesFormat = DateFormatter()
-    mesFormat.dateFormat = "MMM"
-    let anioFormat = DateFormatter()
-    anioFormat.dateFormat = "yyyy"
+    let repFormat = DateFormatter()
+    repFormat.dateFormat = "MMM yy"
     
     if db.open() {
-        for i in (-11 ... 0).reversed() {
+        for i in (-11 ... 0) {
             query = "SELECT COUNT(*) AS citas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'CT' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
                 evento["citas"] = results.string(forColumn: "citas")
                 date = dateFormat.date(from: results.string(forColumn: "ini"))!
-                evento["mes"] = mesFormat.string(from: date)
+                evento["mes"] = repFormat.string(from: date)
             }
             query = "SELECT COUNT(*) AS llamadas, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM eventos WHERE tipo LIKE 'LL' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
@@ -546,7 +544,7 @@ func reporteLlamadasCitas() -> [[String:String]] {
     return eventos
 }
 
-func reporteClientesReferidos() -> [[String:String]] {
+func reporteReferidosClientes() -> [[String:String]] {
     var query: String = ""
     var results: FMResultSet
     var eventos: [[String:String]] = []
@@ -556,19 +554,17 @@ func reporteClientesReferidos() -> [[String:String]] {
     var date = Date()
     let dateFormat = DateFormatter()
     dateFormat.dateFormat = "yyyy-MM-dd"
-    let mesFormat = DateFormatter()
-    mesFormat.dateFormat = "MMM"
-    let anioFormat = DateFormatter()
-    anioFormat.dateFormat = "yyyy"
+    let repFormat = DateFormatter()
+    repFormat.dateFormat = "MMM yy"
     
     if db.open() {
-        for i in (-11 ... 0).reversed() {
+        for i in (-11 ... 0) {
             query = "SELECT COUNT(*) AS clientes, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'CLI' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
                 evento["clientes"] = results.string(forColumn: "clientes")
                 date = dateFormat.date(from: results.string(forColumn: "ini"))!
-                evento["mes"] = mesFormat.string(from: date)
+                evento["mes"] = repFormat.string(from: date)
             }
             query = "SELECT COUNT(*) AS referidos, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'REF' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)

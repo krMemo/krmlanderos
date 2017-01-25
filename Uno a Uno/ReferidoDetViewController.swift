@@ -52,6 +52,29 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return dicEstatus[row]
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueReferido" {
+            let referidoVC = segue.destination as! ReferidoViewController
+            referidoVC.id = id
+        }
+        else if segue.identifier == "segueRefDet" {
+            let referidoRefDetVC = segue.destination as! ReferidoViewController
+            referidoRefDetVC.id = id
+        }
+    }
+    
+    @IBAction func editarReferido(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueRefDet", sender: self)
+    }
+    
+    @IBAction func borrarReferido(_ sender: UIButton) {
+        executePersonas("DELETE", persona: referencia)
+        deleteTelefonos(id)
+        deleteCorreos(id)
+        mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
+        self.performSegue(withIdentifier: "unwindReferidoDet", sender: self)
+    }
+    
     @IBAction func guardarEstatus(_ sender: UIButton) {
         referencia["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
         addHistorial(id, estatus: referencia["estatus"]!)

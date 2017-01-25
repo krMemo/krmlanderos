@@ -50,7 +50,7 @@ class EventCell: UITableViewCell {
     
     init(frame: CGRect) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        lblNombre = UILabel(frame: CGRect(x: 45, y: 10, width: 150, height: 18))
+        lblNombre = UILabel(frame: CGRect(x: 70, y: 10, width: 150, height: 18))
         lblNombre.textColor = .black
         lblNombre.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         addSubview(lblNombre)
@@ -59,11 +59,11 @@ class EventCell: UITableViewCell {
         lblReferencia.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         lblReferencia.textAlignment = .right
         addSubview(lblReferencia)
-        lblHora = UILabel(frame: CGRect(x: 45, y: 30, width: 100, height: 15))
+        lblHora = UILabel(frame: CGRect(x: 10, y: 10, width: 100, height: 15))
         lblHora.textColor = .darkGray
         lblHora.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         addSubview(lblHora)
-        lblNotas = UILabel(frame: CGRect(x: 110, y: 30, width: 230, height: 15))
+        lblNotas = UILabel(frame: CGRect(x: 70, y: 30, width: 230, height: 15))
         lblNotas.textColor = .black
         lblNotas.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         addSubview(lblNotas)
@@ -135,7 +135,7 @@ func dicTojson(archivo: String, _ dictionary: [[String:String]]) {
 }
     
 func writeFiles() {
-    let files = ["repLlamadasCitas.html", "repClientesReferidos.html", "jquery.js", "highcharts.js", "touchSwipe.js", "transform.js", "styles.css"]
+    let files = ["repLlamadasCitas.html", "repReferidosClientes.html", "jquery.js", "highcharts.js", "touchSwipe.js", "transform.js", "styles.css"]
     let x = FileManager.default
     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     let bundlePath = Bundle.main.resourceURL!
