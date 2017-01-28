@@ -11,30 +11,36 @@ import UIKit
 class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var CR: String = ""
-    var persona: String = ""
+    var nombre: String = ""
     var id: String = ""
     var aceptar: Bool = true
     var personas: [[String:String]] = []
     var filtro: [[String:String]] = []
-    var searchActive : Bool = false
     
     @IBOutlet weak var searchPersonas: UISearchBar!
     @IBOutlet weak var tablePersonas: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        personas = selectAllPersonas()
-        personas.sort {$0["nombre"]! < $1["nombre"]!}
         searchPersonas.delegate = self
         tablePersonas.delegate = self
         tablePersonas.dataSource = self
+        cargarDatos()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func cargarDatos() {
+        id = ""
+        let str = searchPersonas.text
+        personas = selectAllPersonas()
         filtro = []
-        for person in personas {
-            if (person["nombre"]?.contains(searchBar.text!))! {
-                filtro.append(person)
+        for persona in personas {
+            if str != "" {
+                if (persona["nombre"]?.contains(str!))! {
+                    filtro.append(persona)
+                }
+            }
+            else {
+                filtro.append(persona)
             }
         }
         filtro.sort {$0["nombre"]! < $1["nombre"]!}
@@ -42,12 +48,9 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        cargarDatos()
         if searchText == "" {
-            searchActive = false
-            tablePersonas.reloadData()
-        }
-        else {
-            searchActive = true
+            self.view.endEditing(true)
         }
     }
 
@@ -56,57 +59,43 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchActive {
-            return filtro.count
-        }
-        else {
-            return personas.count
-        }
+        return filtro.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
-        if searchActive {
-            cell.textLabel?.text = filtro[indexPath.row]["nombre"]!
-        }
-        else {
-            cell.textLabel?.text = personas[indexPath.row]["nombre"]!
-        }
+        cell.textLabel?.text = filtro[indexPath.row]["nombre"]!
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchActive {
-            persona = filtro[indexPath.row]["nombre"]!
-            id = filtro[indexPath.row]["id"]!
-        }
-        else {
-            persona = personas[indexPath.row]["nombre"]!
-            id = personas[indexPath.row]["id"]!
-        }
+        nombre = filtro[indexPath.row]["nombre"]!
+        id = filtro[indexPath.row]["id"]!
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if aceptar {
             if CR == "C" {
                 let clienteVC = segue.destination as! ClienteViewController
-                clienteVC.textReferencia.text = persona
+                clienteVC.textReferencia.text = nombre
             }
             else if CR == "R" {
                 let referidoVC = segue.destination as! ReferidoViewController
-                referidoVC.textReferencia.text = persona
+                referidoVC.textReferencia.text = nombre
             }
             else {
                 let eventoVC = segue.destination as! EventoViewController
-                eventoVC.textPersona.text = persona
+                eventoVC.textPersona.text = nombre
                 eventoVC.idpersona = id
             }
         }
     }
     
     @IBAction func aceptar(_ sender: UIButton) {
-        aceptar = true
-        self.performSegue(withIdentifier: "unwindBuscar", sender: self)
+        if id != "" {
+            aceptar = true
+            self.performSegue(withIdentifier: "unwindBuscar", sender: self)
+        }
     }
     
     @IBAction func cancelar(_ sender: UIButton) {

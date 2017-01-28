@@ -17,7 +17,6 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     var idx: Int = -1
     var id: String = ""
     var nuevo: Bool = true
-    var searchActive: Bool = false
     var clientes: [[String:String]] = []
     var filtro: [[String:String]] = []
     let dicEstatus: [String] = ["Contrato", "Inactivo", ""]
@@ -31,15 +30,43 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         tableClientes.dataSource = self
         pickerEstatus.delegate = self
         pickerEstatus.dataSource = self
+        pickerEstatus.selectRow(2, inComponent: 0, animated: true)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        pickerEstatus.selectRow(2, inComponent: 0, animated: true)
-        searchActive = false
-        clientes = selectPersonas(esCliente: "1")
-        clientes.sort {$0["nombrec"]! < $1["nombrec"]!}
+    func cargaDatos(completa: Bool) {
+        if completa {
+            clientes = selectPersonas(esCliente: "1")
+        }
+        filtro = []
+        let str = searchClientes.text!
+        let est = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]]
+        for cliente in clientes {
+            if est == "" && str == "" {
+                filtro.append(cliente)
+            }
+            else if est == "" {
+                if (cliente["nombrec"]?.contains(str))! {
+                    filtro.append(cliente)
+                }
+            }
+            else if str == "" {
+                if est == cliente["estatus"] {
+                    filtro.append(cliente)
+                }
+            }
+            else {
+                if (cliente["nombrec"]?.contains(str))! && est == cliente["estatus"] {
+                    filtro.append(cliente)
+                }
+            }
+        }
+        filtro.sort {$0["nombrec"]! < $1["nombrec"]!}
         tableClientes.reloadData()
         idx = -1
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        cargaDatos(completa: true)
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -62,44 +89,13 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        searchClientes.text = ""
-        if dicE[dicEstatus[row]] == "" {
-            searchActive = false
-            tableClientes.reloadData()
-        }
-        else {
-            filtro = []
-            for cliente in clientes {
-                if cliente["estatus"] == dicE[dicEstatus[row]] {
-                    filtro.append(cliente)
-                }
-            }
-            searchActive = true
-            tableClientes.reloadData()
-        }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        filtro = []
-        for cliente in clientes {
-            if (cliente["nombrec"]?.contains(searchBar.text!))! {
-                filtro.append(cliente)
-            }
-        }
-        filtro.sort {$0["nombrec"]! < $1["nombrec"]!}
-        tableClientes.reloadData()
-        self.view.endEditing(true)
+        cargaDatos(completa: false)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            pickerEstatus.selectRow(2, inComponent: 0, animated: true)
-            searchActive = false
-            tableClientes.reloadData()
+        cargaDatos(completa: false)
+        if searchBar.text == "" {
             self.view.endEditing(true)
-        }
-        else {
-            searchActive = true
         }
     }
     
@@ -108,60 +104,51 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchActive {
-            return filtro.count
-        }
-        else {
-            return clientes.count
-        }
+        return filtro.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CustomCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
-        if searchActive {
-            cell.lblNombre.text = filtro[indexPath.row]["nombrec"]!
-            cell.lblReferencia.text = filtro[indexPath.row]["referencia"]!
-            cell.lblEstatus.text = dicEst[filtro[indexPath.row]["estatus"]!]
-        }
-        else {
-            cell.lblNombre.text = clientes[indexPath.row]["nombrec"]!
-            cell.lblReferencia.text = clientes[indexPath.row]["referencia"]!
-            cell.lblEstatus.text = dicEst[clientes[indexPath.row]["estatus"]!]
-        }
+        cell.lblNombre.text = filtro[indexPath.row]["nombrec"]!
+        cell.lblReferencia.text = filtro[indexPath.row]["referencia"]!
+        cell.lblEstatus.text = dicEst[filtro[indexPath.row]["estatus"]!]
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         cell.addGestureRecognizer(tap)
         
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeR))
-        swipe.direction = UISwipeGestureRecognizerDirection.left
-        cell.addGestureRecognizer(swipe)
+        let swipeL = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeL.direction = UISwipeGestureRecognizerDirection.left
+        cell.addGestureRecognizer(swipeL)
+        
+        let swipeR = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeR.direction = UISwipeGestureRecognizerDirection.right
+        cell.addGestureRecognizer(swipeR)
         
         return cell
     }
     
-    func swipeR(i: UILongPressGestureRecognizer)  {
+    func swipeLeft(i: UILongPressGestureRecognizer)  {
         if i.state == UIGestureRecognizerState.ended {
             let p: CGPoint = i.location(in: tableClientes)
             let indexPath = tableClientes.indexPathForRow(at: p)
             let cell: UITableViewCell = tableClientes.cellForRow(at: indexPath!)!
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-            }
-            else {
-                cell.accessoryType = .checkmark
-            }
+            cell.accessoryType = .checkmark
+        }
+    }
+    
+    func swipeRight(i: UILongPressGestureRecognizer)  {
+        if i.state == UIGestureRecognizerState.ended {
+            let p: CGPoint = i.location(in: tableClientes)
+            let indexPath = tableClientes.indexPathForRow(at: p)
+            let cell: UITableViewCell = tableClientes.cellForRow(at: indexPath!)!
+            cell.accessoryType = .none
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
-        if searchActive {
-            id = filtro[indexPath.row]["id"]!
-        }
-        else {
-            id = clientes[indexPath.row]["id"]!
-        }
+        id = filtro[indexPath.row]["id"]!
     }
     
     func doubleTapped() {
@@ -184,39 +171,21 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
         for i in 0 ..< tableClientes.numberOfRows(inSection: 0) {
             let cell = tableClientes.cellForRow(at: IndexPath(row: i, section: 0))
             if cell?.accessoryType == .checkmark {
-                print(IndexPath(row: i, section: 0))
-                if searchActive {
-                    executePersonas("DELETE", persona: filtro[i])
-                    deleteTelefonos(filtro[i]["id"]!)
-                    deleteCorreos(filtro[i]["id"]!)
-                }
-                else {
-                    executePersonas("DELETE", persona: clientes[i])
-                    deleteTelefonos(clientes[i]["id"]!)
-                    deleteCorreos(clientes[i]["id"]!)
-                }
+                executePersonas("DELETE", persona: filtro[i])
+                deleteTelefonos(filtro[i]["id"]!)
+                deleteCorreos(filtro[i]["id"]!)
             }
         }
-        searchActive = false
-        clientes = selectPersonas(esCliente: "0")
-        clientes.sort {$0["nombrec"]! < $1["nombrec"]!}
-        tableClientes.reloadData()
-        idx = -1
         mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
+        cargaDatos(completa: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueCliente" {
             if idx >= 0 && nuevo == false {
                 let clienteVC = segue.destination as! ClienteViewController
-                if searchActive {
-                    clienteVC.nuevo = false
-                    clienteVC.id = filtro[idx]["id"]!
-                }
-                else {
-                    clienteVC.nuevo = false
-                    clienteVC.id = clientes[idx]["id"]!
-                }
+                clienteVC.nuevo = false
+                clienteVC.id = filtro[idx]["id"]!
             }
         }
         else if segue.identifier == "segueClienteDet" {
@@ -243,12 +212,11 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func unwindCliente(sender: UIStoryboardSegue) {
-        clientes = selectPersonas(esCliente: "1")
-        tableClientes.reloadData()
-        idx = -1
+         cargaDatos(completa: true)
     }
     
     @IBAction func unwindClienteDet(sender: UIStoryboardSegue) {
+         cargaDatos(completa: true)
     }
     
     override func didReceiveMemoryWarning() {

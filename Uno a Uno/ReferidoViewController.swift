@@ -125,6 +125,7 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
         referido["direccion"] = textDireccion.text
         referido["notas"] = textNotas.text
         referido["referencia"] = textReferencia.text
+        referido["estatus"] = "PE"
         referido["cliente"] = "0"
         if nuevo {
             executePersonas("INSERT", persona: referido)

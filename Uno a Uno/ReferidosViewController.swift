@@ -17,7 +17,6 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     var idx: Int = -1
     var id: String = ""
     var nuevo: Bool = true
-    var searchActive: Bool = false
     var referidos: [[String:String]] = []
     var filtro: [[String:String]] = []
     let dicEstatus: [String] = ["Pendiente", "Llamada", "Cita", "Seguimiento", "No Interesado", ""]
@@ -34,8 +33,10 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         pickerEstatus.selectRow(5, inComponent: 0, animated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        referidos = selectPersonas(esCliente: "0")
+    func cargaDatos(completa: Bool) {
+        if completa {
+            referidos = selectPersonas(esCliente: "0")
+        }
         filtro = []
         let str = searchReferidos.text!
         let est = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]]
@@ -63,6 +64,10 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         tableReferidos.reloadData()
         idx = -1
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        cargaDatos(completa: true)
+    }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let titleLabel = UILabel()
@@ -84,69 +89,14 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        searchReferidos.text = ""
-        if dicE[dicEstatus[row]] == "" {
-            searchActive = false
-            tableReferidos.reloadData()
-        }
-        else {
-            filtro = []
-            for referido in referidos {
-                if referido["estatus"] == dicE[dicEstatus[row]] {
-                    filtro.append(referido)
-                }
-            }
-            searchActive = true
-            tableReferidos.reloadData()
-        }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let str = searchBar.text!
-        let est = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]]
-        filtro = []
-        for referido in referidos {
-            if est == "" {
-                if (referido["nombrec"]?.contains(str))! {
-                    filtro.append(referido)
-                }
-            }
-            else {
-                if (referido["nombrec"]?.contains(str))! && est == referido["estatus"] {
-                    filtro.append(referido)
-                }
-            }
-        }
-        filtro.sort {$0["nombrec"]! < $1["nombrec"]!}
-        tableReferidos.reloadData()
-        self.view.endEditing(true)
+        cargaDatos(completa: false)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            searchActive = false
+        cargaDatos(completa: false)
+        if searchBar.text == "" {
             self.view.endEditing(true)
         }
-        else {
-            searchActive = true
-        }
-        let str = searchReferidos.text!
-        let est = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]]
-        filtro = []
-        for referido in referidos {
-            if est == "" {
-                if (referido["nombrec"]?.contains(str))! {
-                    filtro.append(referido)
-                }
-            }
-            else {
-                if (referido["nombrec"]?.contains(str))! && est == referido["estatus"] {
-                    filtro.append(referido)
-                }
-            }
-        }
-        filtro.sort {$0["nombrec"]! < $1["nombrec"]!}
-        tableReferidos.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -154,60 +104,51 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchActive {
-            return filtro.count
-        }
-        else {
-            return referidos.count
-        }
+        return filtro.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CustomCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
-        if searchActive {
-            cell.lblNombre.text = filtro[indexPath.row]["nombrec"]!
-            cell.lblReferencia.text = filtro[indexPath.row]["referencia"]!
-            cell.lblEstatus.text = dicEst[filtro[indexPath.row]["estatus"]!]
-        }
-        else {
-            cell.lblNombre.text = referidos[indexPath.row]["nombrec"]!
-            cell.lblReferencia.text = referidos[indexPath.row]["referencia"]!
-            cell.lblEstatus.text = dicEst[referidos[indexPath.row]["estatus"]!]
-        }
+        cell.lblNombre.text = filtro[indexPath.row]["nombrec"]!
+        cell.lblReferencia.text = filtro[indexPath.row]["referencia"]!
+        cell.lblEstatus.text = dicEst[filtro[indexPath.row]["estatus"]!]
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         cell.addGestureRecognizer(tap)
         
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeR))
-        swipe.direction = UISwipeGestureRecognizerDirection.left
-        cell.addGestureRecognizer(swipe)
+        let swipeL = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        swipeL.direction = UISwipeGestureRecognizerDirection.left
+        cell.addGestureRecognizer(swipeL)
+        
+        let swipeR = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeR.direction = UISwipeGestureRecognizerDirection.right
+        cell.addGestureRecognizer(swipeR)
         
         return cell
     }
     
-    func swipeR(i: UILongPressGestureRecognizer)  {
+    func swipeLeft(i: UILongPressGestureRecognizer)  {
         if i.state == UIGestureRecognizerState.ended {
             let p: CGPoint = i.location(in: tableReferidos)
             let indexPath = tableReferidos.indexPathForRow(at: p)
             let cell: UITableViewCell = tableReferidos.cellForRow(at: indexPath!)!
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-            }
-            else {
-                cell.accessoryType = .checkmark
-            }
+            cell.accessoryType = .checkmark
+        }
+    }
+    
+    func swipeRight(i: UILongPressGestureRecognizer)  {
+        if i.state == UIGestureRecognizerState.ended {
+            let p: CGPoint = i.location(in: tableReferidos)
+            let indexPath = tableReferidos.indexPathForRow(at: p)
+            let cell: UITableViewCell = tableReferidos.cellForRow(at: indexPath!)!
+            cell.accessoryType = .none
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idx = indexPath.row
-        if searchActive {
-            id = filtro[indexPath.row]["id"]!
-        }
-        else {
-            id = referidos[indexPath.row]["id"]!
-        }
+        id = filtro[indexPath.row]["id"]!
     }
     
     func doubleTapped() {
@@ -230,39 +171,21 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
         for i in 0 ..< tableReferidos.numberOfRows(inSection: 0) {
             let cell = tableReferidos.cellForRow(at: IndexPath(row: i, section: 0))
             if cell?.accessoryType == .checkmark {
-                print(IndexPath(row: i, section: 0))
-                if searchActive {
-                    executePersonas("DELETE", persona: filtro[i])
-                    deleteTelefonos(filtro[i]["id"]!)
-                    deleteCorreos(filtro[i]["id"]!)
-                }
-                else {
-                    executePersonas("DELETE", persona: referidos[i])
-                    deleteTelefonos(referidos[i]["id"]!)
-                    deleteCorreos(referidos[i]["id"]!)
-                }
+                executePersonas("DELETE", persona: filtro[i])
+                deleteTelefonos(filtro[i]["id"]!)
+                deleteCorreos(filtro[i]["id"]!)
             }
         }
-        searchActive = false
-        referidos = selectPersonas(esCliente: "0")
-        referidos.sort {$0["nombrec"]! < $1["nombrec"]!}
-        tableReferidos.reloadData()
-        idx = -1
         mostrarAviso(titulo: "", mensaje: "La información se eliminó correctamente", viewController: self)
+        cargaDatos(completa: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueReferido" {
             if idx >= 0 && nuevo == false {
                 let referidoVC = segue.destination as! ReferidoViewController
-                if searchActive {
-                    referidoVC.nuevo = false
-                    referidoVC.id = filtro[idx]["id"]!
-                }
-                else {
-                    referidoVC.nuevo = false
-                    referidoVC.id = referidos[idx]["id"]!
-                }
+                referidoVC.nuevo = false
+                referidoVC.id = filtro[idx]["id"]!
             }
         }
         else if segue.identifier == "segueReferidoDet" {
@@ -289,12 +212,11 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func unwindReferido(sender: UIStoryboardSegue) {
-        referidos = selectPersonas(esCliente: "0")
-        tableReferidos.reloadData()
-        idx = -1
+        cargaDatos(completa: true)
     }
     
     @IBAction func unwindReferidoDet(sender: UIStoryboardSegue) {
+        cargaDatos(completa: true)
     }
     
     override func didReceiveMemoryWarning() {
