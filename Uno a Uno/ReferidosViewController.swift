@@ -19,9 +19,9 @@ class ReferidosViewController: UIViewController, UITableViewDelegate, UITableVie
     var nuevo: Bool = true
     var referidos: [[String:String]] = []
     var filtro: [[String:String]] = []
-    let dicEstatus: [String] = ["Pendiente", "Llamada", "Cita", "Seguimiento", "No Interesado", ""]
-    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "No Interesado":"NI", "Contrato":"CO", "Inactivo":"IN", "":""]
-    let dicEst: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "NI":"No Interesado", "CO":"Contrato", "IN":"Inactivo", "":""]
+    let dicEstatus: [String] = ["Pendiente", "Llamada", "Cita", "Seguimiento", "No Interesado", "Todos"]
+    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "No Interesado":"NI", "Contrato":"CO", "Inactivo":"IN", "Todos":""]
+    let dicEst: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "NI":"No Interesado", "CO":"Contrato", "IN":"Inactivo", "":"Todos"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -19,9 +19,9 @@ class ClientesViewController: UIViewController, UITableViewDelegate, UITableView
     var nuevo: Bool = true
     var clientes: [[String:String]] = []
     var filtro: [[String:String]] = []
-    let dicEstatus: [String] = ["Contrato", "Inactivo", ""]
-    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "No Interesado":"NI", "Contrato":"CO", "Inactivo":"IN", "":""]
-    let dicEst: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "NI":"No Interesado", "CO":"Contrato", "IN":"Inactivo", "":""]
+    let dicEstatus: [String] = ["Contrato", "Inactivo", "Todos"]
+    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "No Interesado":"NI", "Contrato":"CO", "Inactivo":"IN", "Todos":""]
+    let dicEst: [String:String] = ["PE":"Pendiente", "LL":"Llamada", "CT":"Cita", "SE":"Seguimiento", "NI":"No Interesado", "CO":"Contrato", "IN":"Inactivo", "":"Todos"]
         
     override func viewDidLoad() {
         super.viewDidLoad()
