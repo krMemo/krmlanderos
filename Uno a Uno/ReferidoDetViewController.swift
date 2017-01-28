@@ -19,8 +19,8 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     var id: String = ""
     var referencia: [String:String] = [:]
-    let dicEstatus: [Int:String] = [0:"Pendiente", 1:"Llamada", 2:"Cita", 3:"Seguimiento", 4:"Contrato", 5:"No Interesado"]
-    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "Contrato":"CO", "No Interesado":"NI"]
+    let dicEstatus: [Int:String] = [0:"Pendiente", 1:"Llamada", 2:"Cita", 3:"Seguimiento", 4:"No Interesado", 5:"Contrato", 6:"Inactivo"]
+    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "No Interesado":"NI", "Contrato":"CO", "Inactivo":"IN"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,6 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
         labelTelefono.text = referencia["telefono"]
         labelCorreo.text = referencia["correo"]
         labelDireccion.text = referencia["direccion"]
-        
         for estatus in dicEstatus {
             if dicE[estatus.value] == referencia["estatus"] {
                 pickerEstatus.selectRow(estatus.key, inComponent: 0, animated: true)
@@ -74,12 +73,16 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func guardarEstatus(_ sender: UIButton) {
         referencia["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
-        addHistorial(id, estatus: referencia["estatus"]!)
-        if referencia["estatus"] == "CO" {
+        if referencia["estatus"] == "CO" || referencia["estatus"] == "IN" {
             referencia["cliente"] = "1"
             addHistorial(id, estatus: "CLI")
         }
+        else {
+            referencia["cliente"] = "0"
+            addHistorial(id, estatus: "REF")
+        }
         executePersonas("UPDATE", persona: referencia)
+        addHistorial(id, estatus: referencia["estatus"]!)
         mostrarAviso(titulo: "Aviso", mensaje: "Se cambió el estratus correctamente.", viewController: self)
     }
     

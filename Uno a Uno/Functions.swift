@@ -27,7 +27,7 @@ class CustomCell: UITableViewCell {
         lblReferencia.textColor = .darkGray
         lblReferencia.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         addSubview(lblReferencia)
-        lblEstatus = UILabel(frame: CGRect(x: 200, y: 15, width: 150, height: 18))
+        lblEstatus = UILabel(frame: CGRect(x: 170, y: 15, width: 150, height: 18))
         lblEstatus.textColor = .black
         lblEstatus.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
         lblEstatus.textAlignment = .right

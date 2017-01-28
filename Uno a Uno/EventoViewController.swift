@@ -273,6 +273,15 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         return segundos
     }
     
+    @IBAction func activarAlarm(_ sender: UISwitch) {
+        if sender.isOn {
+            datepickerAlarma.isHidden = false
+        }
+        else {
+            datepickerAlarma.isHidden = true
+        }
+    }
+    
     @IBAction func unwindBuscar(sender: UIStoryboardSegue) {
         if idpersona != "" {
             let persona = selectPersona(idpersona)

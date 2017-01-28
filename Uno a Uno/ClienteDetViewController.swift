@@ -23,8 +23,8 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var nuevoSeguro: Bool = true
     var seguros: [[String:String]] = []
     var cliente: [String:String] = [:]
-    let dicEstatus: [Int:String] = [0:"Pendiente", 1:"Llamada", 2:"Cita", 3:"Seguimiento", 4:"Contrato", 5:"No Interesado"]
-    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "Contrato":"CO", "No Interesado":"NI"]
+    let dicEstatus: [Int:String] = [0:"Pendiente", 1:"Llamada", 2:"Cita", 3:"Seguimiento", 4:"No Interesado", 5:"Contrato", 6:"Inactivo"]
+    let dicE: [String:String] = ["Pendiente":"PE", "Llamada":"LL", "Cita":"CT", "Seguimiento":"SE", "No Interesado":"NI", "Contrato":"CO", "Inactivo":"IN"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,8 +86,16 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBAction func guardarEstatus(_ sender: UIButton) {
         cliente["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
+        if cliente["estatus"] == "CO" || cliente["estatus"] == "IN" {
+            cliente["cliente"] = "1"
+            addHistorial(id, estatus: "CLI")
+        }
+        else {
+            cliente["cliente"] = "0"
+            addHistorial(id, estatus: "REF")
+        }
         executePersonas("UPDATE", persona: cliente)
-        addHistorial(id, estatus: dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]!)
+        addHistorial(id, estatus: cliente["estatus"]!)
         mostrarAviso(titulo: "Aviso", mensaje: "Se cambió el estratus correctamente.", viewController: self)
     }
     
