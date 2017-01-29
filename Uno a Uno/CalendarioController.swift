@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, CVCalendarViewDelegate, CVCalendarMenuViewDelegate, CVCalendarViewAppearanceDelegate {
     
     var idx: Int = -1
     var eventId: String = ""
@@ -23,6 +23,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     var eventos: [[String:String]] = []
     var evento: [String:String] = [:]
     
+    @IBOutlet weak var datepickerFecha: UIDatePicker!
     @IBOutlet weak var labelMes: UILabel!
     @IBOutlet weak var calendarmenuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
@@ -51,13 +52,25 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             eventos.append(evento)
         }
         tableEventos.reloadData()
+        datepickerFecha.addTarget(self, action: #selector(changeValue), for: UIControlEvents.valueChanged)
+    }
+    
+    func changeValue() {
+        calendarView.toggleViewWithDate(datepickerFecha.date)
     }
 
-    override func viewDidLayoutSubviews() {
+    override func viewWillAppear(_ animated: Bool) {
+        print("ok")
+        calendarmenuView.commitMenuViewUpdate()
+        calendarView.commitCalendarViewUpdate()
+        calendarView.toggleViewWithDate(fecha)
+    }
+    
+  /*  override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         calendarmenuView.commitMenuViewUpdate()
         calendarView.commitCalendarViewUpdate()
-    }
+    }*/
     
     func presentationMode() -> CalendarMode {
         return CalendarMode.monthView
@@ -100,6 +113,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         }
         idx = -1
         fecha = date.convertedDate()!
+        datepickerFecha.date = fecha
         let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         eventos = []
@@ -120,6 +134,10 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             textField.borderStyle = UITextBorderStyle.roundedRect
         }
         return false
+    }
+    
+    func dotMarker(moveOffsetOnDayView dayView: DayView) -> CGFloat {
+        return 15
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
@@ -147,8 +165,16 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         return calendarColor
     }
     
+    func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
+        return false
+    }
+    
+    func topMarker(shouldDisplayOnDayView dayView: DayView) -> Bool {
+        return true
+    }
+    
     func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-        return 17
+        return 15
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -177,13 +203,14 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             let f = df.date(from: eventos[indexPath.row]["fecha"]!)
             df.dateFormat = "h:mm a."
             cell.lblHora.text = df.string(from: f!)
+            let d: Int = Int(eventos[indexPath.row]["duracion"]!)!
+            cell.lblHoraMas.text = df.string(from: f!+TimeInterval(d))
         }
         
         let cal = events[indexPath.row].calendar
-        let line = UIView(frame: CGRect(x: 65, y: 10, width: 2, height: 35))
+        let line = UIView(frame: CGRect(x: 70, y: 10, width: 2, height: 35))
         line.backgroundColor = UIColor(cgColor: cal.cgColor)
         cell.addSubview(line)
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         cell.addGestureRecognizer(tap)

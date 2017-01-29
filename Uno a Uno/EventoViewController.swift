@@ -205,7 +205,7 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             event!.endDate = datepickerFecha.date + TimeInterval(getSeg())
             event!.addAlarm(EKAlarm.init(absoluteDate: datepickerAlarma.date))
             do {
-                try eventStore.save((event)!, span: .thisEvent)
+                try eventStore.save(event!, span: .thisEvent, commit: true)
             }
             catch {
             }

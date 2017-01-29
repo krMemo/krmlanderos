@@ -51,7 +51,7 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registrarUsuario(_ sender: UIButton) {
-        if self.textNombre.text!.isEmpty || self.textApaterno.text!.isEmpty || self.textCorreo.text!.isEmpty || self.textRCorreo.text!.isEmpty || self.textContrasenia.text!.isEmpty {
+        if textNombre.text!.isEmpty || textApaterno.text!.isEmpty || textCorreo.text!.isEmpty || textRCorreo.text!.isEmpty || textContrasenia.text!.isEmpty {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "EMPTY_FIELD".lang, viewController: self)
         } else if !isValidEmail(testStr: self.textCorreo.text!) {
             mostrarAviso(titulo: "ATENCION".lang, mensaje: "INVALID_MAIL".lang, viewController: self)
@@ -61,7 +61,7 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
             let alertController = UIAlertController(title: "Atención", message: "Registro exitoso.", preferredStyle: UIAlertControllerStyle.alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
                 UIAlertAction in NSLog("OK Pressed")
-                self.performSegue(withIdentifier: "seguePrincipal", sender: self)
+                self.performSegue(withIdentifier: "seguePrinAlt", sender: self)
             }
             alertController.addAction(okAction)
         
@@ -72,6 +72,14 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
             let postString = "nombre="+textNombre.text!+"&apaterno="+textApaterno.text!+"&amaterno="+textAmaterno.text!+"&correo="+textCorreo.text!+"&password="+self.textContrasenia.text!
             request.httpBody = postString.data(using: String.Encoding.utf8)
         
+            var usuario: [String:String] = ["id":"", "nombre":"", "apaterno":"", "amaterno":"", "direccion":"", "notas":"", "estatus":"", "cliente":"", "referencia":""]
+            let id = selectMaxId(tabla: "personas")
+            usuario["id"] = id
+            usuario["nombre"] = textNombre.text
+            usuario["apaterno"] = textApaterno.text
+            usuario["amaterno"] = textAmaterno.text
+            executePersonas("INSERT", persona: usuario)
+            
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in guard error == nil && data != nil else {
                     print("error=\(error)")
                     return
