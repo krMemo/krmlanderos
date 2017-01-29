@@ -62,14 +62,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         calendarmenuView.commitMenuViewUpdate()
         calendarView.commitCalendarViewUpdate()
-        calendarView.toggleViewWithDate(fecha)
     }
-    
-  /*  override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        calendarmenuView.commitMenuViewUpdate()
-        calendarView.commitCalendarViewUpdate()
-    }*/
     
     func presentationMode() -> CalendarMode {
         return CalendarMode.monthView
@@ -118,7 +111,6 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         eventos = []
         for event in events {
             evento = selectEvento(event.eventIdentifier)
-            print(evento)
             eventos.append(evento)
         }
         tableEventos.reloadData()
@@ -143,7 +135,6 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let tmpfecha = dayView.date.convertedDate()!
         let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         let tmpevents = eventStore.events(matching: predicate)
-        print("\(tmpfecha): \(tmpevents.count)")
         if tmpevents.count > 0 {
             let calendar = Calendar.current
             let day = calendar.component(.day, from: tmpevents[0].startDate)
@@ -276,10 +267,13 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let tmpfecha: Date = fechaAct()
         let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
+        eventos = []
+        for event in events {
+            evento = selectEvento(event.eventIdentifier)
+            eventos.append(evento)
+        }
         tableEventos.reloadData()
-        print("back")
-        calendarView.toggleViewWithDate(tmpfecha)
-        calendarView.commitCalendarViewUpdate()
+        calendarView.contentController.refreshPresentedMonth()
     }
     
     @IBAction func unwindEventoDet(sender: UIStoryboardSegue) {
