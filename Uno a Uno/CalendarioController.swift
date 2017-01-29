@@ -264,8 +264,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     @IBAction func unwindEvento(sender: UIStoryboardSegue) {
         idx = -1
-        let tmpfecha: Date = fechaAct()
-        let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
+        let predicate = eventStore.predicateForEvents(withStart: fecha, end: fecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         eventos = []
         for event in events {
@@ -273,6 +272,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             eventos.append(evento)
         }
         tableEventos.reloadData()
+        calendarView.toggleViewWithDate(fecha)
         calendarView.contentController.refreshPresentedMonth()
     }
     
