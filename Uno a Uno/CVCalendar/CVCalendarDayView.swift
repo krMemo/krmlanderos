@@ -317,7 +317,7 @@ extension CVCalendarDayView {
 
                 let coordinator = calendarView.coordinator
                 if self == coordinator?.selectedDayView {
-                    moveDotMarkerBack(false, coloring: false)
+                   // moveDotMarkerBack(false, coloring: false)
                 }
             }
         }
@@ -325,84 +325,6 @@ extension CVCalendarDayView {
 }
 
 // MARK: - Dot marker movement
-
-extension CVCalendarDayView {
-    public func moveDotMarkerBack(_ unwinded: Bool, coloring: Bool) {
-        var coloring = coloring
-        var dotIndex = 0
-        for dotMarker in dotMarkers {
-            if let calendarView = calendarView, let dotMarker = dotMarker {
-                var shouldMove = true
-                if let delegate = calendarView.delegate,
-                    let move = delegate.dotMarker?(shouldMoveOnHighlightingOnDayView: self) ,
-                    !move {
-                        shouldMove = move
-                }
-
-                func colorMarker() {
-                    if let delegate = calendarView.delegate {
-                        let appearance = calendarView.appearance
-                        var color: UIColor?
-                        if unwinded {
-                            if let myColor = delegate.dotMarker?(colorOnDayView: self) {
-                                color = isOut ?
-                                    appearance?.dayLabelWeekdayOutTextColor : myColor[dotIndex]
-                            }
-                        } else {
-                            color = appearance?.dotMarkerColor
-                        }
-
-                        dotMarker.fillColor = color
-                        dotMarker.setNeedsDisplay()
-                    }
-
-                }
-
-                func moveMarker() {
-                    var transform: CGAffineTransform!
-                    if let selectionView = selectionView {
-                        let point = pointAtAngle(CGFloat(-90).toRadians(),
-                                                 withinCircleView: selectionView)
-                        let spaceBetweenDotAndCircle = CGFloat(1)
-                        let offset = point.y - dotMarker.frame.origin.y -
-                            dotMarker.bounds.height/2 + spaceBetweenDotAndCircle
-                        transform = unwinded ? CGAffineTransform.identity :
-                                CGAffineTransform(translationX: 0, y: offset)
-
-                        if dotMarker.center.y + offset > frame.maxY {
-                            coloring = true
-                        }
-                    } else {
-                        transform = CGAffineTransform.identity
-                    }
-
-                    if !coloring {
-                        UIView.animate(
-                            withDuration: 0.3, delay: 0,
-                            usingSpringWithDamping: 0.6,
-                            initialSpringVelocity: 0,
-                            options: UIViewAnimationOptions.curveEaseOut,
-                            animations: {
-                                dotMarker.transform = transform
-                            },
-                            completion: { _ in
-                            }
-                        )
-                    } else {
-                        moveDotMarkerBack(unwinded, coloring: coloring)
-                    }
-                }
-
-                if shouldMove && !coloring {
-                    moveMarker()
-                } else {
-                    colorMarker()
-                }
-                dotIndex += 1
-            }
-        }
-    }
-}
 
 
 // MARK: - Circle geometry
@@ -525,7 +447,7 @@ extension CVCalendarDayView {
         selectionView!.setNeedsDisplay()
         insertSubview(selectionView!, at: 0)
 
-        moveDotMarkerBack(false, coloring: false)
+        //moveDotMarkerBack(false, coloring: false)
     }
 
     public func setDeselectedWithClearing(_ clearing: Bool) {
@@ -563,7 +485,7 @@ extension CVCalendarDayView {
             dayLabel?.textColor = appearance.delegate?.dayLabelColor?(by: weekDay, status: status, present: present) ?? color
             dayLabel?.font = appearance.delegate?.dayLabelFont?(by: weekDay, status: status, present: present) ?? font
 
-            moveDotMarkerBack(true, coloring: false)
+          //  moveDotMarkerBack(true, coloring: false)
 
             if clearing {
                 selectionView?.removeFromSuperview()

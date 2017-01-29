@@ -248,12 +248,12 @@ class EventoViewController: UIViewController, UITextFieldDelegate, UITextViewDel
 
     @IBAction func borrar(_ sender: UIButton) {
         evento["id"] = id
-        /*let event = eventStore.event(withIdentifier: eventid)
+        let event = eventStore.event(withIdentifier: eventid)
         do {
-            try eventStore.remove(event!, span: .thisEvent)
+            try eventStore.remove(event!, span: .thisEvent, commit: true)
         }
         catch {
-        }*/
+        }
         executeEventos(accion: "DELETE", evento: evento)
         mostrarAviso(titulo: "ATENCION".lang, mensaje: "Se eliminó el evento exitosamente", viewController: self)
         performSegue(withIdentifier: "unwindEvento", sender: self)

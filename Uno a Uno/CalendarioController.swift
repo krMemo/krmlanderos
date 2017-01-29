@@ -60,7 +60,6 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        print("ok")
         calendarmenuView.commitMenuViewUpdate()
         calendarView.commitCalendarViewUpdate()
         calendarView.toggleViewWithDate(fecha)
@@ -144,6 +143,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let tmpfecha = dayView.date.convertedDate()!
         let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         let tmpevents = eventStore.events(matching: predicate)
+        print("\(tmpfecha): \(tmpevents.count)")
         if tmpevents.count > 0 {
             let calendar = Calendar.current
             let day = calendar.component(.day, from: tmpevents[0].startDate)
@@ -206,11 +206,12 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
             let d: Int = Int(eventos[indexPath.row]["duracion"]!)!
             cell.lblHoraMas.text = df.string(from: f!+TimeInterval(d))
         }
-        
-        let cal = events[indexPath.row].calendar
-        let line = UIView(frame: CGRect(x: 70, y: 10, width: 2, height: 35))
-        line.backgroundColor = UIColor(cgColor: cal.cgColor)
-        cell.addSubview(line)
+        if events.count > indexPath.row {
+            let cal = events[indexPath.row].calendar
+            let line = UIView(frame: CGRect(x: 70, y: 10, width: 2, height: 35))
+            line.backgroundColor = UIColor(cgColor: cal.cgColor)
+            cell.addSubview(line)
+        }
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         cell.addGestureRecognizer(tap)
@@ -276,7 +277,9 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let predicate = eventStore.predicateForEvents(withStart: tmpfecha, end: tmpfecha + (24*3600), calendars: calendars)
         events = eventStore.events(matching: predicate)
         tableEventos.reloadData()
+        print("back")
         calendarView.toggleViewWithDate(tmpfecha)
+        calendarView.commitCalendarViewUpdate()
     }
     
     @IBAction func unwindEventoDet(sender: UIStoryboardSegue) {
