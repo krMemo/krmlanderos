@@ -27,6 +27,7 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet weak var tableTelefonos: UITableView!
     @IBOutlet weak var tableCorreos: UITableView!
     @IBOutlet weak var textReferencia: UITextField!
+    @IBOutlet weak var datepickerFecha: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,9 +136,10 @@ class ReferidoViewController: UIViewController, UITextFieldDelegate, UITextViewD
         }
         update(id, telefonos: telefonos)
         update(id, correos: correos)
-        if referido["referencia"] != "" {
-            addHistorial(id, estatus: "REF")
-        }
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let fecha = df.string(from: datepickerFecha.date)
+        addHistorialCliRef(id, estatus: "REF", fecha: fecha)
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindReferido", sender: self)
     }

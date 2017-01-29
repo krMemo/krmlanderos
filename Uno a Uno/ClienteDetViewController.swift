@@ -88,14 +88,14 @@ class ClienteDetViewController: UIViewController, UIPickerViewDelegate, UIPicker
         cliente["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
         if cliente["estatus"] == "CO" || cliente["estatus"] == "IN" {
             cliente["cliente"] = "1"
-            addHistorial(id, estatus: "CLI")
+            addHistorialCliRef(id, estatus: "CLI", fecha: "now")
         }
         else {
             cliente["cliente"] = "0"
-            addHistorial(id, estatus: "REF")
+            addHistorialCliRef(id, estatus: "REF", fecha: "now")
         }
         executePersonas("UPDATE", persona: cliente)
-        addHistorial(id, estatus: cliente["estatus"]!)
+        addHistorialEst(id, estatus: cliente["estatus"]!, fecha: "now")
         mostrarAviso(titulo: "Aviso", mensaje: "Se cambió el estratus correctamente.", viewController: self)
     }
     

@@ -127,7 +127,10 @@ class ImportarViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 update(id, correos: xmails)
                 if clientes {
-                    addHistorial(id, estatus: "CLI")
+                    addHistorialCliRef(id, estatus: "CLI", fecha: "")
+                }
+                else {
+                    addHistorialCliRef(id, estatus: "REF", fecha: "")
                 }
             }
         }

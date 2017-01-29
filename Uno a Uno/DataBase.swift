@@ -26,7 +26,7 @@ func crearDB() {
         else {
             print("Tabla 'personas': OK")
         }
-        sql_stmt = "CREATE TABLE IF NOT EXISTS historial (id INTEGER, estatus TEXT, fecha TEXT)"
+        sql_stmt = "CREATE TABLE IF NOT EXISTS historial (id INTEGER, estatus TEXT, fecha TEXT, reporte TEXT)"
         if !(db.executeStatements(sql_stmt)) {
             print("Error: \(db.lastErrorMessage())")
         }
@@ -429,20 +429,45 @@ func selectHistorial(_ id: String) -> [[String:String]] {
     return hist
 }
 
-func addHistorial(_ id: String, estatus: String) {
+func addHistorialCliRef(_ id: String, estatus: String, fecha: String) {
+    var date = fecha
+    if date == "now" {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        date = df.string(from: Date())
+    }
     let db = getDB()
     if db.open() {
-        var num: String = ""
-        let results: FMResultSet = db.executeQuery("SELECT COUNT(*) AS num FROM historial WHERE estatus IN ('CLI', 'REF') AND id = \(id)", withArgumentsIn: nil)
-        while results.next() == true {
-            num = results.string(forColumn: "num")
+        var sql: String = "UPDATE historial SET reporte = 'N' WHERE id = \(id) AND estatus IN ('CLI', 'REF')"
+        var result = db.executeStatements(sql)
+        if !result {
+            print("Error: \(db.lastErrorMessage())")
         }
-        if num == "0" {
-            let sql: String = "INSERT INTO historial (id, estatus, fecha) VALUES (\(id), '\(estatus)', '\(Date())')"
-            let result = db.executeStatements(sql)
-            if !result {
-                print("Error: \(db.lastErrorMessage())")
-            }
+        sql = "INSERT INTO historial (id, estatus, fecha, reporte) VALUES (\(id), '\(estatus)', '\(date)', 'S')"
+        result = db.executeStatements(sql)
+        if !result {
+            print("Error: \(db.lastErrorMessage())")
+        }
+        db.close()
+    }
+    else {
+        print("Error: \(db.lastErrorMessage())")
+    }
+}
+
+func addHistorialEst(_ id: String, estatus: String, fecha: String) {
+    var date = fecha
+    if date == "now" {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        date = df.string(from: Date())
+    }
+    let db = getDB()
+    if db.open() {
+        let sql: String = "INSERT INTO historial (id, estatus, fecha, reporte) VALUES (\(id), '\(estatus)', '\(date)', 'N')"
+        let result = db.executeStatements(sql)
+        if !result {
+            print("Error: \(db.lastErrorMessage())")
         }
         db.close()
     }
@@ -559,14 +584,14 @@ func reporteReferidosClientes() -> [[String:String]] {
     
     if db.open() {
         for i in (-11 ... 0) {
-            query = "SELECT COUNT(*) AS clientes, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'CLI' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
+            query = "SELECT COUNT(*) AS clientes, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'CLI' AND reporte = 'S' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
                 evento["clientes"] = results.string(forColumn: "clientes")
                 date = dateFormat.date(from: results.string(forColumn: "ini"))!
                 evento["mes"] = repFormat.string(from: date)
             }
-            query = "SELECT COUNT(*) AS referidos, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'REF' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
+            query = "SELECT COUNT(*) AS referidos, date('now', 'start of month', '\(i) month', '0 day') AS ini,  date('now', 'start of month', '\(i+1) month', '-1 day') AS fin FROM historial WHERE estatus LIKE 'REF' AND reporte = 'S' AND fecha BETWEEN date('now', 'start of month', '\(i) month', '0 day') AND date('now', 'start of month', '\(i+1) month', '-1 day')"
             results = db.executeQuery(query, withArgumentsIn: nil)
             while results.next() == true {
                 evento["referidos"] = results.string(forColumn: "referidos")

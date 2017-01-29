@@ -183,6 +183,7 @@ class CalendarioController: UIViewController, UITextFieldDelegate, UITableViewDe
         let line = UIView(frame: CGRect(x: 65, y: 10, width: 2, height: 35))
         line.backgroundColor = UIColor(cgColor: cal.cgColor)
         cell.addSubview(line)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         cell.addGestureRecognizer(tap)

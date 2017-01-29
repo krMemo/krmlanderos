@@ -63,9 +63,9 @@ class EventCell: UITableViewCell {
         lblHora.textColor = .darkGray
         lblHora.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         addSubview(lblHora)
-        lblNotas = UILabel(frame: CGRect(x: 70, y: 30, width: 230, height: 15))
+        lblNotas = UILabel(frame: CGRect(x: 70, y: 30, width: 270, height: 15))
         lblNotas.textColor = .black
-        lblNotas.font = .systemFont(ofSize: 15, weight: UIFontWeightRegular)
+        lblNotas.font = .systemFont(ofSize: 12, weight: UIFontWeightRegular)
         addSubview(lblNotas)
     }
     

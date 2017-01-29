@@ -75,14 +75,14 @@ class ReferidoDetViewController: UIViewController, UIPickerViewDelegate, UIPicke
         referencia["estatus"] = dicE[dicEstatus[pickerEstatus.selectedRow(inComponent: 0)]!]
         if referencia["estatus"] == "CO" || referencia["estatus"] == "IN" {
             referencia["cliente"] = "1"
-            addHistorial(id, estatus: "CLI")
+            addHistorialCliRef(id, estatus: "CLI", fecha: "now")
         }
         else {
             referencia["cliente"] = "0"
-            addHistorial(id, estatus: "REF")
+            addHistorialCliRef(id, estatus: "REF", fecha: "now")
         }
         executePersonas("UPDATE", persona: referencia)
-        addHistorial(id, estatus: referencia["estatus"]!)
+        addHistorialEst(id, estatus: referencia["estatus"]!, fecha: "now")
         mostrarAviso(titulo: "Aviso", mensaje: "Se cambió el estratus correctamente.", viewController: self)
     }
     

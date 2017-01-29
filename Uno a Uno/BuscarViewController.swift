@@ -65,7 +65,19 @@ class BuscarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = filtro[indexPath.row]["nombre"]!
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        cell.addGestureRecognizer(tap)
+        
         return cell
+    }
+    
+    func doubleTapped() {
+        if id != "" {
+            aceptar = true
+            self.performSegue(withIdentifier: "unwindBuscar", sender: self)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

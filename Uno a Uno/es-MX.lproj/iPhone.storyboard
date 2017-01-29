@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLj-fw-SL3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2645.5999999999999" y="62.518740629685162"/>
+            <point key="canvasLocation" x="2646" y="63"/>
         </scene>
         <!--Cliente-->
         <scene sceneID="U0f-uq-yat">
@@ -236,13 +236,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qrU-pA-JV8" userLabel="Text Dirección">
-                                <rect key="frame" x="8" y="436" width="359" height="70"/>
+                                <rect key="frame" x="8" y="445" width="358" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7W-UG-06S">
-                                <rect key="frame" x="8" y="514" width="50" height="20"/>
+                                <rect key="frame" x="8" y="513" width="50" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="highlightedColor"/>
@@ -275,7 +275,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hX5-to-kp9">
-                                <rect key="frame" x="8" y="533" width="359" height="70"/>
+                                <rect key="frame" x="8" y="561" width="358" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -291,7 +291,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MEE-ER-KHK">
-                                <rect key="frame" x="8" y="617" width="116" height="30"/>
+                                <rect key="frame" x="8" y="540" width="358" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -315,12 +315,26 @@
                                     <action selector="eliminarCliente:" destination="sLb-2m-UuZ" eventType="touchUpInside" id="C7q-Zq-iTz"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CX2-rc-JBT">
+                                <rect key="frame" x="80" y="602" width="270" height="58"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="507335516.95081401">
+                                    <!--2017-01-28 10:31:56 p.m. +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIP-63-aIi">
+                                <rect key="frame" x="8" y="621" width="50" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="datepickerFecha" destination="CX2-rc-JBT" id="Wyd-3b-NJE"/>
                         <outlet property="tableCorreos" destination="Rnm-YZ-RUL" id="aOP-Gl-npX"/>
                         <outlet property="tableTelefonos" destination="JCY-OD-e0j" id="SAl-cz-ZTg"/>
                         <outlet property="textAmaterno" destination="MEE-ER-KHK" id="xIF-cM-TWZ"/>
@@ -337,7 +351,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8hn-hF-lyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4Xr-Ef-bzM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4382" y="831"/>
+            <point key="canvasLocation" x="4340" y="821"/>
         </scene>
         <!--Referido-->
         <scene sceneID="nOq-1c-z1X">
@@ -374,18 +388,19 @@
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxN-e8-Sxe">
-                                <rect key="frame" x="8" y="514" width="70" height="21"/>
+                                <rect key="frame" x="8" y="513" width="50" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="82M-bB-Nwa">
-                                <rect key="frame" x="8" y="533" width="359" height="70"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMR-6H-ILi">
+                                <rect key="frame" x="8" y="621" width="50" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correos electrónicos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4Q-8a-wAP">
                                 <rect key="frame" x="8" y="298" width="168" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -458,7 +473,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmk-DY-UYO">
-                                <rect key="frame" x="8" y="417" width="90" height="21"/>
+                                <rect key="frame" x="8" y="417" width="80" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
@@ -497,14 +512,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2bs-GV-zQi">
-                                <rect key="frame" x="8" y="436" width="359" height="70"/>
+                                <rect key="frame" x="8" y="445" width="358" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Bv-7l-irB">
-                                <rect key="frame" x="8" y="611" width="131" height="30"/>
+                                <rect key="frame" x="8" y="540" width="358" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -536,12 +551,26 @@
                                     <action selector="eliminarReferido:" destination="EqI-Cg-BaQ" eventType="touchUpInside" id="ufi-Xp-fFc"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="M38-td-eka">
+                                <rect key="frame" x="80" y="602" width="270" height="58"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="507321912.07767802">
+                                    <!--2017-01-28 6:45:12 p.m. +0000-->
+                                </date>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="82M-bB-Nwa">
+                                <rect key="frame" x="9" y="541" width="358" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="datepickerFecha" destination="M38-td-eka" id="GVe-nF-Jbg"/>
                         <outlet property="tableCorreos" destination="Qtt-hc-5wF" id="TMe-ia-Fnl"/>
                         <outlet property="tableTelefonos" destination="TN7-KW-yZf" id="pfS-N3-FMU"/>
                         <outlet property="textAmaterno" destination="2Bv-7l-irB" id="OVX-9H-aGS"/>
@@ -558,7 +587,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ns-75-CWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W6u-IQ-bKO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3574" y="831"/>
+            <point key="canvasLocation" x="3500" y="821"/>
         </scene>
         <!--Cliente Detalle-->
         <scene sceneID="qtJ-Js-jmD">
@@ -753,7 +782,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ICd-0O-VS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ah5-G1-FNe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="831"/>
+            <point key="canvasLocation" x="2646" y="821"/>
         </scene>
         <!--Referido Detalle-->
         <scene sceneID="Rxs-JD-KkN">
@@ -892,7 +921,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv8-ZI-4UY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="pwj-dn-xKy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="831"/>
+            <point key="canvasLocation" x="1870" y="821"/>
         </scene>
         <!--Seguros View Controller-->
         <scene sceneID="MBa-OK-qha">
@@ -1082,7 +1111,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ta6-sM-dF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ftU-lj-dwf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3573.5999999999999" y="1646.6266866566718"/>
+            <point key="canvasLocation" x="3500" y="1647"/>
         </scene>
         <!--Importar-->
         <scene sceneID="QML-iU-4qJ">
@@ -1174,7 +1203,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fV5-AM-Uvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Akd-Ow-kvQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4381.6000000000004" y="1646.6266866566718"/>
+            <point key="canvasLocation" x="4340" y="1647"/>
         </scene>
         <!--Referidos-->
         <scene sceneID="IqJ-JQ-HPn">
@@ -1299,16 +1328,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" calendarEvent="YES"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0l-81-NgJ">
-                                <rect key="frame" x="8" y="28" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Recargar" image="refresh"/>
-                                <connections>
-                                    <action selector="recargar:" destination="Jbj-uL-yWQ" eventType="touchUpInside" id="Pxz-bl-vDf"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sZr-yX-VBc">
-                                <rect key="frame" x="45" y="28" width="322" height="29"/>
+                                <rect key="frame" x="8" y="28" width="359" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Llamadas y Citas"/>
@@ -1329,7 +1350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45X-GH-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3573.5999999999999" y="71.514242878560722"/>
+            <point key="canvasLocation" x="3500" y="62.518740629685162"/>
         </scene>
         <!--Configuración-->
         <scene sceneID="Jdf-es-YBL">
@@ -1380,7 +1401,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNO-tN-2A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="GRw-9c-Ln8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4382" y="72"/>
+            <point key="canvasLocation" x="4340" y="63"/>
         </scene>
         <!--Evento-->
         <scene sceneID="C9Z-Hy-Oi2">
@@ -1400,7 +1421,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCU-kX-yaC">
                                         <rect key="frame" x="338" y="25" width="27" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="editar"/>
+                                        <state key="normal" image="save"/>
                                         <connections>
                                             <action selector="guardarEvento:" destination="M8e-rn-7lh" eventType="touchUpInside" id="8ME-6h-7cM"/>
                                         </connections>
@@ -1592,7 +1613,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bd-Pj-KdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Mi-Aj-Cml" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="936"/>
+            <point key="canvasLocation" x="1012" y="926"/>
         </scene>
         <!--Calendario-->
         <scene sceneID="f7f-J4-E98">
@@ -1624,7 +1645,7 @@
                                 <color key="backgroundColor" red="0.92332249369999997" green="0.92332249369999997" blue="0.92332249369999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="46" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gd6-JX-Omf">
-                                <rect key="frame" x="10" y="335" width="355" height="275"/>
+                                <rect key="frame" x="10" y="390" width="355" height="220"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1663,10 +1684,6 @@
                                     <action selector="irHoy:" destination="9eK-WD-dnn" eventType="touchUpInside" id="1C4-TV-skC"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shadow_line" translatesAutoresizingMaskIntoConstraints="NO" id="6ed-co-GxO">
-                                <rect key="frame" x="10" y="308" width="388" height="48"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eck-Ou-vtu">
                                 <rect key="frame" x="300" y="23" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -1692,7 +1709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2by-MI-mAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012.5" y="70.774647887323951"/>
+            <point key="canvasLocation" x="1012" y="62.518740629685162"/>
         </scene>
         <!--Principal-->
         <scene sceneID="ory-e3-8ah">
@@ -1713,7 +1730,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eN9-qH-UOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="72"/>
+            <point key="canvasLocation" x="158" y="63"/>
         </scene>
         <!--Login-->
         <scene sceneID="4Kq-dg-x9t">
@@ -2083,7 +2100,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLw-jd-L90" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5Z6-G3-bUe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1869.5999999999999" y="1646.6266866566718"/>
+            <point key="canvasLocation" x="1870" y="1647"/>
         </scene>
         <!--Telefonos Correos View Controller-->
         <scene sceneID="HQz-Ig-dTD">
@@ -2202,7 +2219,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqq-cM-fsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lQ6-vB-aTq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2752.8000000000002" y="1646.6266866566718"/>
+            <point key="canvasLocation" x="2646" y="1647"/>
         </scene>
         <!--Llamadas-->
         <scene sceneID="gVF-my-Zfd">
@@ -2355,6 +2372,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="editEvento:" destination="IxJ-SF-PtC" eventType="touchUpInside" id="BeG-us-u3p"/>
                                     <action selector="editarEvento:" destination="9eK-WD-dnn" eventType="touchUpInside" id="dqc-9S-D1X"/>
                                 </connections>
                             </button>
@@ -2387,16 +2405,6 @@
                                     <action selector="cancelar:" destination="IxJ-SF-PtC" eventType="touchUpInside" id="1O3-qd-f3n"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xry-9W-o4J">
-                                <rect key="frame" x="171" y="28" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="trash">
-                                    <color key="titleColor" red="0.97528511289999997" green="0.66849744320000004" blue="0.41372168059999997" alpha="0.8518650968" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="borrar:" destination="M8e-rn-7lh" eventType="touchUpInside" id="mB0-NX-eve"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2412,13 +2420,13 @@
                         <outlet property="labelTipo" destination="j2T-YY-cni" id="suO-8p-ShO"/>
                         <outlet property="labelUbicacion" destination="2cF-y9-cSg" id="VOo-ZI-RUO"/>
                         <segue destination="yn5-gM-hqD" kind="unwind" identifier="unwindEventoDet" unwindAction="unwindEventoDetWithSender:" id="1Vk-bK-tTa"/>
-                        <segue destination="M8e-rn-7lh" kind="show" identifier="segueEvento" action="showDetailViewController:sender:" id="EFk-60-lF6"/>
+                        <segue destination="M8e-rn-7lh" kind="show" identifier="segueEveDet" action="showDetailViewController:sender:" id="EFk-60-lF6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6aC-2B-hwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yn5-gM-hqD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="157.59999999999999" y="830.73463268365822"/>
+            <point key="canvasLocation" x="158" y="821"/>
         </scene>
     </scenes>
     <resources>
@@ -2441,18 +2449,16 @@
         <image name="lupa" width="64" height="64"/>
         <image name="phone" width="32" height="32"/>
         <image name="rarrow" width="265" height="195"/>
-        <image name="refresh" width="32" height="32"/>
         <image name="save" width="64" height="64"/>
-        <image name="shadow_line" width="461" height="138"/>
         <image name="trash" width="64" height="64"/>
         <image name="undo" width="64" height="64"/>
         <image name="unoauno_img" width="250" height="124"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kRl-MG-QFq"/>
-        <segue reference="OTy-xz-MZx"/>
-        <segue reference="JFs-g0-M8Q"/>
-        <segue reference="pC2-3y-5T2"/>
+        <segue reference="A3s-F0-1hm"/>
+        <segue reference="zxd-KO-E0r"/>
         <segue reference="2n2-71-q4V"/>
+        <segue reference="OTy-xz-MZx"/>
     </inferredMetricsTieBreakers>
 </document>

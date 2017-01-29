@@ -21,7 +21,7 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
         webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repLlamadasCitas.html")))
     }
     
-    @IBAction func selectReporte(_ sender: UISegmentedControl) {
+    override func viewDidAppear(_ animated: Bool) {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if segReportes.selectedSegmentIndex == 0 {
             dicTojson(archivo: "LlamadasCitas.json", reporteLlamadasCitas())
@@ -32,8 +32,8 @@ class ReportesViewController: UIViewController, UIWebViewDelegate {
             webViewReporte.loadRequest(URLRequest(url: dir.appendingPathComponent("repReferidosClientes.html")))
         }
     }
-
-    @IBAction func recargar(_ sender: UIButton) {
+    
+    @IBAction func selectReporte(_ sender: UISegmentedControl) {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if segReportes.selectedSegmentIndex == 0 {
             dicTojson(archivo: "LlamadasCitas.json", reporteLlamadasCitas())

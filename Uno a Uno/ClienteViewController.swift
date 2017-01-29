@@ -28,6 +28,7 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var textReferencia: UITextField!
     @IBOutlet weak var tableTelefonos: UITableView!
     @IBOutlet weak var tableCorreos: UITableView!
+    @IBOutlet weak var datepickerFecha: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,7 +145,10 @@ class ClienteViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         update(id, telefonos: telefonos)
         update(id, correos: correos)
-        addHistorial(id, estatus: "CLI")
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+        let fecha = df.string(from: datepickerFecha.date)
+        addHistorialCliRef(id, estatus: "CLI", fecha: fecha)
         mostrarAviso(titulo: "", mensaje: "La información se guardó correctamente", viewController: self)
         self.performSegue(withIdentifier: "unwindCliente", sender: self)
     }

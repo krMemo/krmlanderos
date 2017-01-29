@@ -27,6 +27,7 @@ class EventoDetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let df = DateFormatter()
+        print(id)
         let tmpevento = selectEvento(id)
         print("carga: \(tmpevento)")
         if tmpevento["id"] == "" {
@@ -53,6 +54,16 @@ class EventoDetViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let eventoVC = segue.destination as! EventoViewController
+        eventoVC.nuevo = false
+        eventoVC.eventid = id
+    }
+    
+    @IBAction func editEvento(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueEveDet", sender: self)
+    }
+    
     @IBAction func cancelar(_ sender: UIButton) {
         performSegue(withIdentifier: "unwindEventoDet", sender: self)
     }
